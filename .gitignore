@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+Pods/
+.build/
+
+# Build outputs
+build/
+dist/
+.next/
+*.xcarchive
+
+# Environment & secrets
+.env
+.env.*
+*.p8
+*.p12
+*.pem
+serviceAccountKey.json
+
+# IDE
+.idea/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+
+# OS
+.DS_Store
+Thumbs.db
