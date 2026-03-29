@@ -1,12 +1,4 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import HowItWorks from "@/components/HowItWorks";
-import Features from "@/components/Features";
-import Portfolio from "@/components/Portfolio";
-import Differentials from "@/components/Differentials";
-import Contact from "@/components/Contact";
-import FAQ from "@/components/FAQ";
-import Footer from "@/components/Footer";
+import CosmoLanding from "@/components/CosmoLanding";
 
 export default function Home() {
   const jsonLd = {
@@ -24,6 +16,13 @@ export default function Home() {
       "Análise de Dados",
       "Marketing Digital",
     ],
+    knowsAbout: [
+      "Landing pages",
+      "Gestão de Instagram",
+      "Campanhas de performance",
+      "Dashboards",
+      "Produtos digitais",
+    ],
     areaServed: "BR",
     priceRange: "$$",
   };
@@ -34,17 +33,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Navbar />
-      <main className="overflow-x-hidden">
-        <Hero />
-        <HowItWorks />
-        <Features />
-        <Portfolio />
-        <Differentials />
-        <Contact />
-        <FAQ />
-      </main>
-      <Footer />
+      <CosmoLanding />
     </>
   );
 }
