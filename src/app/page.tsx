@@ -6,7 +6,7 @@ export default function Home() {
     "@type": "ProfessionalService",
     name: "CosmoHQ",
     description:
-      "Agência digital que transforma ideias em produtos e presença online — com estratégia, execução e inteligência de dados para gerar resultado real.",
+      "Agência digital que transforma ideias em produtos, presença online e campanhas com estratégia, execução e inteligência de dados para gerar resultado real.",
     url: "https://cosmohq.app",
     serviceType: [
       "Desenvolvimento de Apps",
@@ -14,7 +14,7 @@ export default function Home() {
       "Gestão de Redes Sociais",
       "Campanhas de Ads",
       "Análise de Dados",
-      "Marketing Digital",
+      "Marketing de Performance",
     ],
     knowsAbout: [
       "Landing pages",

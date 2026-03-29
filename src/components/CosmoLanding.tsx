@@ -4,232 +4,288 @@ import * as Accordion from "@radix-ui/react-accordion";
 import Image from "next/image";
 import { FormEvent } from "react";
 import Balancer from "react-wrap-balancer";
-import { Badge } from "@/components/ui/badge";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { ease, fadeIn, fadeUp, motion, stagger } from "@/components/motion";
-import { cn } from "@/lib/utils";
 import {
   ArrowRight,
   ArrowUpRight,
+  BadgeCheck,
   BarChart3,
+  BellRing,
+  Bot,
+  BriefcaseBusiness,
+  CalendarRange,
   Check,
   ChevronDown,
-  Clock3,
-  Compass,
+  Globe2,
+  Handshake,
   LayoutDashboard,
   Megaphone,
-  MessageSquare,
+  MessageCircle,
   MonitorSmartphone,
-  PanelsTopLeft,
+  Network,
+  ShieldCheck,
   Sparkles,
+  SplitSquareVertical,
   Target,
   Workflow,
 } from "lucide-react";
+import { motion, ease, fadeUp, stagger, staggerSlow } from "@/components/motion";
+import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 const navItems = [
+  { label: "Como funciona", href: "#como-funciona" },
   { label: "Serviços", href: "#servicos" },
-  { label: "Como funciona", href: "#processo" },
   { label: "Cases", href: "#cases" },
   { label: "Planos", href: "#planos" },
+  { label: "Downloads", href: "#downloads" },
   { label: "FAQ", href: "#faq" },
 ];
 
-const trustPoints = [
-  "Apps, sites e sistemas sob medida",
-  "Gestão de Instagram e conteúdo",
-  "Campanhas de ads com leitura de dados",
+const heroPills = [
+  "Apps e sites",
+  "Instagram e conteúdo",
+  "Ads e campanhas",
+  "Dados para decidir",
 ];
 
 const steps = [
   {
-    index: "01",
+    id: "01",
     title: "Entender o problema",
     description:
-      "Entramos no contexto do negócio, mapeamos gargalos e definimos onde o digital realmente precisa gerar resultado.",
-    detail: "Menos briefing eterno. Mais clareza sobre prioridade, público e oportunidade.",
-    icon: Compass,
+      "Entramos no contexto do negócio, identificamos gargalos e traduzimos a meta comercial em uma rota clara de execução.",
+    detail:
+      "Menos briefing infinito. Mais foco em público, oferta, contexto e prazo realista.",
+    icon: Target,
   },
   {
-    index: "02",
+    id: "02",
     title: "Construir a solução",
     description:
-      "Desenhamos, produzimos e colocamos no ar apps, sites, sistemas e a operação de conteúdo com velocidade e critério.",
-    detail: "Execução centralizada para o cliente não precisar coordenar cinco fornecedores.",
+      "Criamos apps, sites, sistemas e a presença social com linguagem de marca, velocidade e um nível alto de acabamento.",
+    detail:
+      "A execução acontece com o mesmo time cuidando de produto, conteúdo e crescimento.",
     icon: Workflow,
   },
   {
-    index: "03",
-    title: "Analisar e melhorar",
+    id: "03",
+    title: "Medir e melhorar",
     description:
-      "Acompanhamos dados, ajustamos campanhas, refinamos páginas e evoluímos o produto com base no que performa.",
-    detail: "Decisão com inteligência contínua, sem achismo e sem vanity metrics.",
+      "Acompanhamos o que está acontecendo, aprendemos com os dados e ajustamos campanhas, páginas e conteúdo sem achismo.",
+    detail:
+      "O que performa sobe; o que atrasa a conversão sai de cena.",
     icon: BarChart3,
   },
 ];
 
 const services = [
   {
-    title: "Apps e sistemas que resolvem operação",
+    title: "Painel de controle para enxergar o negócio",
     description:
-      "Do MVP ao produto interno: construímos fluxos, painéis e ferramentas que tiram o caos do dia a dia.",
-    eyebrow: "Produto digital",
-    icon: MonitorSmartphone,
-    accent: "from-[#3498db]/30 via-[#3498db]/10 to-transparent",
-    points: ["Fluxos sob medida", "Integrações úteis", "Entrega pronta para uso"],
-    featured: true,
+      "Uma visão clara de campanhas, conversões, engagement e operação para o cliente tomar decisões sem depender de planilhas soltas.",
+    icon: LayoutDashboard,
+    accent: "from-[#3498db]/25 via-white/8 to-transparent",
     image:
       "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/da/41/2d/da412de0-3b03-b6f8-2bf4-5216ea3b5340/screenshot_1.png/2560x1599bb.png",
+    points: [
+      "Métricas prioritárias em um lugar só",
+      "Leitura rápida para reuniões curtas",
+      "Estrutura pensada para escalar",
+    ],
   },
   {
-    title: "Sites e landing pages que vendem melhor",
+    title: "Gerenciamento de campanhas em múltiplas plataformas",
     description:
-      "Posicionamento, copy, interface e performance pensados para transformar atenção em conversa comercial.",
-    eyebrow: "Presença online",
-    icon: PanelsTopLeft,
-    accent: "from-[#f1c40f]/30 via-[#f1c40f]/10 to-transparent",
-    points: ["Copy orientada a conversão", "SEO e estrutura", "Visual premium no detalhe"],
-  },
-  {
-    title: "Gestão de Instagram sem conteúdo vazio",
-    description:
-      "Planejamento, criação, calendário e leitura de performance para a marca aparecer com constância e intenção.",
-    eyebrow: "Social media",
-    icon: MessageSquare,
-    accent: "from-[#e74c3c]/30 via-[#e74c3c]/10 to-transparent",
-    points: ["Linha editorial", "Produção recorrente", "Aprendizado a cada ciclo"],
-  },
-  {
-    title: "Campanhas e ads com controle real",
-    description:
-      "Estruturamos campanhas, acompanhamos verba e ajustamos criativos e páginas para aumentar eficiência.",
-    eyebrow: "Growth",
+      "Planejamento, criação, acompanhamento e otimização de campanhas em Instagram, Facebook, Google e outros canais relevantes.",
     icon: Megaphone,
-    accent: "from-[#2ecc71]/30 via-[#2ecc71]/10 to-transparent",
-    points: ["Meta, Google e canais sociais", "Leitura de CAC e conversão", "Ajuste rápido de rota"],
+    accent: "from-[#f1c40f]/24 via-white/8 to-transparent",
+    points: [
+      "Ads com leitura diária",
+      "Ajustes em criativo e verba",
+      "Controle de CAC e conversão",
+    ],
   },
   {
-    title: "Painel de dados em tempo real",
+    title: "Análise de dados em tempo real",
     description:
-      "Criamos visões claras de campanhas, funil e operação para o cliente entender o que está funcionando sem depender de planilhas soltas.",
-    eyebrow: "Dados",
-    icon: LayoutDashboard,
-    accent: "from-white/20 via-white/8 to-transparent",
-    points: ["Indicadores vivos", "Leitura simples", "Decisão mais rápida"],
+      "Monitoramento contínuo do desempenho para responder rápido ao que o mercado está dizendo, sem esperar o fim do mês.",
+    icon: BarChart3,
+    accent: "from-[#2ecc71]/24 via-white/8 to-transparent",
+    points: [
+      "Decisões orientadas por dados",
+      "Alertas para desvios e oportunidades",
+      "Relatórios claros e sem ruído",
+    ],
+  },
+  {
+    title: "Integração com redes sociais",
+    description:
+      "A presença social vira operação de verdade: publicação, organização de calendário e integração com o resto da jornada de vendas.",
+    icon: Network,
+    accent: "from-[#e74c3c]/24 via-white/8 to-transparent",
+    points: [
+      "Fluxo mais rápido para postar e ajustar",
+      "Conteúdo conectado com campanha",
+      "Instagram com intenção comercial",
+    ],
+  },
+  {
+    title: "Otimização de conteúdo",
+    description:
+      "Ajudamos a criar e lapidar conteúdo para diferentes formatos e plataformas, sem perder a consistência da marca.",
+    icon: SplitSquareVertical,
+    accent: "from-[#ffffff]/14 via-white/8 to-transparent",
+    points: [
+      "Copy e direção visual alinhadas",
+      "Menos improviso, mais consistência",
+      "Peças pensadas para conversão",
+    ],
+  },
+  {
+    title: "Segurança, alertas e automação",
+    description:
+      "Para projetos que precisam de confiabilidade, configuramos alertas, permissões e rotinas que ajudam a operação a continuar fluindo.",
+    icon: ShieldCheck,
+    accent: "from-[#f1c40f]/14 via-white/8 to-transparent",
+    points: [
+      "Segurança e autenticação",
+      "Notificações de eventos importantes",
+      "Automação para reduzir atrito",
+    ],
   },
 ];
 
 const cases = [
   {
     name: "CosmoFinanças",
-    category: "Case de produto",
-    description:
-      "Transformamos organização financeira em uma experiência clara e elegante, provando na prática como um produto bem desenhado reduz fricção e aumenta recorrência.",
-    outcome:
-      "Hoje serve como referência para clientes que precisam de dashboards, experiência desktop e jornadas com dados visuais.",
+    label: "Case interno",
+    problem:
+      "Como deixar decisões financeiras e organização de dados visuais sem transformar tudo em planilha complexa?",
+    result:
+      "Criamos uma experiência clara, visual e objetiva que prova como interface e dados podem trabalhar juntos.",
     image:
       "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/06/7e/d6/067ed6f7-7b2c-b674-37e7-72ab6598aaf6/screenshot_1.png/2560x1600bb.png",
-    points: ["Dashboard financeiro", "Fluxo denso, interface leve", "Produto que valida nossa metodologia"],
+    bullets: ["Dashboard e leitura rápida", "Produto usado como referência", "Acabamento premium"],
   },
   {
     name: "CosmoKit",
-    category: "Case de operação",
-    description:
-      "Estruturamos um kit de componentes e fluxos reaproveitáveis para acelerar entregas sem cair em solução genérica.",
-    outcome:
-      "Virou base para vender sites, apps e painéis para clientes com mais velocidade e padrão visual consistente.",
+    label: "Case de escala",
+    problem:
+      "Como acelerar a entrega de apps e sites sem cair em layout genérico ou retrabalho constante?",
+    result:
+      "Estruturamos uma base de componentes e padrões visuais para ganhar velocidade com consistência.",
     image:
       "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/62/26/c7/6226c732-53bc-197e-fae0-59fa01734604/screenshot_2.png/2560x1600bb.png",
-    points: ["Escala com qualidade", "Menos retrabalho", "Base reutilizável para novos projetos"],
+    bullets: ["Sistema reaproveitável", "Menos ruído operacional", "Entrega com padrão"],
   },
   {
-    name: "Operação Social + Ads",
-    category: "Case de crescimento",
-    description:
-      "Unimos conteúdo, criativos, campanha e leitura de dados para transformar presença social em pipeline de oportunidades.",
-    outcome:
-      "É o formato ideal para negócios que precisam vender melhor sem montar time interno completo.",
-    image: "https://images.pexels.com/photos/6476776/pexels-photo-6476776.jpeg",
-    points: ["Calendário + mídia paga", "Ajuste por performance", "Contato direto com quem executa"],
+    name: "Social + Ads",
+    label: "Case de aquisição",
+    problem:
+      "Como transformar Instagram e mídia paga em um fluxo consistente de vendas para clientes?",
+    result:
+      "Conectamos conteúdo, campanha e leitura de dados para gerar uma operação que vende com mais previsibilidade.",
+    image:
+      "https://images.pexels.com/photos/1647904/pexels-photo-1647904.jpeg",
+    bullets: ["Conteúdo e mídia no mesmo plano", "Ajustes rápidos por performance", "Comunicação direta"],
   },
 ];
 
 const gallery = [
   {
-    title: "Painéis que explicam o negócio",
+    title: "CosmoFinanças em desktop",
     image:
       "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/da/41/2d/da412de0-3b03-b6f8-2bf4-5216ea3b5340/screenshot_1.png/2560x1599bb.png",
+    span: "md:col-span-7",
   },
   {
-    title: "Produto com acabamento de marca forte",
+    title: "CosmoKit como base de aceleração",
+    image:
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/62/26/c7/6226c732-53bc-197e-fae0-59fa01734604/screenshot_2.png/2560x1600bb.png",
+    span: "md:col-span-5",
+  },
+  {
+    title: "Time alinhando execução",
+    image:
+      "https://images.pexels.com/photos/1647904/pexels-photo-1647904.jpeg",
+    span: "md:col-span-4",
+  },
+  {
+    title: "Apresentação de dados com foco em decisão",
+    image:
+      "https://images.pexels.com/photos/6476776/pexels-photo-6476776.jpeg",
+    span: "md:col-span-4",
+  },
+  {
+    title: "Ritmo visual de produto",
     image:
       "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/06/7e/d6/067ed6f7-7b2c-b674-37e7-72ab6598aaf6/screenshot_1.png/2560x1600bb.png",
+    span: "md:col-span-4",
   },
   {
-    title: "Operação próxima do cliente",
-    image: "https://images.pexels.com/photos/1647904/pexels-photo-1647904.jpeg",
-  },
-  {
-    title: "Campanhas guiadas por leitura de dados",
+    title: "Execução com contexto",
     image:
       "https://images.unsplash.com/photo-1601933974703-d25155828f40?crop=entropy&cs=srgb&fm=jpg&ixid=M3w5MDk4MzF8MHwxfHNlYXJjaHwxfHxoYXBweSUyMHBlb3BsZSUyMGNvbXB1dGVyfGVufDB8MHx8fDE3NzQ4MDU5MzV8MA&ixlib=rb-4.1.0&q=85",
+    span: "md:col-span-12",
   },
-  {
-    title: "Colaboração que tira projetos do papel",
-    image: "https://images.pexels.com/photos/1647904/pexels-photo-1647904.jpeg",
-  },
-  {
-    title: "Leitura estratégica para a próxima decisão",
-    image: "https://images.pexels.com/photos/6476776/pexels-photo-6476776.jpeg",
-  },
-];
-
-const differentiators = [
-  "Entregamos rápido sem abrir mão de qualidade.",
-  "Usamos dados para tomar decisões melhores.",
-  "Comunicação direta, sem reuniões intermináveis.",
-  "Somos clientes dos nossos próprios produtos.",
 ];
 
 const pricing = [
   {
     name: "Mensal",
-    label: "Operação contínua",
+    tagline: "Operação contínua",
     description:
-      "Ideal para marcas que precisam de evolução constante em site, social, campanhas e leitura de resultado.",
-    badge: "Entrada flexível",
+      "Perfeito para marcas que precisam de presença ativa, campanhas em andamento e evolução mensal da operação.",
+    badge: "Flexível",
     featured: false,
     points: [
-      "Ritmo mensal de produção e otimização",
-      "Acompanhamento de campanhas e conteúdo",
-      "Priorização quinzenal com contato direto",
+      "Produção e otimização recorrentes",
+      "Acompanhamento de dados e campanhas",
+      "Prioridades alinhadas com o negócio",
     ],
   },
   {
     name: "Anual",
-    label: "Melhor valor",
+    tagline: "Melhor valor",
     description:
-      "Parceria de crescimento para construir, operar e ajustar com profundidade durante o ano inteiro.",
-    badge: "Economize 18%",
+      "O formato mais inteligente para crescer com profundidade: estratégia, execução e aprendizado durante o ano inteiro.",
+    badge: "Save 18%",
     featured: true,
     points: [
       "Tudo do plano mensal com cadência ampliada",
-      "Roadmap estratégico de produto e marketing",
-      "Janelas reservadas para novas entregas",
+      "Roadmap de produto e marketing",
+      "Acesso prioritário para novas entregas",
     ],
   },
   {
     name: "Lifetime",
-    label: "Build once",
+    tagline: "Ativo próprio",
     description:
-      "Para quem quer um ativo próprio e completo: site, app ou sistema entregue com autonomia total da operação.",
-    badge: "Projeto proprietário",
+      "Indicado para quem quer sair com um asset sólido: site, app ou sistema pronto para ser usado pela operação.",
+    badge: "Projeto fechado",
     featured: false,
     points: [
-      "Escopo fechado com entrega de alto impacto",
-      "Base pronta para o time continuar usando",
-      "Treinamento e documentação de handoff",
+      "Escopo fechado e documentação",
+      "Treinamento e handoff",
+      "Base para operação independente",
     ],
+  },
+];
+
+const downloads = [
+  {
+    name: "iOS",
+    status: "Coming Soon",
+    icon: "",
+    note: "Em breve na App Store.",
+  },
+  {
+    name: "Android",
+    status: "Coming Soon",
+    icon: "△",
+    note: "Em breve no Google Play.",
   },
 ];
 
@@ -237,77 +293,81 @@ const faqs = [
   {
     question: "A CosmoHQ é uma agência ou uma software house?",
     answer:
-      "As duas coisas no ponto certo. A gente une estratégia de marketing, produção criativa e desenvolvimento para o cliente não precisar quebrar o projeto entre vários times.",
+      "A CosmoHQ trabalha como uma agência digital que une criação, desenvolvimento e growth. O cliente não precisa juntar vários fornecedores para sair do zero até a operação rodando.",
   },
   {
-    question: "Vocês fazem só app e site ou cuidam do Instagram também?",
+    question: "Vocês cuidam só de app e site?",
     answer:
-      "Também cuidamos da presença social. Planejamos conteúdo, organizamos calendário, criamos peças e conectamos isso com campanhas e páginas para gerar resultado comercial.",
+      "Não. Além de apps e sites, também gerenciamos Instagram, conteúdo, campanhas de ads e análise de dados para que a presença online realmente venda.",
   },
   {
     question: "Como vocês evitam decisões no achismo?",
     answer:
-      "Todo projeto nasce com hipótese clara, indicadores e rotina de leitura. A partir daí, campanhas, páginas e produto evoluem com base em dado e contexto de negócio.",
+      "Todo projeto é acompanhado com indicadores claros. Nós medimos o que importa, lemos os dados e fazemos ajustes contínuos na rota de execução.",
   },
   {
-    question: "Consigo contratar só uma parte da operação?",
+    question: "O app da CosmoHQ já está disponível?",
     answer:
-      "Sim. Podemos entrar com um projeto fechado, uma parceria mensal ou uma estrutura anual mais completa. O formato depende do objetivo e da velocidade desejada.",
+      "Ainda não. Os links de iOS e Android estão marcados como Coming Soon. Enquanto isso, a agência já está operando projetos para clientes.",
   },
   {
-    question: "O app da CosmoHQ já foi lançado?",
+    question: "Posso contratar só uma parte da operação?",
     answer:
-      "Ainda não. iOS e Android estão marcados como Coming Soon. Enquanto isso, a agência já opera entregas de apps, sites, conteúdo e ads para os clientes.",
+      "Sim. Podemos atuar em um projeto fechado, em uma operação mensal ou em uma parceria anual. O formato depende do objetivo e do momento do negócio.",
+  },
+  {
+    question: "Vocês trabalham com clientes que ainda não têm uma marca forte?",
+    answer:
+      "Sim. A ideia pode estar no começo. A nossa função é transformar intenção em presença digital, produto e movimento comercial.",
   },
 ];
 
-function SectionIntro({
-  badge,
+function SectionTitle({
+  eyebrow,
   title,
   description,
-  align = "left",
+  centered = true,
 }: {
-  badge: string;
+  eyebrow: string;
   title: string;
   description: string;
-  align?: "left" | "center";
+  centered?: boolean;
 }) {
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.35 }}
+      viewport={{ once: true, amount: 0.45 }}
       variants={fadeUp}
-      transition={{ duration: 0.7, ease }}
-      className={cn("max-w-3xl", align === "center" && "mx-auto text-center")}
+      transition={{ duration: 0.65, ease }}
+      className={cn("max-w-3xl", centered ? "mx-auto text-center" : "text-left")}
     >
-      <Badge variant="secondary" className="mb-5">
-        {badge}
+      <Badge variant="secondary" className={cn("mb-5 w-fit", centered && "mx-auto")}>
+        {eyebrow}
       </Badge>
-      <h2 className="max-w-3xl text-3xl font-semibold tracking-[-0.04em] text-white md:text-5xl">
+      <h2 className="text-balance text-[2rem] font-semibold leading-[0.98] tracking-[-0.055em] text-white sm:text-[2.8rem] lg:text-[4rem]">
         <Balancer>{title}</Balancer>
       </h2>
-      <p className="mt-5 max-w-2xl text-sm leading-7 text-white/68 md:text-base">
+      <p className="mt-5 text-pretty text-base leading-7 text-white/68 sm:text-lg">
         <Balancer>{description}</Balancer>
       </p>
     </motion.div>
   );
 }
 
-function handleBriefingSubmit(event: FormEvent<HTMLFormElement>) {
+function submitBriefing(event: FormEvent<HTMLFormElement>) {
   event.preventDefault();
 
   const formData = new FormData(event.currentTarget);
   const name = String(formData.get("name") ?? "").trim();
   const projectType = String(formData.get("projectType") ?? "").trim();
-  const goal = String(formData.get("goal") ?? "").trim();
-  const subject = encodeURIComponent(`Briefing CosmoHQ - ${name || "Novo lead"}`);
+  const objective = String(formData.get("objective") ?? "").trim();
+
+  const subject = encodeURIComponent(`Novo briefing CosmoHQ - ${name || "Contato"}`);
   const body = encodeURIComponent(
-    [
-      `Nome: ${name || "-"}`,
-      `Tipo de projeto: ${projectType || "-"}`,
-      `Objetivo: ${goal || "-"}`,
-    ].join("\n"),
+    [`Nome: ${name || "-"}`, `Tipo de projeto: ${projectType || "-"}`, `Objetivo: ${objective || "-"}`].join(
+      "\n",
+    ),
   );
 
   window.location.href = `mailto:contato@cosmohq.app?subject=${subject}&body=${body}`;
@@ -315,97 +375,99 @@ function handleBriefingSubmit(event: FormEvent<HTMLFormElement>) {
 
 export default function CosmoLanding() {
   return (
-    <div className="relative overflow-x-clip">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[820px] bg-[radial-gradient(circle_at_top,rgba(52,152,219,0.24),transparent_38%),radial-gradient(circle_at_78%_10%,rgba(241,196,15,0.16),transparent_18%),radial-gradient(circle_at_20%_20%,rgba(231,76,60,0.14),transparent_20%)]" />
-      <div className="pointer-events-none absolute inset-x-0 top-[-120px] h-[640px] bg-[linear-gradient(180deg,rgba(255,255,255,0.08),transparent)] opacity-30 blur-3xl" />
+    <div id="top" className="relative overflow-x-clip">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(52,152,219,0.2),transparent_32%),radial-gradient(circle_at_80%_12%,rgba(241,196,15,0.14),transparent_18%),radial-gradient(circle_at_15%_18%,rgba(231,76,60,0.12),transparent_20%)]" />
+      <div className="pointer-events-none absolute inset-0 opacity-50 [background:linear-gradient(180deg,rgba(255,255,255,0.04),transparent_18%)]" />
 
-      <header className="sticky top-0 z-50 px-4 pt-4 md:px-8">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between rounded-full border border-white/10 bg-[#121719]/78 px-5 py-3 shadow-[0_16px_54px_-24px_rgba(0,0,0,0.95)] backdrop-blur-2xl">
+      <header className="sticky top-0 z-50 px-4 pt-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between rounded-full border border-white/10 bg-[#121719]/80 px-5 py-3 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.95)] backdrop-blur-2xl">
           <a href="#top" className="flex items-center gap-3">
-            <span className="flex size-10 items-center justify-center rounded-full bg-[linear-gradient(135deg,#3498db,#e74c3c)] text-sm font-semibold text-white shadow-[0_10px_30px_-12px_rgba(52,152,219,0.9)]">
+            <span className="flex size-10 items-center justify-center rounded-full bg-[linear-gradient(135deg,#3498db,#5abaf5,#f1c40f)] text-sm font-semibold text-white shadow-[0_14px_40px_-16px_rgba(52,152,219,0.9)]">
               C
             </span>
             <div>
-              <div className="text-sm font-semibold tracking-[0.2em] text-white">
+              <div className="text-sm font-semibold tracking-[0.24em] text-white">
                 COSMOHQ
               </div>
-              <div className="text-[11px] uppercase tracking-[0.24em] text-white/45">
+              <div className="text-[11px] uppercase tracking-[0.24em] text-white/46">
                 Agência digital
               </div>
             </div>
           </a>
 
-          <nav className="hidden items-center gap-7 lg:flex">
+          <nav className="hidden items-center gap-1 lg:flex">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm text-white/65 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#121719]"
+                className="rounded-full px-3 py-2 text-sm text-white/68 transition hover:bg-white/6 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/60"
               >
                 {item.label}
               </a>
             ))}
           </nav>
 
-          <a
-            href="#contato"
-            className={buttonVariants({
-              variant: "default",
-              size: "sm",
-              className: "hidden md:inline-flex",
-            })}
-          >
-            Fale com a gente
-            <ArrowRight className="size-4" />
-          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href="#downloads"
+              className={buttonVariants({
+                variant: "secondary",
+                size: "sm",
+                className: "hidden md:inline-flex",
+              })}
+            >
+              Ver downloads
+            </a>
+            <a href="#contato" className={buttonVariants({ size: "sm" })}>
+              Fale com a gente
+              <ArrowRight className="size-4" />
+            </a>
+          </div>
         </div>
       </header>
 
-      <main id="top">
-        <section className="section-shell noise-overlay relative px-4 pb-16 pt-10 md:px-8 md:pb-24 md:pt-12">
-          <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+      <main>
+        <section className="section-shell noise-overlay relative px-4 pb-18 pt-14 sm:px-6 lg:px-8 lg:pb-28 lg:pt-20">
+          <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] lg:items-center">
             <motion.div
+              className="relative z-10"
               initial="hidden"
               animate="visible"
               variants={stagger}
-              className="relative z-10 max-w-2xl pt-8 md:pt-14"
             >
-              <motion.div variants={fadeUp} transition={{ duration: 0.7, ease }}>
-                <Badge className="mb-6 bg-white/8 text-white" variant="secondary">
+              <motion.div variants={fadeUp}>
+                <Badge variant="secondary" className="mb-6 bg-white/6">
                   <Sparkles className="size-3.5" />
-                  estratégia, execução e dados no mesmo time
+                  Estratégia, execução e dados no mesmo time
                 </Badge>
               </motion.div>
 
               <motion.h1
                 variants={fadeUp}
-                transition={{ duration: 0.8, ease }}
-                className="max-w-4xl text-[2.9rem] font-semibold leading-[0.95] tracking-[-0.06em] text-white md:text-[4.7rem] lg:text-[5.5rem]"
+                className="max-w-4xl text-[2.95rem] font-semibold leading-[0.94] tracking-[-0.07em] text-white sm:text-[4.2rem] lg:text-[5.7rem]"
               >
                 <Balancer>Sua ideia no digital. Do jeito certo.</Balancer>
               </motion.h1>
 
               <motion.p
                 variants={fadeUp}
-                transition={{ duration: 0.8, ease }}
-                className="mt-6 max-w-xl text-base leading-8 text-white/72 md:text-lg"
+                className="mt-6 max-w-2xl text-pretty text-base leading-8 text-white/72 sm:text-lg"
               >
                 <Balancer>
-                  A CosmoHQ constrói apps, sites e sistemas, cuida das redes
-                  sociais e opera campanhas com leitura de dados para cada
-                  decisão gerar impacto real no negócio.
+                  A CosmoHQ é uma agência digital que constrói apps, sites e
+                  sistemas, cuida do Instagram e opera campanhas em múltiplas
+                  plataformas. Tudo com leitura de dados para cada decisão gerar
+                  o maior impacto possível.
                 </Balancer>
               </motion.p>
 
               <motion.div
                 variants={fadeUp}
-                transition={{ duration: 0.8, ease }}
-                className="mt-8 flex flex-col gap-3 sm:flex-row"
+                className="mt-9 flex flex-col gap-3 sm:flex-row"
               >
                 <a
                   href="#contato"
                   className={buttonVariants({
-                    variant: "default",
                     size: "lg",
                     className: "ambient-glow",
                   })}
@@ -424,85 +486,103 @@ export default function CosmoLanding() {
                 </a>
               </motion.div>
 
-              <motion.div
-                variants={fadeUp}
-                transition={{ duration: 0.8, ease }}
-                className="mt-10 flex flex-wrap gap-3"
-              >
-                {trustPoints.map((item) => (
+              <motion.div variants={fadeUp} className="mt-10 flex flex-wrap gap-3">
+                {heroPills.map((item) => (
                   <div
                     key={item}
-                    className="surface-blend rounded-full border border-white/10 px-4 py-2 text-sm text-white/74"
+                    className="rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm text-white/76 backdrop-blur-xl"
                   >
                     {item}
                   </div>
                 ))}
               </motion.div>
-            </motion.div>
-
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={stagger}
-              className="relative lg:min-h-[720px]"
-            >
-              <motion.div
-                variants={fadeIn}
-                transition={{ duration: 1.2, ease }}
-                className="hero-orbit absolute left-1/2 top-1/2 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full"
-              />
 
               <motion.div
                 variants={fadeUp}
-                transition={{ duration: 0.85, ease }}
-                className="editorial-panel ring-gradient ambient-glow relative ml-auto max-w-[580px] overflow-hidden rounded-[36px] p-4"
+                className="mt-10 grid gap-4 sm:grid-cols-3"
               >
-                <div className="grid gap-4 md:grid-cols-[1.05fr_0.95fr]">
-                  <div className="overflow-hidden rounded-[28px] border border-white/10 bg-black/20">
+                {[
+                  "Apps, sites e sistemas",
+                  "Social com objetivo comercial",
+                  "Campanhas guiadas por dados",
+                ].map((item) => (
+                  <Card key={item} className="hover-lift rounded-[26px] border-white/10">
+                    <CardContent className="p-5">
+                      <div className="text-base font-semibold tracking-[-0.03em] text-white">
+                        {item}
+                      </div>
+                      <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/42">
+                        Operação integrada
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 28, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.85, ease }}
+              className="relative"
+            >
+              <div className="hero-orbit absolute -left-20 top-8 h-60 w-60 rounded-full" />
+              <div className="hero-orbit absolute -right-12 bottom-0 h-64 w-64 rounded-full opacity-70" />
+
+              <div className="editorial-panel ring-gradient relative overflow-hidden rounded-[40px] p-4 sm:p-5">
+                <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+                  <div className="overflow-hidden rounded-[30px] border border-white/10 bg-black/20">
                     <Image
                       src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/da/41/2d/da412de0-3b03-b6f8-2bf4-5216ea3b5340/screenshot_1.png/2560x1599bb.png"
-                      alt="Painel do produto CosmoHQ em desktop"
-                      width={1280}
-                      height={900}
-                      className="h-full w-full object-cover"
+                      alt="CosmoFinanças em desktop"
+                      width={1600}
+                      height={1000}
                       priority
+                      unoptimized
+                      className="h-full w-full object-cover"
                     />
                   </div>
-                  <div className="flex flex-col gap-4">
-                    <div className="overflow-hidden rounded-[28px] border border-white/10 bg-black/20">
-                      <Image
-                        src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/62/26/c7/6226c732-53bc-197e-fae0-59fa01734604/screenshot_2.png/2560x1600bb.png"
-                        alt="Interface de produto construído pela CosmoHQ"
-                        width={960}
-                        height={700}
-                        className="h-[240px] w-full object-cover md:h-[260px]"
-                      />
+
+                  <div className="grid gap-4">
+                    <div className="surface-blend overflow-hidden rounded-[30px] border border-white/10 p-3">
+                      <div className="relative aspect-[4/3] overflow-hidden rounded-[22px]">
+                        <Image
+                          src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/62/26/c7/6226c732-53bc-197e-fae0-59fa01734604/screenshot_2.png/2560x1600bb.png"
+                          alt="CosmoKit como case de escala"
+                          fill
+                          unoptimized
+                          className="object-cover"
+                          sizes="(min-width: 1024px) 420px, 100vw"
+                        />
+                      </div>
                     </div>
-                    <Card className="rounded-[28px] border-white/12 bg-[#111618]/80">
+
+                    <Card className="rounded-[30px] border-white/10 bg-[#101518]/90">
                       <CardContent className="space-y-5 p-6">
                         <div className="flex items-start justify-between gap-4">
                           <div>
-                            <p className="text-[11px] uppercase tracking-[0.24em] text-white/45">
-                              como pensamos
+                            <p className="text-[11px] uppercase tracking-[0.22em] text-white/44">
+                              Como trabalhamos
                             </p>
                             <h3 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-white">
                               Dados antes de opinião.
                             </h3>
                           </div>
-                          <Target className="mt-1 size-5 text-brand-secondary" />
+                          <BadgeCheck className="mt-1 size-5 text-brand-success" />
                         </div>
+
                         <div className="space-y-3">
                           {[
-                            "Painéis para leitura de campanhas e conversão",
-                            "Ajustes rápidos em criativo, produto e página",
-                            "Mesma equipe cuidando de estratégia e execução",
-                          ].map((point) => (
+                            "A mesma equipe cuida de estratégia e execução",
+                            "Ajustes rápidos com base no que está funcionando",
+                            "Transparência para o cliente acompanhar o caminho",
+                          ].map((item) => (
                             <div
-                              key={point}
-                              className="flex items-start gap-3 text-sm leading-6 text-white/70"
+                              key={item}
+                              className="flex items-start gap-3 text-sm leading-6 text-white/72"
                             >
                               <Check className="mt-1 size-4 text-brand-success" />
-                              <span>{point}</span>
+                              <span>{item}</span>
                             </div>
                           ))}
                         </div>
@@ -510,39 +590,449 @@ export default function CosmoLanding() {
                     </Card>
                   </div>
                 </div>
-              </motion.div>
 
-              <motion.div
-                variants={fadeUp}
-                transition={{ duration: 0.85, ease, delay: 0.12 }}
-                className="glass-panel absolute -bottom-5 left-0 hidden max-w-[280px] rounded-[28px] p-5 lg:block"
-              >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-[11px] uppercase tracking-[0.24em] text-white/45">
-                      operação integrada
-                    </p>
-                    <p className="mt-2 text-lg font-semibold text-white">
-                      Produto + conteúdo + mídia
+                <div className="mt-4 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
+                  <div className="glass-panel rounded-[30px] p-5">
+                    <div className="flex items-center justify-between gap-4">
+                      <div>
+                        <div className="text-xs uppercase tracking-[0.22em] text-white/42">
+                          Status do app
+                        </div>
+                        <div className="mt-2 text-lg font-semibold tracking-[-0.03em] text-white">
+                          iOS e Android
+                        </div>
+                      </div>
+                      <div className="rounded-full border border-white/10 bg-white/6 px-3 py-1 text-xs uppercase tracking-[0.18em] text-white/74">
+                        Coming Soon
+                      </div>
+                    </div>
+                    <p className="mt-4 text-sm leading-7 text-white/62">
+                      A marca ainda não lançou o app, mas a operação de agência já
+                      entrega sites, apps, social e ads para outros clientes.
                     </p>
                   </div>
-                  <ArrowUpRight className="size-5 text-brand-primary" />
+
+                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+                    <div className="glass-panel rounded-[30px] p-5">
+                      <div className="text-xs uppercase tracking-[0.22em] text-white/42">
+                        Foco
+                      </div>
+                      <div className="mt-2 text-lg font-semibold tracking-[-0.03em] text-white">
+                        Converter atenção em venda.
+                      </div>
+                    </div>
+                    <div className="glass-panel rounded-[30px] p-5">
+                      <div className="text-xs uppercase tracking-[0.22em] text-white/42">
+                        Atuação
+                      </div>
+                      <div className="mt-2 text-lg font-semibold tracking-[-0.03em] text-white">
+                        Produto, presença e performance.
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <p className="mt-3 text-sm leading-6 text-white/62">
-                  A mesma lógica que usamos nos nossos produtos orienta o que
-                  entregamos para os clientes.
-                </p>
-              </motion.div>
+              </div>
             </motion.div>
           </div>
         </section>
 
-        <section id="processo" className="section-shell px-4 py-16 md:px-8 md:py-24">
+        <section id="como-funciona" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <div className="mx-auto max-w-7xl">
-            <SectionIntro
-              badge="Como funciona"
-              title="Três etapas simples. Uma operação inteira por trás."
-              description="A CosmoHQ entra para clarear o problema, executar a solução e ajustar continuamente com dados. O cliente ganha velocidade sem perder direção."
+            <SectionTitle
+              eyebrow="Como funciona"
+              title="Um processo simples, com leitura de dados o tempo todo."
+              description="A operação da CosmoHQ começa entendendo o problema, passa pela construção da solução e termina com análise contínua para melhorar o que importa."
+            />
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={stagger}
+              className="mt-14 grid gap-4 lg:grid-cols-3"
+            >
+              {steps.map((step, index) => (
+                <motion.div key={step.id} variants={fadeUp} transition={{ duration: 0.55, ease, delay: index * 0.05 }}>
+                  <Card className="spotlight-border group hover-lift h-full rounded-[30px]">
+                    <CardContent className="flex h-full flex-col gap-6">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="text-[11px] font-semibold uppercase tracking-[0.26em] text-white/42">
+                          {step.id}
+                        </div>
+                        <div className="rounded-2xl border border-white/10 bg-white/6 p-3 text-brand-primary transition duration-300 group-hover:scale-[1.03]">
+                          <step.icon className="size-5" />
+                        </div>
+                      </div>
+
+                      <div className="flex flex-1 flex-col">
+                        <h3 className="text-2xl font-semibold tracking-[-0.04em] text-white">
+                          {step.title}
+                        </h3>
+                        <p className="mt-3 text-base leading-7 text-white/66">
+                          {step.description}
+                        </p>
+                        <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm leading-6 text-white/70">
+                          {step.detail}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.65, ease, delay: 0.1 }}
+              className="mt-8 rounded-[30px] border border-white/10 bg-white/5 p-5 md:p-6"
+            >
+              <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <div className="text-xs uppercase tracking-[0.22em] text-white/42">
+                    O diferencial
+                  </div>
+                  <div className="mt-2 text-lg font-semibold tracking-[-0.03em] text-white">
+                    Sem achismo. Sem reuniões intermináveis. Sem equipe dispersa.
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {["Velocidade", "Dados", "Comunicação direta", "Ownership"].map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-white/10 bg-black/10 px-3 py-2 text-xs uppercase tracking-[0.18em] text-white/66"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <section id="servicos" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+          <div className="mx-auto max-w-7xl">
+            <SectionTitle
+              eyebrow="Serviços"
+              title="Uma operação de crescimento que cobre produto, conteúdo e mídia."
+              description="A CosmoHQ atua como parceira de execução para negócios que querem vender melhor com apps, sites, social e ads integrados."
+            />
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.22 }}
+              variants={staggerSlow}
+              className="mt-14 grid gap-4 lg:grid-cols-12"
+            >
+              <motion.div variants={fadeUp} className="lg:col-span-5">
+                <Card className="editorial-panel h-full rounded-[32px]">
+                  <CardContent className="flex h-full flex-col gap-6">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <Badge variant="default" className="mb-4">
+                          <Globe2 className="size-3.5" />
+                          Free tier / base operacional
+                        </Badge>
+                        <h3 className="text-3xl font-semibold tracking-[-0.05em] text-white">
+                          Capacidades que sustentam a operação.
+                        </h3>
+                        <p className="mt-3 max-w-md text-base leading-7 text-white/66">
+                          O que um cliente ganha quando trabalha com a CosmoHQ:
+                          controle visual, campanhas monitoradas e uma leitura
+                          mais inteligente do crescimento.
+                        </p>
+                      </div>
+                      <MonitorSmartphone className="size-6 text-brand-secondary" />
+                    </div>
+
+                    <div className="grid gap-3">
+                      {[
+                        "Painel de Controle",
+                        "Gerenciamento de Campanhas",
+                        "Análise de Dados em Tempo Real",
+                        "Integração com Redes Sociais",
+                        "Otimização de Conteúdo",
+                        "Notificações e Alertas",
+                        "Segurança e Autenticação",
+                      ].map((item) => (
+                        <div
+                          key={item}
+                          className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/76"
+                        >
+                          <Check className="size-4 text-brand-success" />
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {services.map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  variants={fadeUp}
+                  className={cn(
+                    "lg:col-span-7",
+                    index % 2 === 0 ? "lg:col-span-7" : "lg:col-span-5",
+                  )}
+                >
+                  <Card className="spotlight-border hover-lift h-full rounded-[30px]">
+                    <CardContent className="grid gap-5 md:grid-cols-[1.02fr_0.98fr]">
+                      <div className="flex flex-col">
+                        <div
+                          className={cn(
+                            "mb-5 inline-flex w-fit rounded-full border border-white/10 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-white/54",
+                          )}
+                        >
+                          {item.icon === LayoutDashboard
+                            ? "Produto"
+                            : item.icon === Megaphone
+                              ? "Growth"
+                              : item.icon === BarChart3
+                                ? "Dados"
+                                : item.icon === Network
+                                  ? "Social"
+                                  : item.icon === SplitSquareVertical
+                                    ? "Conteúdo"
+                                    : "Operação"}
+                        </div>
+                        <div className="flex items-start gap-4">
+                          <div className="rounded-2xl border border-white/10 bg-white/6 p-3 text-brand-primary">
+                            <item.icon className="size-5" />
+                          </div>
+                          <div>
+                            <h3 className="text-2xl font-semibold tracking-[-0.04em] text-white">
+                              {item.title}
+                            </h3>
+                            <p className="mt-3 text-base leading-7 text-white/66">
+                              {item.description}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="mt-6 space-y-3">
+                          {item.points.map((point) => (
+                            <div key={point} className="flex items-start gap-3 text-sm leading-6 text-white/70">
+                              <BadgeCheck className="mt-1 size-4 text-brand-success" />
+                              <span>{point}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className={cn("overflow-hidden rounded-[26px] border border-white/10", item.title.includes("campanhas") ? "bg-[#11161a]" : "bg-black/20", item.title.includes("Painel") ? "md:row-span-2" : "")}>
+                        {item.image ? (
+                          <Image
+                            src={item.image}
+                            alt={item.title}
+                            width={1400}
+                            height={1000}
+                            unoptimized
+                            className="h-full w-full object-cover"
+                          />
+                        ) : null}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+        <section id="cases" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+          <div className="mx-auto max-w-7xl">
+            <SectionTitle
+              eyebrow="Portfólio"
+              title="Casos reais da CosmoHQ, apresentados pelo problema que resolvem."
+              description="Nada de tecnologia pelo prazer da tecnologia. Os cases abaixo mostram contexto, utilidade e o tipo de resultado que a agência entrega."
+            />
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.22 }}
+              variants={stagger}
+              className="mt-14 grid gap-4 lg:grid-cols-3"
+            >
+              {cases.map((item, index) => (
+                <motion.div key={item.name} variants={fadeUp} transition={{ duration: 0.55, ease, delay: index * 0.05 }}>
+                  <Card className="spotlight-border hover-lift h-full overflow-hidden rounded-[30px]">
+                    <div className="relative aspect-[4/3] overflow-hidden border-b border-white/10">
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        fill
+                        unoptimized
+                        className="object-cover"
+                        sizes="(min-width: 1024px) 33vw, 100vw"
+                      />
+                    </div>
+                    <CardContent className="space-y-5">
+                      <div className="flex items-center justify-between gap-4">
+                        <Badge variant="secondary">{item.label}</Badge>
+                        <ArrowUpRight className="size-4 text-white/40" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-semibold tracking-[-0.04em] text-white">
+                          {item.name}
+                        </h3>
+                        <p className="mt-3 text-sm leading-7 text-white/66">
+                          <span className="text-white/82">Problema:</span> {item.problem}
+                        </p>
+                        <p className="mt-3 text-sm leading-7 text-white/66">
+                          <span className="text-white/82">Resultado:</span> {item.result}
+                        </p>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {item.bullets.map((bullet) => (
+                          <span
+                            key={bullet}
+                            className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.16em] text-white/68"
+                          >
+                            {bullet}
+                          </span>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+        <section id="galeria" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+          <div className="mx-auto max-w-7xl">
+            <SectionTitle
+              eyebrow="Screenshots"
+              title="Uma galeria visual que mostra a qualidade de acabamento."
+              description="As imagens reforçam o nível de craft da operação e o uso real das peças CosmoKit e CosmoFinanças como casos da casa."
+            />
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={staggerSlow}
+              className="mt-14 grid gap-4 md:grid-cols-12"
+            >
+              {gallery.map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  variants={fadeUp}
+                  transition={{ duration: 0.55, ease, delay: index * 0.04 }}
+                  className={cn(item.span)}
+                >
+                  <Card className="spotlight-border group overflow-hidden rounded-[30px]">
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        unoptimized
+                        className="object-cover transition duration-500 group-hover:scale-[1.03]"
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                      />
+                    </div>
+                    <CardContent className="flex items-center justify-between gap-4">
+                      <p className="text-sm font-medium text-white/82">{item.title}</p>
+                      <ArrowUpRight className="size-4 text-white/40 transition group-hover:text-white" />
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+        <section id="planos" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+          <div className="mx-auto max-w-7xl">
+            <SectionTitle
+              eyebrow="Pricing"
+              title="Três formas de trabalhar, uma operação só."
+              description="Mensal, anual e lifetime aparecem juntos para facilitar a leitura. O anual é o melhor valor para quem quer continuidade com profundidade."
+            />
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.24 }}
+              variants={stagger}
+              className="mt-14 grid gap-4 lg:grid-cols-3"
+            >
+              {pricing.map((tier, index) => (
+                <motion.div key={tier.name} variants={fadeUp} transition={{ duration: 0.55, ease, delay: index * 0.04 }}>
+                  <Card
+                    className={cn(
+                      "hover-lift h-full rounded-[32px]",
+                      tier.featured
+                        ? "ring-gradient border-brand-primary/30 bg-[linear-gradient(180deg,rgba(52,152,219,0.18),rgba(255,255,255,0.04))] shadow-[0_36px_100px_-56px_rgba(52,152,219,0.9)]"
+                        : "border-white/10",
+                    )}
+                  >
+                    <CardContent className="flex h-full flex-col gap-6">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <Badge variant={tier.featured ? "default" : "secondary"} className="mb-4">
+                            {tier.badge}
+                          </Badge>
+                          <h3 className="text-3xl font-semibold tracking-[-0.05em] text-white">
+                            {tier.name}
+                          </h3>
+                          <p className="mt-2 text-sm uppercase tracking-[0.2em] text-white/42">
+                            {tier.tagline}
+                          </p>
+                        </div>
+                        {tier.featured ? (
+                          <div className="rounded-full border border-brand-secondary/30 bg-brand-secondary/12 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-secondary">
+                            Best value
+                          </div>
+                        ) : null}
+                      </div>
+
+                      <p className="text-base leading-7 text-white/66">{tier.description}</p>
+
+                      <div className="space-y-3">
+                        {tier.points.map((point) => (
+                          <div key={point} className="flex items-start gap-3 text-sm leading-6 text-white/72">
+                            <Check className="mt-1 size-4 text-brand-success" />
+                            <span>{point}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="mt-auto pt-3">
+                        <a
+                          href="#contato"
+                          className={buttonVariants({
+                            variant: tier.featured ? "default" : "secondary",
+                            size: "lg",
+                            className: "w-full",
+                          })}
+                        >
+                          Pedir proposta
+                        </a>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+        <section id="downloads" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+          <div className="mx-auto max-w-7xl">
+            <SectionTitle
+              eyebrow="Downloads"
+              title="iOS e Android ainda não foram lançados."
+              description="Os links oficiais estão como Coming Soon. Enquanto isso, a agência segue ativa construindo apps, sites, conteúdo e campanhas para os clientes."
             />
 
             <motion.div
@@ -550,419 +1040,151 @@ export default function CosmoLanding() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
               variants={stagger}
-              className="mt-12 grid gap-6 lg:grid-cols-3"
+              className="mt-14 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]"
             >
-              {steps.map((step) => {
-                const Icon = step.icon;
+              <motion.div variants={fadeUp}>
+                <Card className="editorial-panel h-full rounded-[32px]">
+                  <CardContent className="flex h-full flex-col gap-6">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <Badge variant="accent" className="mb-4">
+                          App não lançado
+                        </Badge>
+                        <h3 className="text-3xl font-semibold tracking-[-0.05em] text-white">
+                          Receba o aviso quando o app entrar no ar.
+                        </h3>
+                        <p className="mt-3 max-w-xl text-base leading-7 text-white/66">
+                          Use esta seção para sinalizar disponibilidade e criar
+                          expectativa sem fingir que o app já existe.
+                        </p>
+                      </div>
+                      <CalendarRange className="size-6 text-brand-secondary" />
+                    </div>
 
-                return (
-                  <motion.div
-                    key={step.index}
-                    variants={fadeUp}
-                    transition={{ duration: 0.75, ease }}
-                  >
-                    <Card className="spotlight-border h-full rounded-[32px] border-white/10 bg-[#14191b]/84">
-                      <CardContent className="flex h-full flex-col gap-6 p-7">
-                        <div className="flex items-center justify-between">
-                          <span className="text-5xl font-semibold tracking-[-0.08em] text-white/14">
-                            {step.index}
-                          </span>
-                          <div className="flex size-12 items-center justify-center rounded-2xl bg-white/6">
-                            <Icon className="size-5 text-brand-primary" />
+                    <div className="grid gap-4 md:grid-cols-2">
+                      {downloads.map((item) => (
+                        <div
+                          key={item.name}
+                          className="rounded-[28px] border border-white/10 bg-white/5 p-5"
+                        >
+                          <div className="flex items-center justify-between gap-4">
+                            <div className="flex items-center gap-3">
+                              <div className="flex size-11 items-center justify-center rounded-2xl border border-white/10 bg-black/15 text-lg text-white">
+                                {item.icon}
+                              </div>
+                              <div>
+                                <div className="text-base font-semibold text-white">
+                                  {item.name}
+                                </div>
+                                <div className="text-xs uppercase tracking-[0.18em] text-white/42">
+                                  {item.note}
+                                </div>
+                              </div>
+                            </div>
+                            <Badge variant="secondary">{item.status}</Badge>
                           </div>
                         </div>
-                        <div>
-                          <h3 className="text-2xl font-semibold tracking-[-0.04em] text-white">
-                            {step.title}
-                          </h3>
-                          <p className="mt-4 text-sm leading-7 text-white/68">
-                            {step.description}
-                          </p>
+                      ))}
+                    </div>
+
+                    <div className="rounded-[28px] border border-white/10 bg-black/12 p-5 text-sm leading-7 text-white/68">
+                      Quer receber novidades antes do lançamento? Fale com a
+                      equipe e acompanhe os próximos passos da operação.
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              <motion.div variants={fadeUp}>
+                <Card className="hover-lift h-full rounded-[32px]">
+                  <CardContent className="flex h-full flex-col gap-6">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <div className="text-xs uppercase tracking-[0.22em] text-white/42">
+                          Canal rápido
                         </div>
-                        <p className="mt-auto border-t border-white/8 pt-4 text-sm leading-6 text-white/52">
-                          {step.detail}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                );
-              })}
+                        <h3 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-white">
+                          Quer falar agora?
+                        </h3>
+                      </div>
+                      <MessageCircle className="size-5 text-brand-primary" />
+                    </div>
+
+                    <a
+                      href="https://wa.me/5511999999999?text=Ol%C3%A1%20CosmoHQ!%20Quero%20conversar%20sobre%20um%20projeto."
+                      target="_blank"
+                      rel="noreferrer"
+                      className={buttonVariants({
+                        size: "lg",
+                        className:
+                          "w-full bg-[linear-gradient(135deg,#25d366,#128c7e)] shadow-[0_18px_45px_-18px_rgba(37,211,102,0.55)] hover:brightness-110",
+                      })}
+                    >
+                      Abrir WhatsApp
+                      <ArrowRight className="size-4" />
+                    </a>
+
+                    <div className="grid gap-3 text-sm leading-6 text-white/68">
+                      <div className="flex items-start gap-3">
+                        <Handshake className="mt-1 size-4 text-brand-success" />
+                        <span>Sem formulário longo.</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <BriefcaseBusiness className="mt-1 size-4 text-brand-success" />
+                        <span>Sem fila de atendimento.</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Bot className="mt-1 size-4 text-brand-success" />
+                        <span>Conversa direta com quem executa.</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </motion.div>
           </div>
         </section>
 
-        <section id="servicos" className="section-shell px-4 py-16 md:px-8 md:py-24">
-          <div className="mx-auto max-w-7xl">
-            <SectionIntro
-              badge="O que fazemos"
-              title="Presença online, produto digital e aquisição trabalhando juntos."
-              description="Em vez de vender peças soltas, montamos uma engrenagem. Cada entrega conversa com a próxima: o site melhora a campanha, a campanha alimenta o painel, o painel orienta o próximo ajuste."
-            />
-
-            <div className="mt-12 grid gap-6 lg:grid-cols-12 lg:grid-rows-[minmax(0,1fr)_minmax(0,1fr)]">
-              {services.map((service, index) => {
-                const Icon = service.icon;
-                const isWide = service.featured;
-
-                return (
-                  <motion.div
-                    key={service.title}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.22 }}
-                    variants={fadeUp}
-                    transition={{ duration: 0.78, ease, delay: index * 0.05 }}
-                    className={cn(
-                      "lg:col-span-4",
-                      isWide && "lg:col-span-8 lg:row-span-2",
-                    )}
-                  >
-                    <Card className="group relative h-full overflow-hidden rounded-[34px] border-white/10 bg-[#121719]/88 transition duration-500 hover:-translate-y-1 hover:border-white/18">
-                      <div
-                        className={cn(
-                          "absolute inset-0 bg-gradient-to-br opacity-100 transition duration-500 group-hover:scale-105",
-                          service.accent,
-                        )}
-                      />
-                      <CardContent className="relative flex h-full flex-col p-7">
-                        <div className="flex items-center justify-between gap-4">
-                          <Badge variant="secondary">{service.eyebrow}</Badge>
-                          <div className="flex size-11 items-center justify-center rounded-2xl bg-white/7">
-                            <Icon className="size-5 text-white" />
-                          </div>
-                        </div>
-
-                        <div className="mt-6">
-                          <h3 className="max-w-lg text-2xl font-semibold tracking-[-0.04em] text-white md:text-[2rem]">
-                            {service.title}
-                          </h3>
-                          <p className="mt-4 max-w-2xl text-sm leading-7 text-white/70 md:text-base">
-                            {service.description}
-                          </p>
-                        </div>
-
-                        {service.image ? (
-                          <div className="mt-8 overflow-hidden rounded-[26px] border border-white/10 bg-black/20">
-                            <Image
-                              src={service.image}
-                              alt={service.title}
-                              width={1400}
-                              height={900}
-                              className="h-[320px] w-full object-cover object-left-top transition duration-700 group-hover:scale-[1.03]"
-                            />
-                          </div>
-                        ) : (
-                          <div className="mt-8 grid gap-3 sm:grid-cols-3">
-                            {service.points.map((point) => (
-                              <div
-                                key={point}
-                                className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm leading-6 text-white/70"
-                              >
-                                {point}
-                              </div>
-                            ))}
-                          </div>
-                        )}
-
-                        {service.image ? (
-                          <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                            {service.points.map((point) => (
-                              <div
-                                key={point}
-                                className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm leading-6 text-white/70"
-                              >
-                                {point}
-                              </div>
-                            ))}
-                          </div>
-                        ) : null}
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section id="cases" className="section-shell px-4 py-16 md:px-8 md:py-24">
-          <div className="mx-auto max-w-7xl">
-            <SectionIntro
-              badge="Portfólio"
-              title="Nossos próprios produtos viraram prova concreta do que entregamos."
-              description="CosmoFinanças e CosmoKit não aparecem aqui como experimento de tecnologia. Eles aparecem como cases que mostram contexto, uso e o padrão de solução que reaplicamos em negócios de clientes."
-            />
-
-            <div className="mt-12 grid gap-6 lg:grid-cols-3">
-              {cases.map((item, index) => (
-                <motion.div
-                  key={item.name}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
-                  variants={fadeUp}
-                  transition={{ duration: 0.8, ease, delay: index * 0.08 }}
-                >
-                  <Card className="group h-full overflow-hidden rounded-[34px] border-white/10 bg-[#121719]/88 transition duration-500 hover:-translate-y-1 hover:border-white/18">
-                    <div className="relative overflow-hidden">
-                      <Image
-                        src={item.image}
-                        alt={item.name}
-                        width={1200}
-                        height={900}
-                        className="h-[280px] w-full object-cover transition duration-700 group-hover:scale-[1.04]"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0f1315] via-transparent to-transparent" />
-                    </div>
-                    <CardContent className="space-y-5 p-7">
-                      <div className="flex items-center justify-between gap-4">
-                        <div>
-                          <p className="text-[11px] uppercase tracking-[0.24em] text-white/45">
-                            {item.category}
-                          </p>
-                          <h3 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-white">
-                            {item.name}
-                          </h3>
-                        </div>
-                        <ArrowUpRight className="size-5 text-white/50" />
-                      </div>
-                      <p className="text-sm leading-7 text-white/70">
-                        {item.description}
-                      </p>
-                      <p className="rounded-2xl border border-white/8 bg-white/4 px-4 py-4 text-sm leading-6 text-white/58">
-                        {item.outcome}
-                      </p>
-                      <div className="grid gap-3">
-                        {item.points.map((point) => (
-                          <div
-                            key={point}
-                            className="flex items-start gap-3 text-sm leading-6 text-white/70"
-                          >
-                            <Check className="mt-1 size-4 text-brand-success" />
-                            <span>{point}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section-shell px-4 py-16 md:px-8 md:py-24">
-          <div className="mx-auto max-w-7xl">
-            <SectionIntro
-              badge="Galeria"
-              title="Interfaces, operação e contexto de uso na mesma narrativa."
-              description="As imagens abaixo reforçam o tipo de presença que a CosmoHQ constrói: produto bem resolvido, execução próxima e leitura visual forte."
-              align="center"
-            />
-
-            <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {gallery.map((item, index) => (
-                <motion.figure
-                  key={`${item.title}-${index}`}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
-                  variants={fadeUp}
-                  transition={{ duration: 0.75, ease, delay: index * 0.04 }}
-                  className={cn(
-                    "group relative overflow-hidden rounded-[30px] border border-white/10 bg-[#121719]/88",
-                    index % 3 === 0 && "lg:translate-y-8",
-                    index % 3 === 2 && "lg:-translate-y-6",
-                  )}
-                >
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    width={1400}
-                    height={1000}
-                    className="h-[280px] w-full object-cover transition duration-700 group-hover:scale-[1.05]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f1315] via-transparent to-transparent" />
-                  <figcaption className="absolute inset-x-0 bottom-0 p-6">
-                    <p className="text-sm uppercase tracking-[0.2em] text-white/45">
-                      visual da operação
-                    </p>
-                    <p className="mt-2 text-xl font-semibold tracking-[-0.03em] text-white">
-                      {item.title}
-                    </p>
-                  </figcaption>
-                </motion.figure>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section-shell px-4 py-16 md:px-8 md:py-24">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-              <SectionIntro
-                badge="Diferenciais"
-                title="A vantagem está na forma como a CosmoHQ opera."
-                description="Não prometemos volume vazio. Prometemos clareza, execução e aprendizado contínuo. É isso que encurta o caminho entre ideia e resultado."
-              />
-
-              <div className="grid gap-4 sm:grid-cols-2">
-                {differentiators.map((item, index) => (
-                  <motion.div
-                    key={item}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }}
-                    variants={fadeUp}
-                    transition={{ duration: 0.75, ease, delay: index * 0.05 }}
-                  >
-                    <Card className="rounded-[30px] border-white/10 bg-[#121719]/88">
-                      <CardContent className="flex h-full gap-4 p-6">
-                        <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-white/6">
-                          {index === 0 ? (
-                            <Clock3 className="size-5 text-brand-primary" />
-                          ) : index === 1 ? (
-                            <BarChart3 className="size-5 text-brand-secondary" />
-                          ) : index === 2 ? (
-                            <MessageSquare className="size-5 text-brand-accent" />
-                          ) : (
-                            <Sparkles className="size-5 text-brand-success" />
-                          )}
-                        </div>
-                        <p className="text-base leading-7 text-white/74">{item}</p>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="planos" className="section-shell px-4 py-16 md:px-8 md:py-24">
-          <div className="mx-auto max-w-7xl">
-            <SectionIntro
-              badge="Modelos de parceria"
-              title="Mensal, anual e lifetime na mesma mesa."
-              description="Cada formato atende um momento diferente do negócio. O anual é o melhor custo-benefício para quem quer construir, operar e otimizar sem recomeçar a cada trimestre."
-              align="center"
-            />
-
-            <div className="mt-12 grid gap-6 lg:grid-cols-3">
-              {pricing.map((plan, index) => (
-                <motion.div
-                  key={plan.name}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
-                  variants={fadeUp}
-                  transition={{ duration: 0.78, ease, delay: index * 0.06 }}
-                >
-                  <Card
-                    className={cn(
-                      "relative h-full rounded-[34px] border-white/10 bg-[#121719]/88",
-                      plan.featured &&
-                        "ambient-glow border-brand-secondary/40 bg-[linear-gradient(180deg,rgba(241,196,15,0.14),rgba(18,23,25,0.92)_32%)]",
-                    )}
-                  >
-                    <CardContent className="flex h-full flex-col p-7">
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <p className="text-sm uppercase tracking-[0.22em] text-white/45">
-                            {plan.name}
-                          </p>
-                          <h3 className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-white">
-                            {plan.label}
-                          </h3>
-                        </div>
-                        <Badge
-                          variant={plan.featured ? "default" : "secondary"}
-                          className={cn(plan.featured && "bg-brand-secondary/18 text-brand-secondary")}
-                        >
-                          {plan.badge}
-                        </Badge>
-                      </div>
-
-                      <div className="mt-8 rounded-[28px] border border-white/10 bg-black/20 px-5 py-5">
-                        <p className="text-[11px] uppercase tracking-[0.22em] text-white/45">
-                          investimento
-                        </p>
-                        <p className="mt-3 text-4xl font-semibold tracking-[-0.06em] text-white">
-                          Sob proposta
-                        </p>
-                        <p className="mt-2 text-sm text-white/55">
-                          Definido pelo escopo, pela cadência e pela profundidade
-                          da operação.
-                        </p>
-                      </div>
-
-                      <p className="mt-6 text-sm leading-7 text-white/70">
-                        {plan.description}
-                      </p>
-
-                      <div className="mt-6 grid gap-3">
-                        {plan.points.map((point) => (
-                          <div
-                            key={point}
-                            className="flex items-start gap-3 rounded-2xl border border-white/8 bg-white/4 px-4 py-4 text-sm leading-6 text-white/70"
-                          >
-                            <Check className="mt-1 size-4 shrink-0 text-brand-success" />
-                            <span>{point}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      <a
-                        href="#contato"
-                        className={buttonVariants({
-                          variant: plan.featured ? "default" : "secondary",
-                          size: "lg",
-                          className: "mt-8 w-full",
-                        })}
-                      >
-                        Receber proposta
-                        <ArrowRight className="size-4" />
-                      </a>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="faq" className="section-shell px-4 py-16 md:px-8 md:py-24">
-          <div className="mx-auto max-w-4xl">
-            <SectionIntro
-              badge="FAQ"
-              title="Perguntas frequentes antes de começar."
-              description="Se a sua dúvida não estiver aqui, a conversa começa no briefing logo abaixo."
-              align="center"
+        <section id="faq" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+          <div className="mx-auto max-w-5xl">
+            <SectionTitle
+              eyebrow="FAQ"
+              title="Dúvidas comuns antes de começar."
+              description="Respostas diretas para quem está avaliando contratar a CosmoHQ."
             />
 
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.24 }}
               variants={fadeUp}
-              transition={{ duration: 0.8, ease }}
-              className="mt-10"
+              transition={{ duration: 0.55, ease }}
+              className="mt-14"
             >
-              <Accordion.Root type="single" collapsible className="space-y-4">
-                {faqs.map((item) => (
+              <Accordion.Root type="single" collapsible defaultValue="item-0" className="space-y-4">
+                {faqs.map((item, index) => (
                   <Accordion.Item
                     key={item.question}
-                    value={item.question}
-                    className="overflow-hidden rounded-[28px] border border-white/10 bg-[#121719]/88"
+                    value={`item-${index}`}
+                    className="group overflow-hidden rounded-[28px] border border-white/10 bg-white/5 backdrop-blur-xl"
                   >
                     <Accordion.Header>
-                      <Accordion.Trigger className="group flex w-full items-center justify-between gap-4 px-6 py-5 text-left text-base font-medium text-white outline-none transition hover:bg-white/4 focus-visible:ring-2 focus-visible:ring-brand-primary/60 focus-visible:ring-inset">
-                        <span>{item.question}</span>
-                        <ChevronDown className="size-5 shrink-0 text-white/50 transition duration-300 group-data-[state=open]:rotate-180" />
+                      <Accordion.Trigger className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left md:px-7">
+                        <div className="flex items-center gap-4">
+                          <Badge variant="secondary" className="min-w-12 justify-center">
+                            {String(index + 1).padStart(2, "0")}
+                          </Badge>
+                          <div className="text-base font-medium leading-7 text-white sm:text-lg">
+                            {item.question}
+                          </div>
+                        </div>
+                        <ChevronDown className="size-5 shrink-0 text-white/48 transition duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:text-brand-primary" />
                       </Accordion.Trigger>
                     </Accordion.Header>
-                    <Accordion.Content className="px-6 pb-6 text-sm leading-7 text-white/66 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-                      {item.answer}
+                    <Accordion.Content className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+                      <p className="px-5 pb-5 text-sm leading-7 text-white/66 md:px-7 md:text-base">
+                        {item.answer}
+                      </p>
                     </Accordion.Content>
                   </Accordion.Item>
                 ))}
@@ -971,126 +1193,217 @@ export default function CosmoLanding() {
           </div>
         </section>
 
-        <section id="contato" className="section-shell px-4 pb-16 pt-8 md:px-8 md:pb-24">
+        <section id="contato" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <div className="mx-auto max-w-7xl">
-            <Card className="noise-overlay overflow-hidden rounded-[38px] border-white/10 bg-[linear-gradient(135deg,rgba(52,152,219,0.18),rgba(18,23,25,0.96)_34%,rgba(231,76,60,0.16))]">
-              <CardContent className="grid gap-10 p-7 md:p-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
-                <div>
-                  <Badge variant="secondary" className="mb-5">
-                    CTA final
-                  </Badge>
-                  <h2 className="max-w-xl text-3xl font-semibold tracking-[-0.05em] text-white md:text-5xl">
-                    <Balancer>
-                      Tem uma ideia, um negócio ou uma operação travada?
-                    </Balancer>
-                  </h2>
-                  <p className="mt-5 max-w-lg text-sm leading-7 text-white/72 md:text-base">
-                    <Balancer>
-                      Preencha o briefing rápido e abrimos a conversa com foco
-                      no que precisa sair do papel primeiro.
-                    </Balancer>
-                  </p>
-                  <div className="mt-8 grid gap-4 text-sm text-white/64">
-                    {[
-                      "Apps, sites e sistemas com padrão de produto premium",
-                      "Instagram, campanhas e conteúdo com leitura de dados",
-                      "Contato direto com quem pensa e quem executa",
-                    ].map((item) => (
-                      <div key={item} className="flex items-start gap-3">
-                        <Check className="mt-1 size-4 text-brand-success" />
-                        <span>{item}</span>
+            <SectionTitle
+              eyebrow="CTA final"
+              title="Tem uma ideia ou um negócio para mover para o digital?"
+              description="Converse com a CosmoHQ pelo WhatsApp ou envie um briefing curto com nome, tipo de projeto e objetivo."
+            />
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={stagger}
+              className="mt-14 grid gap-4 lg:grid-cols-[0.95fr_1.05fr]"
+            >
+              <motion.div variants={fadeUp}>
+                <Card className="editorial-panel h-full rounded-[32px]">
+                  <CardContent className="flex h-full flex-col gap-6">
+                    <div>
+                      <Badge variant="success" className="mb-4">
+                        Resposta rápida
+                      </Badge>
+                      <h3 className="text-3xl font-semibold tracking-[-0.05em] text-white">
+                        Fale direto com a equipe.
+                      </h3>
+                      <p className="mt-3 text-base leading-7 text-white/66">
+                        Se você já sabe o que precisa, o caminho mais rápido é
+                        abrir uma conversa. Se ainda está estruturando a ideia,
+                        o formulário abaixo ajuda a organizar a demanda.
+                      </p>
+                    </div>
+
+                    <a
+                      href="https://wa.me/5511999999999?text=Ol%C3%A1%20CosmoHQ!%20Quero%20conversar%20sobre%20um%20projeto."
+                      target="_blank"
+                      rel="noreferrer"
+                      className={buttonVariants({
+                        size: "lg",
+                        className:
+                          "w-full bg-[linear-gradient(135deg,#25d366,#128c7e)] shadow-[0_18px_45px_-18px_rgba(37,211,102,0.55)] hover:brightness-110",
+                      })}
+                    >
+                      Abrir WhatsApp
+                      <ArrowRight className="size-4" />
+                    </a>
+
+                    <div className="rounded-[28px] border border-white/10 bg-black/12 p-5 text-sm leading-7 text-white/66">
+                      CosmosHQ atua como agência de apps, sites, social e ads.
+                      Somos parceiros de execução, não apenas fornecedores de
+                      arte.
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              <motion.div variants={fadeUp}>
+                <Card className="hover-lift h-full rounded-[32px]">
+                  <CardContent className="p-6 sm:p-7">
+                    <h3 className="text-2xl font-semibold tracking-[-0.04em] text-white">
+                      Conte sobre o seu projeto
+                    </h3>
+                    <p className="mt-2 text-sm text-white/56">Três campos, sem complicação.</p>
+
+                    <form onSubmit={submitBriefing} className="mt-8 space-y-5">
+                      <div>
+                        <label htmlFor="contact-name" className="mb-2 block text-sm font-medium text-white/78">
+                          Seu nome
+                        </label>
+                        <input
+                          id="contact-name"
+                          name="name"
+                          type="text"
+                          required
+                          placeholder="Como podemos te chamar?"
+                          className="h-12 w-full rounded-2xl border border-white/10 bg-white/6 px-4 text-sm text-white placeholder:text-white/30 transition focus:border-brand-primary/50 focus:bg-white/8 focus:outline-none focus:ring-2 focus:ring-brand-primary/30"
+                        />
                       </div>
+
+                      <div>
+                        <label
+                          htmlFor="contact-project"
+                          className="mb-2 block text-sm font-medium text-white/78"
+                        >
+                          Tipo de projeto
+                        </label>
+                        <select
+                          id="contact-project"
+                          name="projectType"
+                          required
+                          defaultValue=""
+                          className="h-12 w-full appearance-none rounded-2xl border border-white/10 bg-white/6 px-4 text-sm text-white transition focus:border-brand-primary/50 focus:bg-white/8 focus:outline-none focus:ring-2 focus:ring-brand-primary/30 [&:invalid]:text-white/32 [&>option]:bg-cosmo-bg [&>option]:text-white"
+                        >
+                          <option value="" disabled>
+                            Selecione uma opção
+                          </option>
+                          <option value="app">Desenvolvimento de App</option>
+                          <option value="site">Criação de Site</option>
+                          <option value="social">Gestão de Instagram</option>
+                          <option value="ads">Campanhas de Ads</option>
+                          <option value="analytics">Análise de Dados</option>
+                          <option value="completo">Pacote completo</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label htmlFor="contact-objective" className="mb-2 block text-sm font-medium text-white/78">
+                          Objetivo
+                        </label>
+                        <textarea
+                          id="contact-objective"
+                          name="objective"
+                          required
+                          rows={4}
+                          placeholder="O que você quer alcançar com esse projeto?"
+                          className="w-full resize-none rounded-2xl border border-white/10 bg-white/6 px-4 py-3 text-sm text-white placeholder:text-white/30 transition focus:border-brand-primary/50 focus:bg-white/8 focus:outline-none focus:ring-2 focus:ring-brand-primary/30"
+                        />
+                      </div>
+
+                      <button
+                        type="submit"
+                        className={buttonVariants({
+                          size: "lg",
+                          className: "w-full",
+                        })}
+                      >
+                        Enviar briefing
+                        <ArrowRight className="size-4" />
+                      </button>
+                    </form>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+
+        <footer className="section-shell px-4 pb-10 pt-6 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <Card className="editorial-panel rounded-[34px]">
+              <CardContent className="grid gap-10 md:grid-cols-[minmax(0,1.2fr)_repeat(2,minmax(0,0.5fr))] md:gap-8">
+                <div className="max-w-xl">
+                  <div className="flex items-center gap-3">
+                    <div className="flex size-11 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#3498db,#5abaf5,#f1c40f)] text-white shadow-[0_14px_40px_-16px_rgba(52,152,219,0.8)]">
+                      C
+                    </div>
+                    <div>
+                      <div className="text-lg font-semibold tracking-[-0.04em] text-white">
+                        CosmoHQ
+                      </div>
+                      <div className="text-xs uppercase tracking-[0.2em] text-white/40">
+                        Agência digital
+                      </div>
+                    </div>
+                  </div>
+                  <p className="mt-5 max-w-lg text-base leading-7 text-white/64">
+                    Transformamos ideias em produtos e presença online com
+                    estratégia, execução e inteligência de dados. Apps, sites,
+                    social e ads no mesmo time.
+                  </p>
+                </div>
+
+                <div>
+                  <div className="text-sm font-semibold uppercase tracking-[0.2em] text-white/42">
+                    Navegação
+                  </div>
+                  <div className="mt-4 space-y-3">
+                    {navItems.map((item) => (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        className="block text-sm text-white/64 transition hover:text-white"
+                      >
+                        {item.label}
+                      </a>
                     ))}
                   </div>
                 </div>
 
-                <form
-                  onSubmit={handleBriefingSubmit}
-                  className="glass-panel-strong rounded-[32px] p-6 md:p-7"
-                >
-                  <div className="grid gap-5">
-                    <label className="grid gap-2">
-                      <span className="text-sm font-medium text-white/76">
-                        Nome
-                      </span>
-                      <input
-                        name="name"
-                        required
-                        placeholder="Seu nome"
-                        className="h-12 rounded-2xl border border-white/10 bg-white/5 px-4 text-sm text-white outline-none transition placeholder:text-white/28 focus:border-brand-primary/55 focus:bg-white/7"
-                      />
-                    </label>
-                    <label className="grid gap-2">
-                      <span className="text-sm font-medium text-white/76">
-                        Tipo de projeto
-                      </span>
-                      <input
-                        name="projectType"
-                        required
-                        placeholder="App, site, gestão social, ads..."
-                        className="h-12 rounded-2xl border border-white/10 bg-white/5 px-4 text-sm text-white outline-none transition placeholder:text-white/28 focus:border-brand-primary/55 focus:bg-white/7"
-                      />
-                    </label>
-                    <label className="grid gap-2">
-                      <span className="text-sm font-medium text-white/76">
-                        Objetivo
-                      </span>
-                      <textarea
-                        name="goal"
-                        required
-                        rows={5}
-                        placeholder="O que precisa melhorar, lançar ou vender?"
-                        className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition placeholder:text-white/28 focus:border-brand-primary/55 focus:bg-white/7"
-                      />
-                    </label>
+                <div>
+                  <div className="text-sm font-semibold uppercase tracking-[0.2em] text-white/42">
+                    Contato
                   </div>
-
-                  <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                    <Button type="submit" size="lg" className="sm:flex-1">
-                      Enviar briefing
-                      <ArrowRight className="size-4" />
-                    </Button>
+                  <div className="mt-4 space-y-3">
                     <a
                       href="mailto:contato@cosmohq.app"
-                      className={buttonVariants({
-                        variant: "secondary",
-                        size: "lg",
-                        className: "sm:flex-1",
-                      })}
+                      className="flex items-center gap-2 text-sm text-white/64 transition hover:text-white"
                     >
                       contato@cosmohq.app
+                      <ArrowUpRight className="size-3.5" />
+                    </a>
+                    <a
+                      href="https://wa.me/5511999999999?text=Ol%C3%A1%20CosmoHQ!%20Quero%20conversar%20sobre%20um%20projeto."
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-2 text-sm text-white/64 transition hover:text-white"
+                    >
+                      WhatsApp
+                      <ArrowUpRight className="size-3.5" />
                     </a>
                   </div>
-                </form>
+                </div>
               </CardContent>
+
+              <div className="flex flex-col gap-3 border-t border-white/10 px-6 py-6 text-sm text-white/42 md:flex-row md:items-center md:justify-between md:px-7">
+                <div>&copy; {new Date().getFullYear()} CosmoHQ. Todos os direitos reservados.</div>
+                <div>Feito para vender melhor com apps, sites, social e ads.</div>
+              </div>
             </Card>
           </div>
-        </section>
+        </footer>
       </main>
-
-      <footer className="px-4 pb-8 md:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 rounded-[30px] border border-white/10 bg-[#0f1416]/86 px-6 py-6 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="text-sm uppercase tracking-[0.24em] text-white/42">
-              CosmoHQ
-            </p>
-            <p className="mt-2 max-w-xl text-sm leading-6 text-white/62">
-              Agência digital para quem precisa tirar ideia do campo da intenção
-              e colocar produto, presença e campanha para rodar.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-4 text-sm text-white/56">
-            {navItems.map((item) => (
-              <a key={item.href} href={item.href} className="transition hover:text-white">
-                {item.label}
-              </a>
-            ))}
-            <a href="#contato" className="transition hover:text-white">
-              Contato
-            </a>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
