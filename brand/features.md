@@ -1,0 +1,7 @@
+**Painel de Controle** (medium) — complexidade: Média) > Um painel de controle personalizável que permita aos usuários visualizar métricas importantes, como desempenho de campanhas, engagement e conversões.
+**Gerenciamento de Campanhas** (medium) — complexidade: Alta) > Uma ferramenta para criar, gerenciar e otimizar campanhas de marketing em diferentes plataformas, incluindo Instagram, Facebook, Twitter, etc.
+**Análise de Dados em Tempo Real** (medium) — complexidade: Alta) > Uma funcionalidade que fornece análise de dados em tempo real, permitindo aos usuários monitorar o desempenho de suas campanhas e tomar decisões informadas.
+**Integração com Redes Sociais** (medium) — complexidade: Média) > Integração com principais redes sociais para permitir que os usuários gerenciem suas contas e publicem conteúdo de forma eficiente.
+**Otimização de Conteúdo** (medium) — complexidade: Baixa) > Uma ferramenta que ajuda os usuários a criar e otimizar o conteúdo para diferentes plataformas, incluindo sugestões de palavras-chave e formatos de mídia.
+**Notificações e Alertas** (medium) — complexidade: Baixa) > Um sistema de notificações e alertas que informa os usuários sobre mudanças importantes em suas campanhas, como alterações no orçamento ou no desempenho.
+**Segurança e Autenticação** (medium) — complexidade: Alta) > Uma funcionalidade que garante a segurança e autenticação dos usuários, incluindo login seguro, criptografia de dados e controle de acesso.
