@@ -16,11 +16,11 @@ export function buttonVariants({
   className?: string;
 }) {
   return cn(
-    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-2xl text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#060b14] disabled:pointer-events-none disabled:opacity-50",
+    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-2xl text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1d2224] disabled:pointer-events-none disabled:opacity-50",
     {
-      "bg-[linear-gradient(135deg,#3498db,#2b7de9_56%,#52b8ff)] text-white shadow-[0_18px_45px_-18px_rgba(52,152,219,0.7)] hover:-translate-y-0.5 hover:brightness-105 hover:shadow-[0_24px_54px_-18px_rgba(52,152,219,0.85)]":
+      "bg-[linear-gradient(135deg,#3498db,#2c7ae1_56%,#5abaf5)] text-white shadow-[0_18px_45px_-18px_rgba(52,152,219,0.7)] hover:-translate-y-0.5 hover:brightness-105 hover:shadow-[0_24px_54px_-18px_rgba(52,152,219,0.85)]":
         variant === "default",
-      "border border-white/10 bg-white/6 text-white backdrop-blur-xl hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/10":
+      "border border-white/12 bg-white/7 text-white backdrop-blur-xl hover:-translate-y-0.5 hover:border-white/24 hover:bg-white/11":
         variant === "secondary",
       "border border-brand-primary/35 bg-brand-primary/10 text-white hover:-translate-y-0.5 hover:border-brand-primary/60 hover:bg-brand-primary/16":
         variant === "outline",

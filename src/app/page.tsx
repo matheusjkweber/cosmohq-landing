@@ -15,7 +15,7 @@ export default function Home() {
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web, iOS, Android",
     description:
-      "CosmoHQ centraliza campanhas, analytics em tempo real, integracao social e otimizacao de conteudo em um command center premium para times de marketing.",
+      "CosmoHQ centraliza campanhas, analytics em tempo real, integracao social e otimizacao de conteudo em um command center premium para times de growth e marketing ops.",
     offers: [
       {
         "@type": "Offer",
@@ -45,7 +45,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <main className="overflow-hidden">
+      <main className="overflow-x-hidden">
         <Hero />
         <Features />
         <Screenshots />

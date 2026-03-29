@@ -1,5 +1,6 @@
 "use client";
 
+import Balancer from "react-wrap-balancer";
 import { motion, fadeUp, ease } from "./motion";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -41,11 +42,13 @@ export default function SectionHeading({
         {eyebrow}
       </Badge>
       <h2 className="text-balance text-[2rem] font-semibold leading-[1.02] tracking-[-0.05em] text-white sm:text-[2.6rem] lg:text-[3.5rem]">
-        {title}{" "}
-        {highlight ? <span className="text-gradient">{highlight}</span> : null}
+        <Balancer>
+          {title}{" "}
+          {highlight ? <span className="text-gradient">{highlight}</span> : null}
+        </Balancer>
       </h2>
-      <p className="mt-5 max-w-2xl text-pretty text-base leading-7 text-white/66 sm:text-lg">
-        {description}
+      <p className="mt-5 max-w-2xl text-pretty text-base leading-7 text-white/68 sm:text-lg">
+        <Balancer>{description}</Balancer>
       </p>
     </motion.div>
   );

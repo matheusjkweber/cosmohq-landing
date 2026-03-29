@@ -20,7 +20,7 @@ const platforms = [
     label: "App Store",
     status: "Coming Soon",
     description:
-      "O app mobile ja faz parte da historia da marca, mas o link oficial ainda nao foi aberto.",
+      "A versao mobile faz parte do plano de marca, mas o link oficial ainda nao foi aberto.",
     icon: Apple,
   },
   {
@@ -28,15 +28,15 @@ const platforms = [
     label: "Google Play",
     status: "Coming Soon",
     description:
-      "A versao Android segue na mesma cadencia de pre-launch e ainda nao possui pagina publica.",
+      "A pagina trata o Android com a mesma honestidade: interesse pode ser capturado, download ainda nao.",
     icon: Smartphone,
   },
   {
     name: "Workspace Web",
-    label: "Private beta",
+    label: "Waitlist",
     status: "Request Access",
     description:
-      "Enquanto as lojas nao abrem, o acesso antecipado ao workspace web sustenta a fase de validacao.",
+      "Enquanto as lojas nao abrem, a versao web e a melhor CTA para validar demanda e formar base inicial.",
     icon: Globe,
   },
 ];
@@ -50,10 +50,10 @@ export default function Downloads() {
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:items-end">
           <SectionHeading
-            eyebrow="Access"
+            eyebrow="Downloads"
             title="Sem links de loja ainda."
-            highlight="Com mensagem certa, isso vira vantagem."
-            description="A secao de downloads deixa claro que iOS e Android continuam como Coming Soon e direciona o interesse para waitlist e acesso antecipado ao workspace web."
+            highlight="Com mensagem certa, isso reforca exclusividade."
+            description="A secao deixa claro que iOS e Android continuam em Coming Soon e transforma o momento atual em waitlist, acesso antecipado e captura de demanda qualificada."
             align="left"
           />
 
@@ -66,7 +66,7 @@ export default function Downloads() {
           >
             <div className="glass-panel-strong inline-flex items-center gap-3 rounded-full px-4 py-3 text-sm text-white/70">
               <CalendarClock className="h-4 w-4 text-brand-secondary" />
-              Produto ainda nao lancado. Captura de demanda primeiro.
+              Produto ainda nao lancado. O objetivo aqui e converter interesse.
             </div>
           </motion.div>
         </div>
@@ -84,7 +84,7 @@ export default function Downloads() {
               variants={fadeUp}
               transition={{ duration: 0.55, ease, delay: index * 0.05 }}
             >
-              <Card className="h-full rounded-[28px]">
+              <Card className="hover-lift h-full rounded-[28px]">
                 <CardContent className="flex h-full flex-col p-7">
                   <div className="flex items-center justify-between gap-4">
                     <div className="rounded-2xl border border-white/10 bg-white/6 p-3 text-white">
@@ -98,6 +98,7 @@ export default function Downloads() {
                       {platform.status}
                     </Badge>
                   </div>
+
                   <div className="mt-8">
                     <div className="text-2xl font-semibold tracking-[-0.04em] text-white">
                       {platform.name}
@@ -106,9 +107,11 @@ export default function Downloads() {
                       {platform.label}
                     </div>
                   </div>
+
                   <p className="mt-6 text-sm leading-6 text-white/60">
                     {platform.description}
                   </p>
+
                   <div className="mt-auto pt-8">
                     {platform.status === "Request Access" ? (
                       <a
@@ -140,17 +143,17 @@ export default function Downloads() {
           transition={{ duration: 0.6, ease, delay: 0.12 }}
           className="mt-10"
         >
-          <Card className="spotlight-border rounded-[32px]">
+          <Card className="editorial-panel spotlight-border rounded-[32px]">
             <CardContent className="flex flex-col gap-6 p-7 md:flex-row md:items-center md:justify-between md:p-8">
               <div>
                 <Badge variant="secondary">Waitlist</Badge>
                 <h3 className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-white">
-                  Quer ser avisado quando a orbita abrir?
+                  Quer entrar antes da abertura publica?
                 </h3>
                 <p className="mt-3 max-w-2xl text-base leading-7 text-white/66">
-                  A CTA aqui respeita o estado atual do produto: nenhuma promessa
-                  falsa de download, apenas captura de interesse real e acesso
-                  antecipado.
+                  Nenhuma promessa falsa de download instantaneo. Apenas um CTA
+                  direto para captar interesse real e abrir conversa com quem quer
+                  usar o workspace primeiro.
                 </p>
               </div>
               <a

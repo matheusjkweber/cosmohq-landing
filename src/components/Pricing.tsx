@@ -20,43 +20,43 @@ const plans = [
   {
     name: "Free",
     description:
-      "Para entrar no produto, organizar campanhas e usar os sete recursos-base sem custo.",
+      "Entrada sem friccao para usar os sete recursos-base e experimentar o command center do CosmoHQ.",
     prices: { monthly: 0, yearly: 0, lifetime: 0 },
-    note: "Painel, campanhas, realtime analytics, social, content, alerts e security.",
-    cta: "Entrar na lista",
+    note: "Ideal para testar o fluxo inteiro do produto antes do lancamento publico.",
+    cta: "Entrar na waitlist",
     featured: false,
     features: [
       "Painel de Controle",
       "Gerenciamento de Campanhas",
-      "Análise de Dados em Tempo Real",
-      "Integração com Redes Sociais",
-      "Otimização de Conteúdo",
-      "Notificações e Alertas",
-      "Segurança e Autenticação",
+      "Analise de Dados em Tempo Real",
+      "Integracao com Redes Sociais",
+      "Otimizacao de Conteudo",
+      "Notificacoes e Alertas",
+      "Seguranca e Autenticacao",
     ],
   },
   {
     name: "Growth",
     description:
-      "Para squads que querem capacidade maior, comparacao rapida de valor e entrada forte no pre-launch.",
+      "Para times que querem entrar no pre-launch com mais capacidade e a melhor relacao custo ritmo.",
     prices: { monthly: 39, yearly: 348, lifetime: 899 },
-    note: "Melhor equilibrio para equipes pequenas e medias.",
+    note: "Yearly vira a ancora principal porque entrega o melhor valor sem esconder as outras opcoes.",
     cta: "Reservar Growth",
     featured: true,
     features: [
       "Tudo do Free com limites expandidos",
       "Mais workspaces e campanhas simultaneas",
-      "Dashboards e relatorios avancados",
+      "Relatorios avancados e visoes extras",
       "Prioridade em novas integracoes",
-      "Suporte prioritario durante a beta",
+      "Acesso prioritario durante a beta",
     ],
   },
   {
     name: "Scale",
     description:
-      "Para operacoes multi-canal que exigem governanca, volume e visibilidade executiva desde cedo.",
+      "Para operacoes multi-canal, agencias e squads que precisam de governanca e volume desde o dia zero.",
     prices: { monthly: 99, yearly: 828, lifetime: 2490 },
-    note: "Para agencias, marketing ops e times com varios squads.",
+    note: "Estrutura para quem quer operar varios fluxos sem simplificar demais a narrativa comercial.",
     cta: "Falar com o time",
     featured: false,
     features: [
@@ -76,13 +76,16 @@ function formatPrice(price: number) {
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="section-shell px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+    <section
+      id="pricing"
+      className="section-shell px-4 py-24 sm:px-6 lg:px-8 lg:py-32"
+    >
       <div className="mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="Pricing"
-          title="Mensal, anual e vitalicio"
-          highlight="juntos na mesma comparacao."
-          description="O bloco abaixo mostra todos os formatos de assinatura no mesmo contexto. O anual fica destacado como melhor valor com economia explicita, sem esconder o lifetime e sem fragmentar a decisao."
+          title="Mensal, anual e lifetime aparecem juntos"
+          highlight="na mesma decisao."
+          description="Nao existe pagina separada para cada opcao. O usuario compara tudo em um unico bloco e o yearly recebe destaque como best value com badge real de economia."
         />
 
         <motion.div
@@ -92,20 +95,10 @@ export default function Pricing() {
           transition={{ duration: 0.55, ease }}
           className="mt-12 flex flex-wrap items-center justify-center gap-3"
         >
-          {priceModes.map((mode) => (
-            <div
-              key={mode.key}
-              className={cn(
-                "rounded-full border px-4 py-2 text-sm text-white/70",
-                mode.key === "yearly"
-                  ? "border-brand-success/25 bg-brand-success/12"
-                  : "border-white/10 bg-white/6"
-              )}
-            >
-              <span className="font-medium text-white">{mode.label}</span>{" "}
-              {mode.key === "yearly" ? "• best value" : null}
-            </div>
-          ))}
+          <div className="glass-panel rounded-full px-4 py-3 text-sm text-white/72">
+            Compare Monthly, Yearly e Lifetime no mesmo olhar
+          </div>
+          <Badge variant="success">Yearly = Best value</Badge>
         </motion.div>
 
         <motion.div
@@ -131,8 +124,8 @@ export default function Pricing() {
               >
                 <Card
                   className={cn(
-                    "h-full rounded-[30px] transition duration-300 hover:-translate-y-1",
-                    plan.featured && "spotlight-border aurora-panel shadow-brand"
+                    "hover-lift h-full rounded-[30px]",
+                    plan.featured && "editorial-panel spotlight-border shadow-brand"
                   )}
                 >
                   <CardContent className="flex h-full flex-col p-7 md:p-8">

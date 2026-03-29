@@ -1,17 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Menu, Rocket, X } from "lucide-react";
+import { Menu, Orbit, X } from "lucide-react";
 import { AnimatePresence, motion } from "./motion";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { href: "#features", label: "Produto" },
+  { href: "#features", label: "Features" },
   { href: "#screenshots", label: "Galeria" },
   { href: "#pricing", label: "Planos" },
-  { href: "#downloads", label: "Acesso" },
+  { href: "#downloads", label: "Downloads" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -34,7 +34,7 @@ export default function Navbar() {
     >
       <nav
         className={cn(
-          "mx-auto max-w-7xl rounded-[28px] border px-4 py-3 transition-all duration-300 md:px-6",
+          "mx-auto max-w-7xl rounded-[30px] border px-4 py-3 transition-all duration-300 md:px-6",
           scrolled
             ? "glass-panel-strong border-white/12 shadow-[0_24px_80px_-40px_rgba(1,8,20,0.95)]"
             : "border-white/8 bg-white/[0.03]"
@@ -42,16 +42,16 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-between gap-4">
           <a href="#top" className="flex items-center gap-3">
-            <div className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl bg-[linear-gradient(135deg,#3498db,#1c6df8,#f1c40f)] shadow-brand">
-              <div className="absolute inset-[1px] rounded-[15px] bg-[#08111d]" />
-              <Rocket className="relative z-10 h-5 w-5 text-white" />
+            <div className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl bg-[linear-gradient(135deg,#3498db,#5abaf5,#f1c40f)] shadow-brand">
+              <div className="absolute inset-[1px] rounded-[15px] bg-[#252c2f]" />
+              <Orbit className="relative z-10 h-5 w-5 text-white" />
             </div>
             <div>
               <div className="text-lg font-semibold tracking-[-0.04em] text-white">
                 CosmoHQ
               </div>
               <div className="text-xs uppercase tracking-[0.24em] text-white/46">
-                Pre-launch
+                Growth studio OS
               </div>
             </div>
           </a>
@@ -69,12 +69,12 @@ export default function Navbar() {
           </div>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <Badge variant="secondary">Yearly saves 26%</Badge>
+            <Badge variant="secondary">Pre-launch</Badge>
             <a
               href="#pricing"
               className={buttonVariants({ variant: "secondary", size: "sm" })}
             >
-              Ver planos
+              Ver precos
             </a>
             <a href="#downloads" className={buttonVariants({ size: "sm" })}>
               Entrar na waitlist
@@ -120,7 +120,7 @@ export default function Navbar() {
                     className: "mt-2 flex w-full",
                   })}
                 >
-                  Ver planos
+                  Ver precos
                 </a>
                 <a
                   href="#downloads"

@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Quote, Star } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { motion, fadeUp, stagger, ease } from "./motion";
 import { Badge } from "@/components/ui/badge";
@@ -12,49 +11,43 @@ const productGallery = [
     src: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/06/7e/d6/067ed6f7-7b2c-b674-37e7-72ab6598aaf6/screenshot_1.png/2560x1600bb.png",
     alt: "Dashboard principal do CosmoHQ",
     title: "Mission control",
-    description: "Cockpit central para campanhas, sinais e prioridades de execucao.",
+    description: "Painel principal com uma leitura visual forte para performance e campanhas.",
     className: "md:col-span-7",
   },
   {
     src: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/da/41/2d/da412de0-3b03-b6f8-2bf4-5216ea3b5340/screenshot_1.png/2560x1599bb.png",
     alt: "Tela analitica do CosmoHQ",
-    title: "Live analytics",
-    description: "A tela que ajuda o time a reagir antes da performance escapar.",
+    title: "Live reading",
+    description: "Tela pensada para reagir a sinais antes que a janela de otimizacao passe.",
     className: "md:col-span-5",
   },
   {
     src: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/62/26/c7/6226c732-53bc-197e-fae0-59fa01734604/screenshot_2.png/2560x1600bb.png",
     alt: "Fluxo de campanhas no CosmoHQ",
     title: "Campaign canvas",
-    description: "Execucao e otimizacao com uma linguagem visual clara e premium.",
+    description: "Execucao multi-canal com uma linguagem visual mais proxima de estudio do que de planilha.",
     className: "md:col-span-12",
   },
 ];
 
-const proofCards = [
+const studioScenes = [
   {
     src: "https://images.unsplash.com/photo-1601933974703-d25155828f40?crop=entropy&cs=srgb&fm=jpg&ixid=M3w5MDk4MzF8MHwxfHNlYXJjaHwxfHxoYXBweSUyMHBlb3BsZSUyMGNvbXB1dGVyfGVufDB8MHx8fDE3NzQ4MDU5MzV8MA&ixlib=rb-4.1.0&q=85",
-    alt: "Profissional sorrindo em frente ao computador",
-    quote:
-      "A interface transmite imediatamente que o produto e serio, veloz e pronto para operacao.",
-    name: "Rafael Moraes",
-    role: "Growth Lead",
+    alt: "Profissional em frente ao computador",
+    title: "Focus sessions",
+    description: "Contexto editorial para posicionar o produto como ambiente de trabalho serio e ambicioso.",
   },
   {
     src: "https://images.pexels.com/photos/1647904/pexels-photo-1647904.jpeg",
-    alt: "Duas pessoas colaborando positivamente",
-    quote:
-      "A narrativa da landing deixou claro o valor do freemium sem parecer pagina generica de SaaS.",
-    name: "Julia Torres",
-    role: "Head of Performance",
+    alt: "Duas pessoas colaborando em reuniao",
+    title: "Campaign reviews",
+    description: "A marca precisa parecer pronta para conversas de time, nao apenas para demos isoladas.",
   },
   {
     src: "https://images.pexels.com/photos/6476776/pexels-photo-6476776.jpeg",
-    alt: "Profissional apresentando dados",
-    quote:
-      "O bloco de pricing com mensal, anual e vitalicio no mesmo lugar ajuda a comparar muito mais rapido.",
-    name: "Caio Nunes",
-    role: "Marketing Ops",
+    alt: "Profissional apresentando relatorios",
+    title: "Performance stand-up",
+    description: "Imagens humanas entram para sustentar narrativa e pacing, sem inventar depoimentos.",
   },
 ];
 
@@ -67,9 +60,9 @@ export default function Screenshots() {
       <div className="mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="Screenshots Gallery"
-          title="A prova visual vem de dois lados:"
-          highlight="produto polido e narrativa de marca."
-          description="Os screenshots oficiais entram como protagonista da pagina e as imagens editoriais ajudam a sustentar a sensacao de time, confianca e ambicao antes do lancamento."
+          title="A pagina vende o produto em duas camadas:"
+          highlight="interface oficial e atmosfera de estudio."
+          description="Os screenshots fornecidos viram protagonista. As imagens editoriais entram para dar ritmo e contexto humano, sem cair em depoimentos falsos ou logos inventados."
         />
 
         <motion.div
@@ -86,7 +79,7 @@ export default function Screenshots() {
               transition={{ duration: 0.58, ease, delay: index * 0.05 }}
               className={item.className}
             >
-              <Card className="spotlight-border group h-full overflow-hidden rounded-[30px]">
+              <Card className="hover-lift spotlight-border group h-full overflow-hidden rounded-[30px]">
                 <div className="overflow-hidden border-b border-white/10">
                   <Image
                     src={item.src}
@@ -120,42 +113,28 @@ export default function Screenshots() {
           variants={stagger}
           className="mt-16 grid gap-5 lg:grid-cols-3"
         >
-          {proofCards.map((card, index) => (
+          {studioScenes.map((scene, index) => (
             <motion.div
-              key={card.name}
+              key={scene.title}
               variants={fadeUp}
               transition={{ duration: 0.55, ease, delay: index * 0.05 }}
             >
-              <Card className="group h-full overflow-hidden rounded-[28px]">
+              <Card className="hover-lift group h-full overflow-hidden rounded-[28px]">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
-                    src={card.src}
-                    alt={card.alt}
+                    src={scene.src}
+                    alt={scene.alt}
                     fill
                     className="object-cover transition duration-700 group-hover:scale-105"
                     unoptimized
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#061120] via-transparent to-transparent" />
-                  <div className="absolute left-5 top-5 flex items-center gap-1 rounded-full border border-white/10 bg-black/25 px-3 py-1.5 backdrop-blur-xl">
-                    {[0, 1, 2, 3, 4].map((star) => (
-                      <Star
-                        key={star}
-                        className="h-3.5 w-3.5 fill-brand-secondary text-brand-secondary"
-                      />
-                    ))}
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1d2224] via-transparent to-transparent" />
                 </div>
                 <CardContent className="p-6">
-                  <Quote className="h-5 w-5 text-brand-primary" />
+                  <div className="display-kicker text-white/42">{scene.title}</div>
                   <p className="mt-4 text-base leading-7 text-white/70">
-                    {card.quote}
+                    {scene.description}
                   </p>
-                  <div className="mt-6">
-                    <div className="font-medium text-white">{card.name}</div>
-                    <div className="mt-1 text-xs uppercase tracking-[0.2em] text-white/44">
-                      {card.role}
-                    </div>
-                  </div>
                 </CardContent>
               </Card>
             </motion.div>

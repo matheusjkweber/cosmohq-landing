@@ -20,7 +20,7 @@ const features = [
   {
     title: "Painel de Controle",
     description:
-      "Um cockpit configuravel com metricas de campanhas, engagement, conversoes e prioridades do time no mesmo lugar.",
+      "Cockpit configuravel para acompanhar desempenho de campanhas, engagement e conversoes sem trocar de contexto.",
     icon: CircleGauge,
     complexity: "Media",
     className: "md:col-span-7 md:row-span-2",
@@ -29,16 +29,16 @@ const features = [
   {
     title: "Gerenciamento de Campanhas",
     description:
-      "Crie, gerencie e otimize campanhas em diferentes plataformas sem perder contexto de criativo, budget ou resultado.",
+      "Planeje, publique e otimize campanhas em multiplas plataformas com uma camada visual que parece operacao de estudio.",
     icon: Megaphone,
     complexity: "Alta",
     className: "md:col-span-5",
-    visual: "metric" as const,
+    visual: "campaigns" as const,
   },
   {
     title: "Analise de Dados em Tempo Real",
     description:
-      "Leituras ao vivo para agir enquanto a performance muda, nao quando o relatorio ja chegou tarde.",
+      "Leitura ao vivo para corrigir rota enquanto a performance muda, nao depois que o relatorio chega.",
     icon: ChartColumnIncreasing,
     complexity: "Alta",
     className: "md:col-span-5",
@@ -47,25 +47,25 @@ const features = [
   {
     title: "Integracao com Redes Sociais",
     description:
-      "Publique, acompanhe respostas e mantenha a operacao multi-canal em um fluxo unico.",
+      "Conecte as principais redes para publicar, monitorar respostas e manter a narrativa do time em um fluxo unico.",
     icon: Send,
     complexity: "Media",
     className: "md:col-span-3",
-    visual: "channels" as const,
+    visual: "social" as const,
   },
   {
     title: "Otimizacao de Conteudo",
     description:
-      "Sugestoes de copy, formato e timing para ajustar criativos conforme cada plataforma pede.",
+      "Refine criativos, formatos e timing com uma camada de orientacao pratica para cada plataforma.",
     icon: WandSparkles,
     complexity: "Baixa",
     className: "md:col-span-4",
-    visual: "photo" as const,
+    visual: "content" as const,
   },
   {
     title: "Notificacoes e Alertas",
     description:
-      "Alertas acionaveis sobre oportunidades, quedas de performance e desvios de budget.",
+      "Sinais acionaveis para budget, queda de performance e oportunidades que precisam de resposta rapida.",
     icon: BellRing,
     complexity: "Media",
     className: "md:col-span-4",
@@ -74,7 +74,7 @@ const features = [
   {
     title: "Seguranca e Autenticacao",
     description:
-      "Protecao de acesso, governanca e seguranca desde o plano gratuito para iniciar do jeito certo.",
+      "Governanca, protecao de acesso e autenticacao no plano gratuito para o produto nascer confiavel.",
     icon: LockKeyhole,
     complexity: "Alta",
     className: "md:col-span-4",
@@ -85,7 +85,7 @@ const features = [
 function FeatureVisual({ visual }: { visual: (typeof features)[number]["visual"] }) {
   if (visual === "dashboard") {
     return (
-      <div className="relative mt-8 overflow-hidden rounded-[24px] border border-white/10 bg-[#09111d] p-3">
+      <div className="relative mt-8 overflow-hidden rounded-[24px] border border-white/10 bg-[#1d2224] p-3">
         <Image
           src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/06/7e/d6/067ed6f7-7b2c-b674-37e7-72ab6598aaf6/screenshot_1.png/2560x1600bb.png"
           alt="Dashboard do CosmoHQ"
@@ -94,22 +94,17 @@ function FeatureVisual({ visual }: { visual: (typeof features)[number]["visual"]
           className="rounded-[18px]"
           unoptimized
         />
-        <div className="relative z-10 mt-4 grid gap-3 sm:grid-cols-3">
+        <div className="mt-4 grid gap-3 sm:grid-cols-3">
           {[
-            { label: "Engagement", value: "+28%" },
-            { label: "Conversoes", value: "4.8x" },
-            { label: "Alertas", value: "09" },
-          ].map((metric) => (
+            "Metricas centrais em um so painel",
+            "Leitura de campanhas sem alternar abas",
+            "Visao pronta para decisoes do dia",
+          ].map((item) => (
             <div
-              key={metric.label}
-              className="rounded-2xl border border-white/8 bg-white/6 px-4 py-3"
+              key={item}
+              className="rounded-2xl border border-white/8 bg-white/6 px-4 py-3 text-sm leading-6 text-white/66"
             >
-              <div className="text-xs uppercase tracking-[0.18em] text-white/42">
-                {metric.label}
-              </div>
-              <div className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-white">
-                {metric.value}
-              </div>
+              {item}
             </div>
           ))}
         </div>
@@ -117,31 +112,41 @@ function FeatureVisual({ visual }: { visual: (typeof features)[number]["visual"]
     );
   }
 
+  if (visual === "campaigns") {
+    return (
+      <div className="relative mt-auto overflow-hidden rounded-[24px] border border-white/10 bg-[#1d2224] p-3">
+        <Image
+          src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/62/26/c7/6226c732-53bc-197e-fae0-59fa01734604/screenshot_2.png/2560x1600bb.png"
+          alt="Fluxo de campanhas do CosmoHQ"
+          width={2560}
+          height={1600}
+          className="rounded-[18px]"
+          unoptimized
+        />
+      </div>
+    );
+  }
+
   if (visual === "analytics") {
     return (
-      <div className="mt-auto rounded-[24px] border border-white/8 bg-[linear-gradient(180deg,rgba(52,152,219,0.14),rgba(255,255,255,0.03))] p-5">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <div className="text-xs uppercase tracking-[0.2em] text-white/42">
-              Live variance
-            </div>
-            <div className="mt-2 text-3xl font-semibold tracking-[-0.05em] text-white">
-              +18.4%
-            </div>
+      <div className="mt-auto rounded-[24px] border border-white/8 bg-[linear-gradient(180deg,rgba(52,152,219,0.16),rgba(255,255,255,0.03))] p-5">
+        <div className="flex items-center justify-between gap-4">
+          <div className="text-xs uppercase tracking-[0.2em] text-white/42">
+            Live campaign reading
           </div>
           <Badge variant="success">Realtime</Badge>
         </div>
-        <div className="mt-4 flex gap-2">
-          {[56, 84, 72, 94, 78, 112, 128].map((height, index) => (
+        <div className="mt-5 flex gap-2">
+          {[74, 112, 96, 126, 108, 134].map((height, index) => (
             <div
-              key={height}
+              key={`${height}-${index}`}
               className={cn(
-                "w-full rounded-full bg-brand-primary/14",
-                index > 4 && "bg-brand-secondary/20"
+                "flex-1 rounded-full bg-white/8",
+                index > 3 && "bg-brand-secondary/14"
               )}
             >
               <div
-                className="w-full rounded-full bg-[linear-gradient(180deg,#7bd0ff,#3498db)]"
+                className="w-full rounded-full bg-[linear-gradient(180deg,#86d7ff,#3498db)]"
                 style={{ height }}
               />
             </div>
@@ -151,30 +156,7 @@ function FeatureVisual({ visual }: { visual: (typeof features)[number]["visual"]
     );
   }
 
-  if (visual === "metric") {
-    return (
-      <div className="mt-auto grid gap-3 pt-8 sm:grid-cols-2">
-        {[
-          { label: "Canais ativos", value: "08" },
-          { label: "Campaign tasks", value: "124" },
-        ].map((item) => (
-          <div
-            key={item.label}
-            className="rounded-[22px] border border-white/8 bg-white/5 px-4 py-4"
-          >
-            <div className="text-xs uppercase tracking-[0.18em] text-white/42">
-              {item.label}
-            </div>
-            <div className="mt-2 text-3xl font-semibold tracking-[-0.04em] text-white">
-              {item.value}
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  }
-
-  if (visual === "channels") {
+  if (visual === "social") {
     return (
       <div className="mt-auto flex flex-wrap gap-2 pt-8">
         {["Instagram", "Facebook", "TikTok", "LinkedIn", "X"].map((channel) => (
@@ -189,7 +171,7 @@ function FeatureVisual({ visual }: { visual: (typeof features)[number]["visual"]
     );
   }
 
-  if (visual === "photo") {
+  if (visual === "content") {
     return (
       <div className="relative mt-auto overflow-hidden rounded-[24px] border border-white/10 pt-8">
         <div className="relative aspect-[4/3] overflow-hidden rounded-[20px]">
@@ -200,7 +182,7 @@ function FeatureVisual({ visual }: { visual: (typeof features)[number]["visual"]
             className="object-cover"
             unoptimized
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07101c] via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1d2224] via-transparent to-transparent" />
         </div>
       </div>
     );
@@ -210,13 +192,13 @@ function FeatureVisual({ visual }: { visual: (typeof features)[number]["visual"]
     return (
       <div className="mt-auto space-y-3 pt-8">
         {[
-          "Queda de CTR detectada no conjunto A.",
-          "Budget pode ser redistribuido para criativo vencedor.",
+          "Alertas para quedas de performance e budget fora da rota.",
+          "Sinais rapidos para o time agir antes da janela fechar.",
         ].map((item, index) => (
           <div
             key={item}
             className={cn(
-              "rounded-[22px] border px-4 py-3 text-sm leading-6 text-white/64",
+              "rounded-[22px] border px-4 py-3 text-sm leading-6 text-white/68",
               index === 0
                 ? "border-brand-accent/20 bg-brand-accent/10"
                 : "border-brand-success/20 bg-brand-success/10"
@@ -232,14 +214,19 @@ function FeatureVisual({ visual }: { visual: (typeof features)[number]["visual"]
   return (
     <div className="mt-auto rounded-[24px] border border-white/8 bg-white/5 p-5">
       <div className="text-xs uppercase tracking-[0.18em] text-white/42">
-        Access layers
+        Trust layer
       </div>
       <div className="mt-4 space-y-3">
-        {["MFA enabled", "Workspace roles", "Protected sessions"].map((item) => (
-          <div key={item} className="rounded-2xl border border-white/8 bg-black/20 px-4 py-3 text-sm text-white/66">
-            {item}
-          </div>
-        ))}
+        {["Workspace roles", "Protected sessions", "Secure authentication"].map(
+          (item) => (
+            <div
+              key={item}
+              className="rounded-2xl border border-white/8 bg-black/18 px-4 py-3 text-sm text-white/66"
+            >
+              {item}
+            </div>
+          )
+        )}
       </div>
     </div>
   );
@@ -247,13 +234,16 @@ function FeatureVisual({ visual }: { visual: (typeof features)[number]["visual"]
 
 export default function Features() {
   return (
-    <section id="features" className="section-shell px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+    <section
+      id="features"
+      className="section-shell px-4 py-24 sm:px-6 lg:px-8 lg:py-32"
+    >
       <div className="mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="Feature Stack"
-          title="Tudo o que o CosmoHQ precisa mostrar no pre-launch,"
-          highlight="ja organizado em um bento de produto."
-          description="O plano gratuito entrega a base: painel de controle, campanhas, analytics em tempo real, integracoes sociais, otimizacao de conteudo, alertas e seguranca."
+          title="Sete modulos que fazem o CosmoHQ parecer uma operacao premium"
+          highlight="desde a primeira dobra."
+          description="O plano gratuito cobre a base inteira: painel, campanhas, analise em tempo real, integracao social, conteudo, alertas e seguranca. A secao organiza tudo em um bento mais editorial do que SaaS."
         />
 
         <motion.div
@@ -270,7 +260,7 @@ export default function Features() {
               transition={{ duration: 0.55, ease, delay: index * 0.04 }}
               className={feature.className}
             >
-              <Card className="spotlight-border group h-full overflow-hidden rounded-[30px] transition duration-300 hover:-translate-y-1">
+              <Card className="hover-lift spotlight-border group h-full overflow-hidden rounded-[30px]">
                 <CardContent className="flex h-full flex-col p-6 md:p-7">
                   <div className="flex items-start justify-between gap-4">
                     <div className="rounded-2xl border border-white/10 bg-white/7 p-3 text-brand-primary transition group-hover:scale-105 group-hover:border-brand-primary/40">

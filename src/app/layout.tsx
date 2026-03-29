@@ -1,26 +1,29 @@
 import type { Metadata } from "next";
+import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cosmohq.app"),
-  title: "CosmoHQ | Pre-launch command center for modern marketing teams",
+  title: "CosmoHQ | Growth command center for modern marketing teams",
   description:
-    "CosmoHQ centraliza campanhas, analytics em tempo real e otimizacao de conteudo em um workspace premium. iOS e Android ainda em breve.",
+    "CosmoHQ centraliza campanhas, analytics em tempo real, integracao social e otimizacao de conteudo em um pre-launch premium para times de growth e marketing ops.",
   keywords: [
-    "marketing intelligence",
-    "painel de campanhas",
-    "analytics em tempo real",
-    "social media management",
-    "pre-launch SaaS",
     "CosmoHQ",
+    "growth marketing",
+    "marketing ops",
+    "campaign management",
+    "real-time analytics",
+    "social media command center",
+    "pre-launch software",
   ],
+  applicationName: "CosmoHQ",
   alternates: {
     canonical: "https://cosmohq.app",
   },
   openGraph: {
-    title: "CosmoHQ | Pre-launch command center for modern marketing teams",
+    title: "CosmoHQ | Growth command center for modern marketing teams",
     description:
-      "Centralize campanhas, redes sociais e analytics em tempo real em um unico workspace. Pre-lancamento com planos mensal, anual e vitalicio na mesma secao.",
+      "Uma landing editorial para o pre-launch do CosmoHQ: screenshots oficiais, pricing mensal/anual/lifetime no mesmo lugar e narrativa premium para growth teams.",
     url: "https://cosmohq.app",
     siteName: "CosmoHQ",
     images: [
@@ -36,9 +39,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CosmoHQ | Pre-launch command center for modern marketing teams",
+    title: "CosmoHQ | Growth command center for modern marketing teams",
     description:
-      "Campanhas, analytics e conteudo em um unico hub. iOS e Android seguem como Coming Soon.",
+      "Campanhas, analytics e conteudo em uma experiencia premium. iOS e Android seguem como Coming Soon.",
     images: ["/og-image.png"],
   },
   icons: {
@@ -55,6 +58,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="scroll-smooth">
       <body className="min-h-screen bg-cosmo-bg font-sans antialiased">
+        <SmoothScroll />
         {children}
       </body>
     </html>

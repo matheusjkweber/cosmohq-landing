@@ -17,7 +17,7 @@ export function badgeVariants({
     {
       "border-brand-primary/30 bg-brand-primary/12 text-brand-primary":
         variant === "default",
-      "border-white/10 bg-white/6 text-white/78": variant === "secondary",
+      "border-white/12 bg-white/7 text-white/82": variant === "secondary",
       "border-brand-accent/30 bg-brand-accent/12 text-brand-accent":
         variant === "accent",
       "border-brand-success/30 bg-brand-success/12 text-brand-success":
