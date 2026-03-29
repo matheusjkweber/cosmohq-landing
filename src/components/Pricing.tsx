@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Sparkles } from "lucide-react";
+import { Check, Sparkles, ArrowRight } from "lucide-react";
 import { motion, fadeUp, stagger, ease } from "./motion";
 import { cn } from "@/lib/utils";
 
@@ -21,6 +21,7 @@ const plans = [
     ],
     cta: "Comece Gratis",
     highlighted: false,
+    gradient: "from-gray-500 to-gray-400",
   },
   {
     name: "Pro",
@@ -38,6 +39,7 @@ const plans = [
     cta: "Assinar Pro",
     highlighted: true,
     badge: "Mais Popular",
+    gradient: "from-brand-primary to-blue-600",
   },
   {
     name: "Enterprise",
@@ -54,6 +56,7 @@ const plans = [
     ],
     cta: "Falar com Vendas",
     highlighted: false,
+    gradient: "from-violet-500 to-purple-600",
   },
 ];
 
@@ -67,14 +70,11 @@ export default function Pricing() {
   const [billing, setBilling] = useState<BillingPeriod>("yearly");
 
   return (
-    <section
-      id="pricing"
-      className="relative py-28 lg:py-36 overflow-hidden"
-    >
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-brand-primary/[0.04] blur-[140px] -z-10" />
+    <section id="pricing" className="relative py-28 lg:py-36 overflow-hidden">
+      <div className="absolute top-0 inset-x-0 section-divider" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[700px] w-[700px] rounded-full bg-brand-primary/[0.03] blur-[160px] -z-10" />
 
       <div className="mx-auto max-w-7xl px-6">
-        {/* Header */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -83,8 +83,10 @@ export default function Pricing() {
           transition={{ duration: 0.7, ease }}
           className="text-center mb-12"
         >
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-primary mb-4">
+          <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-brand-primary mb-4">
+            <span className="h-px w-8 bg-brand-primary/40" />
             Pricing
+            <span className="h-px w-8 bg-brand-primary/40" />
           </p>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Planos para cada{" "}
@@ -104,7 +106,7 @@ export default function Pricing() {
           transition={{ duration: 0.5, ease, delay: 0.1 }}
           className="flex justify-center mb-16"
         >
-          <div className="inline-flex rounded-2xl glass p-1.5 gap-1">
+          <div className="inline-flex rounded-2xl glass-strong p-1.5 gap-1">
             {periods.map((period) => (
               <button
                 key={period.key}
@@ -118,7 +120,12 @@ export default function Pricing() {
               >
                 {period.label}
                 {period.badge && (
-                  <span className="rounded-full bg-brand-success/20 px-2 py-0.5 text-[10px] font-bold text-brand-success uppercase tracking-wider">
+                  <span className={cn(
+                    "rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider",
+                    billing === period.key
+                      ? "bg-white/20 text-white"
+                      : "bg-brand-success/15 text-brand-success"
+                  )}>
                     {period.badge}
                   </span>
                 )}
@@ -143,13 +150,13 @@ export default function Pricing() {
               className={cn(
                 "relative rounded-2xl p-8 transition-all duration-500 hover:-translate-y-1",
                 plan.highlighted
-                  ? "glass ring-1 ring-brand-primary/30 shadow-2xl shadow-brand-primary/[0.08] scale-[1.02]"
+                  ? "glass ring-1 ring-brand-primary/20 shadow-2xl shadow-brand-primary/[0.06] md:scale-[1.04] gradient-border"
                   : "glass glass-hover"
               )}
             >
               {plan.badge && (
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-brand-primary to-blue-600 px-4 py-1.5 text-xs font-bold text-white shadow-lg shadow-brand-primary/30 uppercase tracking-wider">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-brand-primary to-blue-600 px-4 py-1.5 text-[11px] font-bold text-white shadow-lg shadow-brand-primary/30 uppercase tracking-wider">
                     <Sparkles className="h-3 w-3" />
                     {plan.badge}
                   </span>
@@ -158,17 +165,13 @@ export default function Pricing() {
 
               <div className="mb-6">
                 <h3 className="text-xl font-bold text-white">{plan.name}</h3>
-                <p className="mt-1 text-sm text-dark-muted">
-                  {plan.description}
-                </p>
+                <p className="mt-1 text-sm text-dark-muted">{plan.description}</p>
               </div>
 
               <div className="mb-8">
                 <div className="flex items-baseline gap-1">
                   {plan.prices[billing] === 0 ? (
-                    <span className="text-4xl font-extrabold text-white">
-                      Gratis
-                    </span>
+                    <span className="text-4xl font-extrabold text-white">Gratis</span>
                   ) : (
                     <>
                       <span className="text-sm text-dark-muted">R$</span>
@@ -183,15 +186,19 @@ export default function Pricing() {
                     </>
                   )}
                 </div>
+                {billing === "yearly" && plan.prices.monthly > 0 && (
+                  <p className="mt-1.5 text-xs text-dark-muted">
+                    R$ {Math.round(plan.prices.yearly / 12)}/mes faturado anualmente
+                  </p>
+                )}
               </div>
 
-              <ul className="mb-8 space-y-3">
+              <ul className="mb-8 space-y-3.5">
                 {plan.features.map((feature) => (
-                  <li
-                    key={feature}
-                    className="flex items-start gap-3 text-sm"
-                  >
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-success" />
+                  <li key={feature} className="flex items-start gap-3 text-sm">
+                    <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-success/10">
+                      <Check className="h-3 w-3 text-brand-success" />
+                    </div>
                     <span className="text-dark-muted">{feature}</span>
                   </li>
                 ))}
@@ -199,13 +206,14 @@ export default function Pricing() {
 
               <button
                 className={cn(
-                  "w-full rounded-xl py-3.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/50",
+                  "group w-full flex items-center justify-center gap-2 rounded-xl py-3.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/50",
                   plan.highlighted
                     ? "bg-gradient-to-r from-brand-primary to-blue-600 text-white shadow-lg shadow-brand-primary/20 hover:shadow-xl hover:shadow-brand-primary/30"
                     : "border border-dark-border text-white hover:bg-white/[0.04] hover:border-white/15"
                 )}
               >
                 {plan.cta}
+                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
               </button>
             </motion.div>
           ))}

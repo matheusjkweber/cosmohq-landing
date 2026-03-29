@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, MessageCircleQuestion } from "lucide-react";
 import { motion, fadeUp, stagger, ease, AnimatePresence } from "./motion";
 import { cn } from "@/lib/utils";
 
@@ -38,21 +38,29 @@ const faqs = [
   },
 ];
 
-function FAQItem({ faq }: { faq: (typeof faqs)[number] }) {
+function FAQItem({ faq, index }: { faq: (typeof faqs)[number]; index: number }) {
   const [open, setOpen] = useState(false);
 
   return (
     <button
       onClick={() => setOpen(!open)}
-      className="w-full text-left glass glass-hover rounded-2xl p-6 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/50"
+      className={cn(
+        "w-full text-left glass rounded-2xl p-6 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/50",
+        open
+          ? "ring-1 ring-brand-primary/10 bg-white/[0.02]"
+          : "glass-hover"
+      )}
     >
       <div className="flex items-center justify-between gap-4">
-        <h3 className="text-base font-semibold text-white pr-4">
-          {faq.question}
-        </h3>
+        <div className="flex items-center gap-4">
+          <span className="text-xs font-bold text-dark-muted tabular-nums w-5">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <h3 className="text-base font-semibold text-white">{faq.question}</h3>
+        </div>
         <ChevronDown
           className={cn(
-            "h-5 w-5 shrink-0 text-dark-muted transition-transform duration-300",
+            "h-5 w-5 shrink-0 text-dark-muted transition-all duration-300",
             open && "rotate-180 text-brand-primary"
           )}
         />
@@ -66,7 +74,7 @@ function FAQItem({ faq }: { faq: (typeof faqs)[number] }) {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <p className="mt-4 text-sm text-dark-muted leading-relaxed">
+            <p className="mt-4 pl-9 text-sm text-dark-muted leading-relaxed">
               {faq.answer}
             </p>
           </motion.div>
@@ -79,6 +87,8 @@ function FAQItem({ faq }: { faq: (typeof faqs)[number] }) {
 export default function FAQ() {
   return (
     <section id="faq" className="relative py-28 lg:py-36">
+      <div className="absolute top-0 inset-x-0 section-divider" />
+
       <div className="mx-auto max-w-3xl px-6">
         <motion.div
           initial="hidden"
@@ -88,12 +98,17 @@ export default function FAQ() {
           transition={{ duration: 0.7, ease }}
           className="text-center mb-12"
         >
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-primary mb-4">
+          <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-brand-primary mb-4">
+            <span className="h-px w-8 bg-brand-primary/40" />
             FAQ
+            <span className="h-px w-8 bg-brand-primary/40" />
           </p>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Perguntas <span className="text-gradient">frequentes</span>
           </h2>
+          <p className="mx-auto mt-5 max-w-xl text-dark-muted text-lg leading-relaxed">
+            Tire suas duvidas sobre o CosmoHQ.
+          </p>
         </motion.div>
 
         <motion.div
@@ -109,9 +124,29 @@ export default function FAQ() {
               variants={fadeUp}
               transition={{ duration: 0.4, ease, delay: i * 0.04 }}
             >
-              <FAQItem faq={faq} />
+              <FAQItem faq={faq} index={i} />
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Extra CTA */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUp}
+          transition={{ duration: 0.5, ease, delay: 0.3 }}
+          className="mt-12 text-center"
+        >
+          <div className="inline-flex items-center gap-3 glass rounded-2xl px-6 py-4">
+            <MessageCircleQuestion className="h-5 w-5 text-brand-primary" />
+            <p className="text-sm text-dark-muted">
+              Ainda tem duvidas?{" "}
+              <a href="mailto:contato@cosmohq.app" className="font-semibold text-brand-primary hover:text-white transition-colors">
+                Entre em contato
+              </a>
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>

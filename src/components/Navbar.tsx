@@ -31,22 +31,20 @@ export default function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled
-          ? "glass border-b border-white/[0.04] shadow-2xl shadow-black/30"
+          ? "glass-strong shadow-2xl shadow-black/40"
           : "bg-transparent"
       )}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        {/* Logo */}
         <a href="#" className="flex items-center gap-2.5 group">
-          <div className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-primary to-blue-600 shadow-lg shadow-brand-primary/25 transition-all duration-300 group-hover:scale-110 group-hover:shadow-brand-primary/40">
-            <Rocket className="h-4.5 w-4.5 text-white" />
+          <div className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-primary to-blue-600 shadow-lg shadow-brand-primary/25 transition-all duration-300 group-hover:scale-110 group-hover:shadow-brand-primary/40 group-hover:rotate-3">
+            <Rocket className="h-[18px] w-[18px] text-white" />
           </div>
           <span className="text-lg font-bold tracking-tight text-white">
             Cosmo<span className="text-brand-primary">HQ</span>
           </span>
         </a>
 
-        {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-0.5">
           {links.map((link) => (
             <a
@@ -59,31 +57,25 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-3">
           <a
             href="#pricing"
-            className="relative inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-primary to-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-primary/20 transition-all duration-300 hover:shadow-xl hover:shadow-brand-primary/30 hover:-translate-y-px active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/50"
+            className="group relative inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-primary to-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-primary/20 transition-all duration-300 hover:shadow-xl hover:shadow-brand-primary/30 hover:-translate-y-px active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/50"
           >
-            Comece Gratis
+            <span className="relative z-10">Comece Gratis</span>
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-600 to-brand-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
           </a>
         </div>
 
-        {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
           className="md:hidden flex h-10 w-10 items-center justify-center rounded-lg text-dark-muted hover:text-white hover:bg-white/[0.04] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/50"
           aria-label="Toggle menu"
         >
-          {mobileOpen ? (
-            <X className="h-5 w-5" />
-          ) : (
-            <Menu className="h-5 w-5" />
-          )}
+          {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </nav>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -91,7 +83,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden glass border-t border-white/[0.04] overflow-hidden"
+            className="md:hidden glass-strong border-t border-white/[0.04] overflow-hidden"
           >
             <div className="px-6 py-4 space-y-1">
               {links.map((link) => (
