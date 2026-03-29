@@ -2,38 +2,40 @@
 
 import Image from "next/image";
 import Balancer from "react-wrap-balancer";
-import {
-  ArrowRight,
-  CalendarClock,
-  CirclePlay,
-  Orbit,
-  Sparkles,
-} from "lucide-react";
-import { motion, ease } from "./motion";
+import { ArrowRight, Orbit, Sparkles } from "lucide-react";
+import { motion, ease, fadeUp, stagger } from "./motion";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
-const factualChips = [
-  "7 modulos no plano Free",
-  "Mensal, anual e lifetime lado a lado",
-  "iOS e Android em Coming Soon",
-];
-
-const editorialCards = [
+const stats = [
   {
-    title: "Command center",
-    text: "Painel, campanhas e analytics amarrados em uma narrativa de produto premium.",
+    title: "Apps & Sites",
+    subtitle: "desenvolvimento completo",
+  },
+  {
+    title: "Redes Sociais",
+    subtitle: "gestão estratégica",
+  },
+  {
+    title: "Dados",
+    subtitle: "inteligência para decisão",
+  },
+] as const;
+
+const secondaryShowcase = [
+  {
+    label: "CosmoKit",
     src: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/06/7e/d6/067ed6f7-7b2c-b674-37e7-72ab6598aaf6/screenshot_1.png/2560x1600bb.png",
-    alt: "Painel principal do CosmoHQ",
+    alt: "CosmoKit — Toolkit criativo desenvolvido pela CosmoHQ",
   },
   {
-    title: "Growth room",
-    text: "Uma linguagem de marca pensada para growth teams, marketing ops e agencias.",
+    label: "Nosso time",
     src: "https://images.pexels.com/photos/1647904/pexels-photo-1647904.jpeg",
-    alt: "Time colaborando em uma sala",
+    alt: "Equipe CosmoHQ em sessão de trabalho",
   },
-];
+] as const;
 
 export default function Hero() {
   return (
@@ -47,129 +49,83 @@ export default function Hero() {
 
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-14 lg:grid-cols-[minmax(0,0.94fr)_minmax(0,1.06fr)] lg:items-center">
-          <div className="relative">
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, ease }}
-            >
-              <Badge className="mb-6">
+          <motion.div
+            className="relative"
+            variants={stagger}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div variants={fadeUp}>
+              <Badge variant="accent" className="mb-6">
                 <Sparkles className="h-3.5 w-3.5" />
-                Premium pre-launch for growth teams
+                Agência Digital
               </Badge>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, delay: 0.05, ease }}
-              className="display-kicker text-white/42"
-            >
-              EDITORIAL LANDING FOR A PRODUCT THAT SELLS OUTCOMES
-            </motion.div>
-
             <motion.h1
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.72, delay: 0.08, ease }}
-              className="mt-5 max-w-3xl text-[3.15rem] font-semibold leading-[0.92] tracking-[-0.07em] text-white sm:text-[4.5rem] lg:text-[5.9rem]"
+              variants={fadeUp}
+              className="max-w-3xl text-[3.15rem] font-semibold leading-[0.95] tracking-[-0.07em] text-white sm:text-[4.1rem] lg:text-[5.2rem]"
             >
               <Balancer>
-                CosmoHQ deixa sua operacao de growth com cara de{" "}
-                <span className="text-gradient">sala de comando.</span>
+                Sua ideia no digital.{" "}
+                <span className="text-gradient">Do jeito certo.</span>
               </Balancer>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.72, delay: 0.16, ease }}
+              variants={fadeUp}
               className="mt-7 max-w-2xl text-lg leading-8 text-white/68 sm:text-xl"
             >
               <Balancer>
-                Painel de controle, gerenciamento de campanhas, analise em tempo
-                real, integracao social e otimizacao de conteudo reunidos em uma
-                landing que posiciona o CosmoHQ como um growth studio OS, nao como
-                mais um dashboard generico.
+                CosmoHQ constrói apps, sites e sistemas, cuida das redes sociais
+                e usa inteligência de dados para garantir que cada decisão gere o
+                maior impacto possível.
               </Balancer>
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.72, delay: 0.24, ease }}
+              variants={fadeUp}
               className="mt-10 flex flex-col gap-4 sm:flex-row"
             >
-              <a href="#pricing" className={buttonVariants({ size: "lg" })}>
-                Explorar planos
+              <a href="#contato" className={buttonVariants({ size: "lg" })}>
+                Fale com a gente
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
-                href="#screenshots"
+                href="#portfolio"
                 className={buttonVariants({
                   variant: "secondary",
                   size: "lg",
                 })}
               >
-                <CirclePlay className="h-4 w-4" />
-                Ver a experiencia
+                Ver o que fazemos
               </a>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.72, delay: 0.3, ease }}
-              className="mt-10 flex flex-wrap gap-3"
-            >
-              {factualChips.map((chip) => (
-                <div
-                  key={chip}
-                  className="glass-panel rounded-full px-4 py-3 text-sm text-white/74"
-                >
-                  {chip}
-                </div>
-              ))}
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.72, delay: 0.36, ease }}
+              variants={fadeUp}
               className="mt-10 grid gap-4 sm:grid-cols-3"
             >
-              <Card className="spotlight-border ambient-glow">
-                <CardContent className="p-5">
-                  <div className="text-3xl font-semibold tracking-[-0.05em] text-white">
-                    7
-                  </div>
-                  <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/44">
-                    recursos-base no Free
-                  </div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-5">
-                  <div className="text-3xl font-semibold tracking-[-0.05em] text-white">
-                    3
-                  </div>
-                  <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/44">
-                    modelos de compra juntos
-                  </div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-5">
-                  <div className="text-3xl font-semibold tracking-[-0.05em] text-white">
-                    2
-                  </div>
-                  <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/44">
-                    lojas marcadas como Coming Soon
-                  </div>
-                </CardContent>
-              </Card>
+              {stats.map((item, index) => (
+                <Card
+                  key={item.title}
+                  className={cn(
+                    "hover-lift",
+                    index === 0 && "spotlight-border ambient-glow"
+                  )}
+                >
+                  <CardContent className="p-5">
+                    <div className="text-lg font-semibold tracking-[-0.04em] text-white">
+                      {item.title}
+                    </div>
+                    <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/44">
+                      {item.subtitle}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </motion.div>
-          </div>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 34, scale: 0.98 }}
@@ -181,19 +137,21 @@ export default function Hero() {
 
             <div className="editorial-panel ring-gradient relative rounded-[36px] p-3">
               <div className="flex items-center justify-between gap-4 rounded-[26px] border border-white/10 bg-black/16 px-4 py-3">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/12 bg-white/8">
+                <div className="flex min-w-0 items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/12 bg-white/8">
                     <Orbit className="h-5 w-5 text-white" />
                   </div>
-                  <div>
-                    <div className="text-sm font-medium text-white">CosmoHQ</div>
+                  <div className="min-w-0">
+                    <div className="truncate text-sm font-medium text-white">
+                      CosmoHQ
+                    </div>
                     <div className="text-[11px] uppercase tracking-[0.18em] text-white/42">
-                      Pre-launch workspace
+                      Apps · Sites · Ads · Dados
                     </div>
                   </div>
                 </div>
-                <div className="glass-panel rounded-full px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-white/58">
-                  app.cosmohq.com
+                <div className="glass-panel hidden shrink-0 rounded-full px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-white/58 sm:block">
+                  Estúdio digital
                 </div>
               </div>
 
@@ -201,7 +159,7 @@ export default function Hero() {
                 <div className="overflow-hidden rounded-[28px] border border-white/10 bg-[#1d2224]">
                   <Image
                     src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/da/41/2d/da412de0-3b03-b6f8-2bf4-5216ea3b5340/screenshot_1.png/2560x1599bb.png"
-                    alt="Tela analitica do CosmoHQ"
+                    alt="CosmoFinanças — Dashboard financeiro desenvolvido pela CosmoHQ"
                     width={2560}
                     height={1599}
                     priority
@@ -211,58 +169,28 @@ export default function Hero() {
                 </div>
 
                 <div className="grid gap-3">
-                  {editorialCards.map((card) => (
+                  {secondaryShowcase.map((item) => (
                     <div
-                      key={card.title}
+                      key={item.label}
                       className="surface-blend overflow-hidden rounded-[24px] border border-white/10 p-2"
                     >
                       <div className="relative aspect-[4/3] overflow-hidden rounded-[18px]">
                         <Image
-                          src={card.src}
-                          alt={card.alt}
+                          src={item.src}
+                          alt={item.alt}
                           fill
                           className="object-cover"
+                          sizes="(min-width: 1280px) 280px, 100vw"
                           unoptimized
                         />
                       </div>
                       <div className="px-2 pb-2 pt-3">
                         <div className="text-[11px] uppercase tracking-[0.2em] text-white/42">
-                          {card.title}
+                          {item.label}
                         </div>
-                        <p className="mt-2 text-sm leading-6 text-white/64">
-                          {card.text}
-                        </p>
                       </div>
                     </div>
                   ))}
-                </div>
-              </div>
-
-              <div className="mt-3 grid gap-3 md:grid-cols-[minmax(0,1fr)_minmax(0,0.78fr)]">
-                <div className="glass-panel rounded-[24px] p-5">
-                  <div className="display-kicker text-white/42">Launch stance</div>
-                  <p className="mt-3 text-lg leading-8 text-white/72">
-                    A pagina assume um posicionamento honesto: produto ainda nao
-                    lancado, links de iOS e Android indisponiveis, mas valor,
-                    visual e precificacao ja apresentados com clareza.
-                  </p>
-                </div>
-
-                <div className="glass-panel rounded-[24px] p-5">
-                  <div className="flex items-center gap-2 text-sm text-white/72">
-                    <CalendarClock className="h-4 w-4 text-brand-secondary" />
-                    Stores ainda fechadas, waitlist aberta
-                  </div>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {["Monthly", "Yearly", "Lifetime"].map((item) => (
-                      <span
-                        key={item}
-                        className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-white/58"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
                 </div>
               </div>
             </div>

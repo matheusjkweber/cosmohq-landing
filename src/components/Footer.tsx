@@ -2,24 +2,26 @@
 
 import { ArrowUpRight, Orbit } from "lucide-react";
 import { motion, fadeUp, ease } from "./motion";
-import { Badge } from "@/components/ui/badge";
 
 const footerGroups = [
   {
-    title: "Produto",
+    title: "Serviços",
     links: [
-      { href: "#features", label: "Features" },
-      { href: "#screenshots", label: "Galeria" },
-      { href: "#pricing", label: "Planos" },
-      { href: "#downloads", label: "Downloads" },
+      { href: "#servicos", label: "Desenvolvimento de Apps" },
+      { href: "#servicos", label: "Criação de Sites" },
+      { href: "#servicos", label: "Gestão de Redes Sociais" },
+      { href: "#servicos", label: "Campanhas e Ads" },
+      { href: "#servicos", label: "Análise de Dados" },
     ],
   },
   {
-    title: "Launch",
+    title: "Empresa",
     links: [
-      { href: "#downloads", label: "Waitlist" },
+      { href: "#portfolio", label: "Portfólio" },
+      { href: "#diferenciais", label: "Diferenciais" },
       { href: "#faq", label: "FAQ" },
-      { href: "mailto:hello@cosmohq.app", label: "Contato" },
+      { href: "#contato", label: "Contato" },
+      { href: "mailto:hello@cosmohq.app", label: "hello@cosmohq.app" },
     ],
   },
 ];
@@ -47,20 +49,16 @@ export default function Footer() {
                     CosmoHQ
                   </div>
                   <div className="text-xs uppercase tracking-[0.2em] text-white/40">
-                    Growth command center
+                    Agência Digital
                   </div>
                 </div>
               </div>
               <p className="mt-5 text-base leading-7 text-white/62">
-                Uma landing reconstruida para vender o pre-launch com mais
-                presenca editorial, screenshots oficiais e narrativa coerente com
-                um produto que ainda esta abrindo a orbita publica.
+                Transformamos ideias em produtos digitais e presença online —
+                com estratégia, execução e inteligência de dados para gerar
+                resultado real. Apps, sites, redes sociais e campanhas que
+                convertem.
               </p>
-              <div className="mt-5 flex flex-wrap gap-3">
-                <Badge variant="secondary">iOS: Coming Soon</Badge>
-                <Badge variant="secondary">Android: Coming Soon</Badge>
-                <Badge variant="success">Yearly highlighted</Badge>
-              </div>
             </div>
 
             {footerGroups.map((group) => (
@@ -85,8 +83,8 @@ export default function Footer() {
           </div>
 
           <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-white/42 md:flex-row md:items-center md:justify-between">
-            <div>(c) 2026 CosmoHQ. All rights reserved.</div>
-            <div>Landing page for the upcoming public launch.</div>
+            <div>&copy; {new Date().getFullYear()} CosmoHQ. Todos os direitos reservados.</div>
+            <div>Feito com estratégia, código e dados.</div>
           </div>
         </div>
       </motion.div>

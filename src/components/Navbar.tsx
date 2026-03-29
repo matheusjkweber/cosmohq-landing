@@ -3,15 +3,15 @@
 import { useEffect, useState } from "react";
 import { Menu, Orbit, X } from "lucide-react";
 import { AnimatePresence, motion } from "./motion";
-import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { href: "#features", label: "Features" },
-  { href: "#screenshots", label: "Galeria" },
-  { href: "#pricing", label: "Planos" },
-  { href: "#downloads", label: "Downloads" },
+  { href: "#como-funciona", label: "Como Funciona" },
+  { href: "#servicos", label: "Serviços" },
+  { href: "#portfolio", label: "Portfólio" },
+  { href: "#diferenciais", label: "Diferenciais" },
+  { href: "#contato", label: "Contato" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -37,31 +37,31 @@ export default function Navbar() {
           "mx-auto max-w-7xl rounded-[30px] border px-4 py-3 transition-all duration-300 md:px-6",
           scrolled
             ? "glass-panel-strong border-white/12 shadow-[0_24px_80px_-40px_rgba(1,8,20,0.95)]"
-            : "border-white/8 bg-white/[0.03]"
+            : "glass-panel border-white/8"
         )}
       >
         <div className="flex items-center justify-between gap-4">
-          <a href="#top" className="flex items-center gap-3">
-            <div className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl bg-[linear-gradient(135deg,#3498db,#5abaf5,#f1c40f)] shadow-brand">
+          <a href="#top" className="flex min-w-0 items-center gap-3">
+            <div className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-[linear-gradient(135deg,#3498db,#5abaf5,#f1c40f)] shadow-brand">
               <div className="absolute inset-[1px] rounded-[15px] bg-[#252c2f]" />
               <Orbit className="relative z-10 h-5 w-5 text-white" />
             </div>
-            <div>
+            <div className="min-w-0">
               <div className="text-lg font-semibold tracking-[-0.04em] text-white">
                 CosmoHQ
               </div>
               <div className="text-xs uppercase tracking-[0.24em] text-white/46">
-                Growth studio OS
+                Agência Digital
               </div>
             </div>
           </a>
 
-          <div className="hidden items-center gap-1 lg:flex">
+          <div className="hidden items-center gap-0.5 lg:flex">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="rounded-xl px-4 py-2 text-sm text-white/68 transition hover:bg-white/7 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/60"
+                className="rounded-xl px-2.5 py-2 text-[13px] text-white/68 transition hover:bg-white/7 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/60 xl:px-3.5 xl:text-sm"
               >
                 {item.label}
               </a>
@@ -69,15 +69,14 @@ export default function Navbar() {
           </div>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <Badge variant="secondary">Pre-launch</Badge>
             <a
-              href="#pricing"
+              href="#portfolio"
               className={buttonVariants({ variant: "secondary", size: "sm" })}
             >
-              Ver precos
+              Ver portfólio
             </a>
-            <a href="#downloads" className={buttonVariants({ size: "sm" })}>
-              Entrar na waitlist
+            <a href="#contato" className={buttonVariants({ size: "sm" })}>
+              Fale com a gente
             </a>
           </div>
 
@@ -112,7 +111,7 @@ export default function Navbar() {
                   </a>
                 ))}
                 <a
-                  href="#pricing"
+                  href="#portfolio"
                   onClick={() => setOpen(false)}
                   className={buttonVariants({
                     variant: "secondary",
@@ -120,17 +119,17 @@ export default function Navbar() {
                     className: "mt-2 flex w-full",
                   })}
                 >
-                  Ver precos
+                  Ver portfólio
                 </a>
                 <a
-                  href="#downloads"
+                  href="#contato"
                   onClick={() => setOpen(false)}
                   className={buttonVariants({
                     size: "default",
                     className: "flex w-full",
                   })}
                 >
-                  Entrar na waitlist
+                  Fale com a gente
                 </a>
               </div>
             </motion.div>

@@ -8,46 +8,49 @@ import { Badge } from "@/components/ui/badge";
 
 const faqs = [
   {
-    question: "O CosmoHQ ja esta lancado?",
+    question: "Quanto tempo leva para desenvolver um projeto?",
     answer:
-      "Nao. A landing comunica um pre-launch. iOS e Android continuam marcados como Coming Soon e a CTA principal e waitlist ou pedido de acesso ao workspace web.",
+      "Depende do escopo. Um site institucional pode ficar pronto em 2–3 semanas. Um app completo leva de 2 a 4 meses. Na primeira conversa a gente já consegue estimar um prazo realista — sem promessas irreais.",
   },
   {
-    question: "O que entra no plano Free?",
+    question: "Vocês gerenciam redes sociais de qualquer nicho?",
     answer:
-      "Painel de Controle, Gerenciamento de Campanhas, Analise de Dados em Tempo Real, Integracao com Redes Sociais, Otimizacao de Conteudo, Notificacoes e Alertas, Seguranca e Autenticacao.",
+      "Sim. Adaptamos a estratégia de conteúdo, tom de voz e calendário editorial para cada segmento. O que não muda é o processo: pesquisa, planejamento, criação, publicação e análise de resultados.",
   },
   {
-    question: "Como os precos estao organizados?",
+    question: "Como funciona a análise de dados de vocês?",
     answer:
-      "Monthly, Yearly e Lifetime aparecem juntos no mesmo bloco. O yearly fica destacado como best value com badge de economia calculada, sem esconder as outras opcoes.",
+      "Acompanhamos métricas em tempo real — tráfego, conversão, engajamento, ROI de campanhas. Cada decisão é baseada em números, não em feeling. Você recebe relatórios claros e recomendações de ajuste contínuo.",
   },
   {
-    question: "As imagens da landing sao oficiais?",
+    question: "Posso acompanhar o progresso do meu projeto?",
     answer:
-      "Sim. Os screenshots promocionais fornecidos entram como imagens de produto. As fotos editoriais apoiam a narrativa visual, mas nao fingem ser clientes, reviews ou depoimentos.",
+      "Com certeza. Trabalhamos com comunicação direta e updates frequentes. Sem reuniões intermináveis — você sabe o que está acontecendo a cada etapa e tem canal aberto para tirar dúvidas.",
   },
   {
-    question: "Quem deve entrar na waitlist agora?",
+    question: "Vocês trabalham com empresas de qualquer tamanho?",
     answer:
-      "Times de growth, marketing ops, agencias e liderancas que querem organizar campanhas, analytics e conteudo em uma unica camada operacional assim que o acesso abrir.",
+      "Sim. Atendemos desde quem tem uma ideia e quer tirar do papel até empresas que já operam e precisam escalar sua presença digital. O escopo se ajusta ao momento do negócio.",
   },
   {
-    question: "Existe opcao lifetime mesmo antes do lancamento?",
+    question: "O que diferencia a CosmoHQ de outras agências?",
     answer:
-      "Sim. Ela aparece junto com mensal e anual na mesma secao para facilitar a comparacao entre recorrencia e compra unica durante o pre-launch.",
+      "Três coisas: usamos nossos próprios produtos (CosmoKit, CosmoFinanças) então sabemos o que é construir algo que funciona de verdade; tomamos decisões com dados, não achismo; e mantemos comunicação direta — sem camadas de burocracia.",
   },
 ];
 
 export default function FAQ() {
   return (
-    <section id="faq" className="section-shell px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+    <section
+      id="faq"
+      className="section-shell px-4 py-24 sm:px-6 lg:px-8 lg:py-32"
+    >
       <div className="mx-auto max-w-4xl">
         <SectionHeading
           eyebrow="FAQ"
-          title="Perguntas que precisam estar respondidas"
-          highlight="antes do clique."
-          description="O FAQ fecha as objecoes centrais do pre-launch: estado do produto, estrutura do freemium, clareza de pricing e como agir enquanto o app ainda nao esta nas lojas."
+          title="Dúvidas frequentes"
+          highlight="antes de começar."
+          description="Reunimos as perguntas que mais ouvimos de quem está pensando em trabalhar com a gente."
         />
 
         <motion.div
@@ -73,7 +76,10 @@ export default function FAQ() {
                 <Accordion.Header>
                   <Accordion.Trigger className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left md:px-7">
                     <div className="flex items-center gap-4">
-                      <Badge variant="secondary" className="min-w-12 justify-center">
+                      <Badge
+                        variant="secondary"
+                        className="min-w-12 justify-center"
+                      >
                         {String(index + 1).padStart(2, "0")}
                       </Badge>
                       <div className="text-base font-medium leading-7 text-white sm:text-lg">
@@ -102,7 +108,7 @@ export default function FAQ() {
         >
           <div className="glass-panel inline-flex items-center gap-3 rounded-full px-5 py-3 text-sm text-white/70">
             <MessageCircleMore className="h-4 w-4 text-brand-primary" />
-            hello@cosmohq.app
+            Ainda tem dúvida? hello@cosmohq.app
           </div>
         </motion.div>
       </div>

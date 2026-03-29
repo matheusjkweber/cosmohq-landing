@@ -1,41 +1,31 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
-import Screenshots from "@/components/Screenshots";
-import Pricing from "@/components/Pricing";
-import Downloads from "@/components/Downloads";
+import Portfolio from "@/components/Portfolio";
+import Differentials from "@/components/Differentials";
+import Contact from "@/components/Contact";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
+    "@type": "ProfessionalService",
     name: "CosmoHQ",
-    applicationCategory: "BusinessApplication",
-    operatingSystem: "Web, iOS, Android",
     description:
-      "CosmoHQ centraliza campanhas, analytics em tempo real, integracao social e otimizacao de conteudo em um command center premium para times de growth e marketing ops.",
-    offers: [
-      {
-        "@type": "Offer",
-        name: "Free",
-        price: "0",
-        priceCurrency: "BRL",
-      },
-      {
-        "@type": "Offer",
-        name: "Growth Yearly",
-        price: "348",
-        priceCurrency: "BRL",
-      },
-      {
-        "@type": "Offer",
-        name: "Scale Lifetime",
-        price: "2490",
-        priceCurrency: "BRL",
-      },
+      "Agência digital que transforma ideias em produtos e presença online — com estratégia, execução e inteligência de dados para gerar resultado real.",
+    url: "https://cosmohq.app",
+    serviceType: [
+      "Desenvolvimento de Apps",
+      "Criação de Sites",
+      "Gestão de Redes Sociais",
+      "Campanhas de Ads",
+      "Análise de Dados",
+      "Marketing Digital",
     ],
+    areaServed: "BR",
+    priceRange: "$$",
   };
 
   return (
@@ -47,10 +37,11 @@ export default function Home() {
       <Navbar />
       <main className="overflow-x-hidden">
         <Hero />
+        <HowItWorks />
         <Features />
-        <Screenshots />
-        <Pricing />
-        <Downloads />
+        <Portfolio />
+        <Differentials />
+        <Contact />
         <FAQ />
       </main>
       <Footer />

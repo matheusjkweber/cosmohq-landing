@@ -1,168 +1,135 @@
 "use client";
 
+import type { ComponentType } from "react";
 import Image from "next/image";
 import {
-  BellRing,
   ChartColumnIncreasing,
-  CircleGauge,
-  LockKeyhole,
+  Globe,
   Megaphone,
   Send,
+  Settings,
+  Smartphone,
   WandSparkles,
 } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { motion, fadeUp, stagger, ease } from "./motion";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-const features = [
+type FeatureVisual =
+  | "app"
+  | "site"
+  | "social"
+  | "analytics"
+  | "none"
+  | "content"
+  | "systems";
+
+const features: Array<{
+  title: string;
+  description: string;
+  icon: ComponentType<{ className?: string }>;
+  className: string;
+  visual: FeatureVisual;
+}> = [
   {
-    title: "Painel de Controle",
+    title: "Desenvolvimento de Apps",
     description:
-      "Cockpit configuravel para acompanhar desempenho de campanhas, engagement e conversoes sem trocar de contexto.",
-    icon: CircleGauge,
-    complexity: "Media",
+      "Criamos aplicativos nativos e multiplataforma que resolvem problemas reais e encantam usuários.",
+    icon: Smartphone,
     className: "md:col-span-7 md:row-span-2",
-    visual: "dashboard" as const,
+    visual: "app",
   },
   {
-    title: "Gerenciamento de Campanhas",
+    title: "Criação de Sites",
     description:
-      "Planeje, publique e otimize campanhas em multiplas plataformas com uma camada visual que parece operacao de estudio.",
-    icon: Megaphone,
-    complexity: "Alta",
+      "Sites rápidos, bonitos e otimizados para converter visitantes em clientes.",
+    icon: Globe,
     className: "md:col-span-5",
-    visual: "campaigns" as const,
+    visual: "site",
   },
   {
-    title: "Analise de Dados em Tempo Real",
+    title: "Gestão de Redes Sociais",
     description:
-      "Leitura ao vivo para corrigir rota enquanto a performance muda, nao depois que o relatorio chega.",
-    icon: ChartColumnIncreasing,
-    complexity: "Alta",
-    className: "md:col-span-5",
-    visual: "analytics" as const,
-  },
-  {
-    title: "Integracao com Redes Sociais",
-    description:
-      "Conecte as principais redes para publicar, monitorar respostas e manter a narrativa do time em um fluxo unico.",
+      "Planejamos, criamos e publicamos conteúdo nas principais plataformas com estratégia e consistência.",
     icon: Send,
-    complexity: "Media",
-    className: "md:col-span-3",
-    visual: "social" as const,
+    className: "md:col-span-5",
+    visual: "social",
   },
   {
-    title: "Otimizacao de Conteudo",
+    title: "Análise de Dados",
     description:
-      "Refine criativos, formatos e timing com uma camada de orientacao pratica para cada plataforma.",
+      "Monitoramos métricas em tempo real para ajustar estratégias e maximizar resultados.",
+    icon: ChartColumnIncreasing,
+    className: "md:col-span-4",
+    visual: "analytics",
+  },
+  {
+    title: "Campanhas de Marketing",
+    description:
+      "Planejamos e executamos campanhas que convertem em múltiplos canais.",
+    icon: Megaphone,
+    className: "md:col-span-4",
+    visual: "none",
+  },
+  {
+    title: "Otimização de Conteúdo",
+    description:
+      "Refinamos criativos, formatos e timing para cada plataforma.",
     icon: WandSparkles,
-    complexity: "Baixa",
     className: "md:col-span-4",
-    visual: "content" as const,
+    visual: "content",
   },
   {
-    title: "Notificacoes e Alertas",
+    title: "Sistemas & Automação",
     description:
-      "Sinais acionaveis para budget, queda de performance e oportunidades que precisam de resposta rapida.",
-    icon: BellRing,
-    complexity: "Media",
-    className: "md:col-span-4",
-    visual: "alerts" as const,
-  },
-  {
-    title: "Seguranca e Autenticacao",
-    description:
-      "Governanca, protecao de acesso e autenticacao no plano gratuito para o produto nascer confiavel.",
-    icon: LockKeyhole,
-    complexity: "Alta",
-    className: "md:col-span-4",
-    visual: "security" as const,
+      "Construímos sistemas internos e automações que eliminam trabalho manual.",
+    icon: Settings,
+    className: "md:col-span-12",
+    visual: "systems",
   },
 ];
 
-function FeatureVisual({ visual }: { visual: (typeof features)[number]["visual"] }) {
-  if (visual === "dashboard") {
+const BAR_HEIGHTS_PX = [52, 78, 62, 96, 70, 104];
+
+function FeatureVisualBlock({ visual }: { visual: FeatureVisual }) {
+  if (visual === "app") {
     return (
-      <div className="relative mt-8 overflow-hidden rounded-[24px] border border-white/10 bg-[#1d2224] p-3">
+      <div className="relative mt-6 min-h-0 flex-1 overflow-hidden rounded-[22px] border border-white/12 bg-[#1a1f21] p-2.5 md:mt-8">
         <Image
           src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/06/7e/d6/067ed6f7-7b2c-b674-37e7-72ab6598aaf6/screenshot_1.png/2560x1600bb.png"
-          alt="Dashboard do CosmoHQ"
+          alt="Interface de aplicativo desenvolvido pela CosmoHQ"
           width={2560}
           height={1600}
-          className="rounded-[18px]"
+          className="h-auto w-full rounded-[16px] border border-white/8"
           unoptimized
         />
-        <div className="mt-4 grid gap-3 sm:grid-cols-3">
-          {[
-            "Metricas centrais em um so painel",
-            "Leitura de campanhas sem alternar abas",
-            "Visao pronta para decisoes do dia",
-          ].map((item) => (
-            <div
-              key={item}
-              className="rounded-2xl border border-white/8 bg-white/6 px-4 py-3 text-sm leading-6 text-white/66"
-            >
-              {item}
-            </div>
-          ))}
-        </div>
       </div>
     );
   }
 
-  if (visual === "campaigns") {
+  if (visual === "site") {
     return (
-      <div className="relative mt-auto overflow-hidden rounded-[24px] border border-white/10 bg-[#1d2224] p-3">
+      <div className="relative mt-auto overflow-hidden rounded-[22px] border border-white/12 bg-[#1a1f21] p-2.5 md:mt-6">
         <Image
           src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/62/26/c7/6226c732-53bc-197e-fae0-59fa01734604/screenshot_2.png/2560x1600bb.png"
-          alt="Fluxo de campanhas do CosmoHQ"
+          alt="Exemplo de site criado pela CosmoHQ"
           width={2560}
           height={1600}
-          className="rounded-[18px]"
+          className="h-auto w-full rounded-[16px] border border-white/8"
           unoptimized
         />
-      </div>
-    );
-  }
-
-  if (visual === "analytics") {
-    return (
-      <div className="mt-auto rounded-[24px] border border-white/8 bg-[linear-gradient(180deg,rgba(52,152,219,0.16),rgba(255,255,255,0.03))] p-5">
-        <div className="flex items-center justify-between gap-4">
-          <div className="text-xs uppercase tracking-[0.2em] text-white/42">
-            Live campaign reading
-          </div>
-          <Badge variant="success">Realtime</Badge>
-        </div>
-        <div className="mt-5 flex gap-2">
-          {[74, 112, 96, 126, 108, 134].map((height, index) => (
-            <div
-              key={`${height}-${index}`}
-              className={cn(
-                "flex-1 rounded-full bg-white/8",
-                index > 3 && "bg-brand-secondary/14"
-              )}
-            >
-              <div
-                className="w-full rounded-full bg-[linear-gradient(180deg,#86d7ff,#3498db)]"
-                style={{ height }}
-              />
-            </div>
-          ))}
-        </div>
       </div>
     );
   }
 
   if (visual === "social") {
     return (
-      <div className="mt-auto flex flex-wrap gap-2 pt-8">
+      <div className="mt-auto flex flex-wrap gap-2 pt-6 md:pt-8">
         {["Instagram", "Facebook", "TikTok", "LinkedIn", "X"].map((channel) => (
           <span
             key={channel}
-            className="rounded-full border border-white/10 bg-white/6 px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-white/58"
+            className="rounded-full border border-white/12 bg-white/6 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/58"
           >
             {channel}
           </span>
@@ -171,79 +138,113 @@ function FeatureVisual({ visual }: { visual: (typeof features)[number]["visual"]
     );
   }
 
-  if (visual === "content") {
+  if (visual === "analytics") {
     return (
-      <div className="relative mt-auto overflow-hidden rounded-[24px] border border-white/10 pt-8">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-[20px]">
-          <Image
-            src="https://images.pexels.com/photos/6476776/pexels-photo-6476776.jpeg"
-            alt="Profissional apresentando dados"
-            fill
-            className="object-cover"
-            unoptimized
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1d2224] via-transparent to-transparent" />
+      <div className="surface-blend mt-auto rounded-[22px] border border-white/10 p-4 pt-6 md:pt-8">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/45">
+          Métricas ao vivo
+        </p>
+        <div className="mt-4 flex h-[7.5rem] items-end gap-1.5 sm:gap-2">
+          {BAR_HEIGHTS_PX.map((h, index) => (
+            <div
+              key={`bar-${index}`}
+              className="flex min-h-0 flex-1 flex-col justify-end"
+            >
+              <motion.div
+                className="w-full rounded-full bg-gradient-to-t from-[#1e6fd9] via-[#3498db] to-[#86d7ff] shadow-[0_0_24px_-4px_rgba(52,152,219,0.45)]"
+                initial={false}
+                animate={{
+                  height: [
+                    `${Math.round(h * 0.58)}px`,
+                    `${h}px`,
+                    `${Math.round(h * 0.78)}px`,
+                    `${Math.round(h * 0.92)}px`,
+                    `${Math.round(h * 0.66)}px`,
+                  ],
+                }}
+                transition={{
+                  duration: 3.2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: index * 0.14,
+                }}
+              />
+            </div>
+          ))}
         </div>
       </div>
     );
   }
 
-  if (visual === "alerts") {
+  if (visual === "none") {
+    return <div className="mt-auto flex-1 md:min-h-[2rem]" aria-hidden />;
+  }
+
+  if (visual === "content") {
     return (
-      <div className="mt-auto space-y-3 pt-8">
-        {[
-          "Alertas para quedas de performance e budget fora da rota.",
-          "Sinais rapidos para o time agir antes da janela fechar.",
-        ].map((item, index) => (
+      <div className="relative mt-auto overflow-hidden rounded-[22px] border border-white/12 pt-6 md:pt-8">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-[18px]">
+          <Image
+            src="https://images.pexels.com/photos/6476776/pexels-photo-6476776.jpeg"
+            alt="Otimização de conteúdo e apresentação de resultados"
+            fill
+            className="object-cover"
+            sizes="(min-width: 768px) 33vw, 100vw"
+            unoptimized
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#141819] via-[#141819]/25 to-transparent" />
+        </div>
+      </div>
+    );
+  }
+
+  if (visual === "systems") {
+    const caps = [
+      {
+        title: "Fluxos sob medida",
+        body: "Automações que conectam ferramentas e removem etapas repetitivas do dia a dia.",
+      },
+      {
+        title: "Integrações estáveis",
+        body: "APIs, webhooks e sincronização entre CRMs, ads e bases internas.",
+      },
+      {
+        title: "Painéis internos",
+        body: "Interfaces claras para o time acompanhar operações sem depender de planilhas soltas.",
+      },
+    ];
+    return (
+      <div className="glass-panel ambient-glow mt-6 grid gap-4 rounded-[24px] border border-white/12 p-5 sm:grid-cols-3 md:mt-8">
+        {caps.map((item) => (
           <div
-            key={item}
-            className={cn(
-              "rounded-[22px] border px-4 py-3 text-sm leading-6 text-white/68",
-              index === 0
-                ? "border-brand-accent/20 bg-brand-accent/10"
-                : "border-brand-success/20 bg-brand-success/10"
-            )}
+            key={item.title}
+            className="editorial-panel rounded-[20px] border border-white/10 bg-white/[0.04] p-4"
           >
-            {item}
+            <h4 className="text-sm font-semibold tracking-[-0.02em] text-white">
+              {item.title}
+            </h4>
+            <p className="mt-2 text-sm leading-6 text-white/62">{item.body}</p>
           </div>
         ))}
       </div>
     );
   }
 
-  return (
-    <div className="mt-auto rounded-[24px] border border-white/8 bg-white/5 p-5">
-      <div className="text-xs uppercase tracking-[0.18em] text-white/42">
-        Trust layer
-      </div>
-      <div className="mt-4 space-y-3">
-        {["Workspace roles", "Protected sessions", "Secure authentication"].map(
-          (item) => (
-            <div
-              key={item}
-              className="rounded-2xl border border-white/8 bg-black/18 px-4 py-3 text-sm text-white/66"
-            >
-              {item}
-            </div>
-          )
-        )}
-      </div>
-    </div>
-  );
+  return null;
 }
 
 export default function Features() {
   return (
     <section
-      id="features"
+      id="servicos"
       className="section-shell px-4 py-24 sm:px-6 lg:px-8 lg:py-32"
     >
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="Feature Stack"
-          title="Sete modulos que fazem o CosmoHQ parecer uma operacao premium"
-          highlight="desde a primeira dobra."
-          description="O plano gratuito cobre a base inteira: painel, campanhas, analise em tempo real, integracao social, conteudo, alertas e seguranca. A secao organiza tudo em um bento mais editorial do que SaaS."
+          eyebrow="O que fazemos"
+          title="Tudo o que sua marca precisa"
+          highlight="para existir no digital."
+          description="Da ideia ao produto final. Do perfil social ao relatório de performance. Cuidamos de ponta a ponta com estratégia e execução integradas."
         />
 
         <motion.div
@@ -253,36 +254,49 @@ export default function Features() {
           variants={stagger}
           className="story-grid mt-14"
         >
-          {features.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              variants={fadeUp}
-              transition={{ duration: 0.55, ease, delay: index * 0.04 }}
-              className={feature.className}
-            >
-              <Card className="hover-lift spotlight-border group h-full overflow-hidden rounded-[30px]">
-                <CardContent className="flex h-full flex-col p-6 md:p-7">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="rounded-2xl border border-white/10 bg-white/7 p-3 text-brand-primary transition group-hover:scale-105 group-hover:border-brand-primary/40">
-                      <feature.icon className="h-5 w-5" />
+          {features.map((feature, index) => {
+            const Icon = feature.icon;
+            const tall = feature.visual === "app";
+            return (
+              <motion.div
+                key={feature.title}
+                variants={fadeUp}
+                transition={{ duration: 0.55, ease, delay: index * 0.05 }}
+                className={feature.className}
+              >
+                <Card
+                  className={cn(
+                    "hover-lift spotlight-border group h-full overflow-hidden rounded-[30px]",
+                    tall && "md:min-h-[520px]"
+                  )}
+                >
+                  <CardContent
+                    className={cn(
+                      "flex h-full flex-col p-6 md:p-7",
+                      tall && "md:min-h-[inherit]"
+                    )}
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="rounded-2xl border border-white/10 bg-white/7 p-3 text-brand-primary transition duration-300 group-hover:scale-[1.04] group-hover:border-brand-primary/35">
+                        <Icon className="h-5 w-5" />
+                      </div>
                     </div>
-                    <Badge variant="secondary">Complexidade {feature.complexity}</Badge>
-                  </div>
 
-                  <div className="mt-6">
-                    <h3 className="text-2xl font-semibold tracking-[-0.04em] text-white">
-                      {feature.title}
-                    </h3>
-                    <p className="mt-3 max-w-xl text-base leading-7 text-white/66">
-                      {feature.description}
-                    </p>
-                  </div>
+                    <div className="mt-5 md:mt-6">
+                      <h3 className="text-xl font-semibold tracking-[-0.04em] text-white sm:text-2xl">
+                        {feature.title}
+                      </h3>
+                      <p className="mt-3 max-w-prose text-base leading-7 text-white/66">
+                        {feature.description}
+                      </p>
+                    </div>
 
-                  <FeatureVisual visual={feature.visual} />
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+                    <FeatureVisualBlock visual={feature.visual} />
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>
