@@ -1,222 +1,232 @@
 "use client";
 
-import { useState } from "react";
-import { Check, Sparkles, ArrowRight } from "lucide-react";
+import { ArrowRight, Check, Sparkles } from "lucide-react";
+import SectionHeading from "./SectionHeading";
 import { motion, fadeUp, stagger, ease } from "./motion";
+import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-type BillingPeriod = "monthly" | "yearly" | "lifetime";
+type PriceMode = "monthly" | "yearly" | "lifetime";
+
+const priceModes: { key: PriceMode; label: string; suffix: string }[] = [
+  { key: "monthly", label: "Monthly", suffix: "/mes" },
+  { key: "yearly", label: "Yearly", suffix: "/ano" },
+  { key: "lifetime", label: "Lifetime", suffix: "pagamento unico" },
+];
 
 const plans = [
   {
     name: "Free",
-    description: "Perfeito para comecar",
+    description:
+      "Para entrar no produto, organizar campanhas e usar os sete recursos-base sem custo.",
     prices: { monthly: 0, yearly: 0, lifetime: 0 },
+    note: "Painel, campanhas, realtime analytics, social, content, alerts e security.",
+    cta: "Entrar na lista",
+    featured: false,
     features: [
-      "Painel de Controle basico",
-      "1 campanha ativa",
-      "Analytics com 7 dias",
-      "1 rede social conectada",
-      "Suporte por email",
+      "Painel de Controle",
+      "Gerenciamento de Campanhas",
+      "Análise de Dados em Tempo Real",
+      "Integração com Redes Sociais",
+      "Otimização de Conteúdo",
+      "Notificações e Alertas",
+      "Segurança e Autenticação",
     ],
-    cta: "Comece Gratis",
-    highlighted: false,
-    gradient: "from-gray-500 to-gray-400",
   },
   {
-    name: "Pro",
-    description: "Para profissionais de marketing",
-    prices: { monthly: 29, yearly: 290, lifetime: 799 },
+    name: "Growth",
+    description:
+      "Para squads que querem capacidade maior, comparacao rapida de valor e entrada forte no pre-launch.",
+    prices: { monthly: 39, yearly: 348, lifetime: 899 },
+    note: "Melhor equilibrio para equipes pequenas e medias.",
+    cta: "Reservar Growth",
+    featured: true,
     features: [
-      "Painel personalizavel",
-      "Campanhas ilimitadas",
-      "Analytics em tempo real",
-      "Todas as redes sociais",
-      "IA para otimizacao",
-      "Notificacoes inteligentes",
-      "Suporte prioritario",
+      "Tudo do Free com limites expandidos",
+      "Mais workspaces e campanhas simultaneas",
+      "Dashboards e relatorios avancados",
+      "Prioridade em novas integracoes",
+      "Suporte prioritario durante a beta",
     ],
-    cta: "Assinar Pro",
-    highlighted: true,
-    badge: "Mais Popular",
-    gradient: "from-brand-primary to-blue-600",
   },
   {
-    name: "Enterprise",
-    description: "Para equipes e agencias",
-    prices: { monthly: 79, yearly: 790, lifetime: 1999 },
+    name: "Scale",
+    description:
+      "Para operacoes multi-canal que exigem governanca, volume e visibilidade executiva desde cedo.",
+    prices: { monthly: 99, yearly: 828, lifetime: 2490 },
+    note: "Para agencias, marketing ops e times com varios squads.",
+    cta: "Falar com o time",
+    featured: false,
     features: [
-      "Tudo do Pro",
-      "Multi-usuario e permissoes",
-      "API de integracao",
-      "Relatorios white-label",
-      "SSO e seguranca avancada",
-      "Gerente de conta dedicado",
-      "SLA garantido",
+      "Tudo do Growth",
+      "Permissoes por equipe",
+      "Mais automacoes e alertas",
+      "Camada extra de seguranca",
+      "Onboarding guiado no pre-launch",
     ],
-    cta: "Falar com Vendas",
-    highlighted: false,
-    gradient: "from-violet-500 to-purple-600",
   },
 ];
 
-const periods: { key: BillingPeriod; label: string; badge?: string }[] = [
-  { key: "monthly", label: "Mensal" },
-  { key: "yearly", label: "Anual", badge: "Economize 17%" },
-  { key: "lifetime", label: "Vitalicio" },
-];
+function formatPrice(price: number) {
+  if (price === 0) return "Gratis";
+  return `R$ ${price}`;
+}
 
 export default function Pricing() {
-  const [billing, setBilling] = useState<BillingPeriod>("yearly");
-
   return (
-    <section id="pricing" className="relative py-28 lg:py-36 overflow-hidden">
-      <div className="absolute top-0 inset-x-0 section-divider" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[700px] w-[700px] rounded-full bg-brand-primary/[0.03] blur-[160px] -z-10" />
+    <section id="pricing" className="section-shell px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+      <div className="mx-auto max-w-7xl">
+        <SectionHeading
+          eyebrow="Pricing"
+          title="Mensal, anual e vitalicio"
+          highlight="juntos na mesma comparacao."
+          description="O bloco abaixo mostra todos os formatos de assinatura no mesmo contexto. O anual fica destacado como melhor valor com economia explicita, sem esconder o lifetime e sem fragmentar a decisao."
+        />
 
-      <div className="mx-auto max-w-7xl px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.55, ease }}
+          className="mt-12 flex flex-wrap items-center justify-center gap-3"
+        >
+          {priceModes.map((mode) => (
+            <div
+              key={mode.key}
+              className={cn(
+                "rounded-full border px-4 py-2 text-sm text-white/70",
+                mode.key === "yearly"
+                  ? "border-brand-success/25 bg-brand-success/12"
+                  : "border-white/10 bg-white/6"
+              )}
+            >
+              <span className="font-medium text-white">{mode.label}</span>{" "}
+              {mode.key === "yearly" ? "• best value" : null}
+            </div>
+          ))}
+        </motion.div>
+
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          variants={fadeUp}
-          transition={{ duration: 0.7, ease }}
-          className="text-center mb-12"
-        >
-          <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-brand-primary mb-4">
-            <span className="h-px w-8 bg-brand-primary/40" />
-            Pricing
-            <span className="h-px w-8 bg-brand-primary/40" />
-          </p>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Planos para cada{" "}
-            <span className="text-gradient">momento</span>
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-dark-muted text-lg">
-            Comece gratis e escale conforme seu negocio cresce.
-          </p>
-        </motion.div>
-
-        {/* Billing toggle */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          transition={{ duration: 0.5, ease, delay: 0.1 }}
-          className="flex justify-center mb-16"
-        >
-          <div className="inline-flex rounded-2xl glass-strong p-1.5 gap-1">
-            {periods.map((period) => (
-              <button
-                key={period.key}
-                onClick={() => setBilling(period.key)}
-                className={cn(
-                  "relative flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/50",
-                  billing === period.key
-                    ? "bg-gradient-to-r from-brand-primary to-blue-600 text-white shadow-lg shadow-brand-primary/20"
-                    : "text-dark-muted hover:text-white hover:bg-white/[0.04]"
-                )}
-              >
-                {period.label}
-                {period.badge && (
-                  <span className={cn(
-                    "rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider",
-                    billing === period.key
-                      ? "bg-white/20 text-white"
-                      : "bg-brand-success/15 text-brand-success"
-                  )}>
-                    {period.badge}
-                  </span>
-                )}
-              </button>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Cards */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
           variants={stagger}
-          className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start"
+          className="mt-14 grid gap-5 xl:grid-cols-3"
         >
-          {plans.map((plan, i) => (
-            <motion.div
-              key={plan.name}
-              variants={fadeUp}
-              transition={{ duration: 0.5, ease, delay: i * 0.08 }}
-              className={cn(
-                "relative rounded-2xl p-8 transition-all duration-500 hover:-translate-y-1",
-                plan.highlighted
-                  ? "glass ring-1 ring-brand-primary/20 shadow-2xl shadow-brand-primary/[0.06] md:scale-[1.04] gradient-border"
-                  : "glass glass-hover"
-              )}
-            >
-              {plan.badge && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-brand-primary to-blue-600 px-4 py-1.5 text-[11px] font-bold text-white shadow-lg shadow-brand-primary/30 uppercase tracking-wider">
-                    <Sparkles className="h-3 w-3" />
-                    {plan.badge}
-                  </span>
-                </div>
-              )}
+          {plans.map((plan, index) => {
+            const save =
+              plan.prices.monthly > 0
+                ? Math.round(
+                    (1 - plan.prices.yearly / (plan.prices.monthly * 12)) * 100
+                  )
+                : 0;
 
-              <div className="mb-6">
-                <h3 className="text-xl font-bold text-white">{plan.name}</h3>
-                <p className="mt-1 text-sm text-dark-muted">{plan.description}</p>
-              </div>
-
-              <div className="mb-8">
-                <div className="flex items-baseline gap-1">
-                  {plan.prices[billing] === 0 ? (
-                    <span className="text-4xl font-extrabold text-white">Gratis</span>
-                  ) : (
-                    <>
-                      <span className="text-sm text-dark-muted">R$</span>
-                      <span className="text-4xl font-extrabold text-white tabular-nums">
-                        {plan.prices[billing]}
-                      </span>
-                      {billing !== "lifetime" && (
-                        <span className="text-sm text-dark-muted">
-                          /{billing === "monthly" ? "mes" : "ano"}
-                        </span>
-                      )}
-                    </>
-                  )}
-                </div>
-                {billing === "yearly" && plan.prices.monthly > 0 && (
-                  <p className="mt-1.5 text-xs text-dark-muted">
-                    R$ {Math.round(plan.prices.yearly / 12)}/mes faturado anualmente
-                  </p>
-                )}
-              </div>
-
-              <ul className="mb-8 space-y-3.5">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 text-sm">
-                    <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-success/10">
-                      <Check className="h-3 w-3 text-brand-success" />
-                    </div>
-                    <span className="text-dark-muted">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <button
-                className={cn(
-                  "group w-full flex items-center justify-center gap-2 rounded-xl py-3.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/50",
-                  plan.highlighted
-                    ? "bg-gradient-to-r from-brand-primary to-blue-600 text-white shadow-lg shadow-brand-primary/20 hover:shadow-xl hover:shadow-brand-primary/30"
-                    : "border border-dark-border text-white hover:bg-white/[0.04] hover:border-white/15"
-                )}
+            return (
+              <motion.div
+                key={plan.name}
+                variants={fadeUp}
+                transition={{ duration: 0.55, ease, delay: index * 0.05 }}
               >
-                {plan.cta}
-                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-              </button>
-            </motion.div>
-          ))}
+                <Card
+                  className={cn(
+                    "h-full rounded-[30px] transition duration-300 hover:-translate-y-1",
+                    plan.featured && "spotlight-border aurora-panel shadow-brand"
+                  )}
+                >
+                  <CardContent className="flex h-full flex-col p-7 md:p-8">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <div className="text-2xl font-semibold tracking-[-0.04em] text-white">
+                          {plan.name}
+                        </div>
+                        <p className="mt-3 max-w-sm text-sm leading-6 text-white/62">
+                          {plan.description}
+                        </p>
+                      </div>
+                      {plan.featured ? (
+                        <Badge variant="default">
+                          <Sparkles className="h-3.5 w-3.5" />
+                          Best value
+                        </Badge>
+                      ) : null}
+                    </div>
+
+                    <p className="mt-5 text-sm leading-6 text-white/56">
+                      {plan.note}
+                    </p>
+
+                    <div className="mt-8 grid gap-3">
+                      {priceModes.map((mode) => (
+                        <div
+                          key={mode.key}
+                          className={cn(
+                            "rounded-[24px] border px-4 py-4",
+                            mode.key === "yearly"
+                              ? "border-brand-success/26 bg-brand-success/10"
+                              : "border-white/8 bg-white/5"
+                          )}
+                        >
+                          <div className="flex items-center justify-between gap-4">
+                            <div className="text-xs uppercase tracking-[0.2em] text-white/42">
+                              {mode.label}
+                            </div>
+                            {mode.key === "yearly" && save > 0 ? (
+                              <Badge variant="success">Save {save}%</Badge>
+                            ) : null}
+                          </div>
+                          <div className="mt-3 flex flex-wrap items-end gap-2">
+                            <div className="text-3xl font-semibold tracking-[-0.05em] text-white">
+                              {formatPrice(plan.prices[mode.key])}
+                            </div>
+                            {plan.prices[mode.key] > 0 ? (
+                              <div className="pb-1 text-sm text-white/48">
+                                {mode.suffix}
+                              </div>
+                            ) : null}
+                          </div>
+                          {mode.key === "yearly" && plan.prices.yearly > 0 ? (
+                            <p className="mt-2 text-sm text-white/58">
+                              Equivale a R$ {Math.round(plan.prices.yearly / 12)}/mes
+                              na cobranca anual.
+                            </p>
+                          ) : null}
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="mt-8 space-y-3">
+                      {plan.features.map((feature) => (
+                        <div key={feature} className="flex gap-3">
+                          <div className="mt-0.5 rounded-full border border-brand-success/25 bg-brand-success/12 p-1 text-brand-success">
+                            <Check className="h-3 w-3" />
+                          </div>
+                          <div className="text-sm leading-6 text-white/64">
+                            {feature}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="mt-8 pt-4">
+                      <a
+                        href="#downloads"
+                        className={buttonVariants({
+                          variant: plan.featured ? "default" : "secondary",
+                          size: "lg",
+                          className: "flex w-full",
+                        })}
+                      >
+                        {plan.cta}
+                        <ArrowRight className="h-4 w-4" />
+                      </a>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>

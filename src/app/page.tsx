@@ -8,10 +8,44 @@ import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 
 export default function Home() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "CosmoHQ",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web, iOS, Android",
+    description:
+      "CosmoHQ centraliza campanhas, analytics em tempo real, integracao social e otimizacao de conteudo em um command center premium para times de marketing.",
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Free",
+        price: "0",
+        priceCurrency: "BRL",
+      },
+      {
+        "@type": "Offer",
+        name: "Growth Yearly",
+        price: "348",
+        priceCurrency: "BRL",
+      },
+      {
+        "@type": "Offer",
+        name: "Scale Lifetime",
+        price: "2490",
+        priceCurrency: "BRL",
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
-      <main>
+      <main className="overflow-hidden">
         <Hero />
         <Features />
         <Screenshots />

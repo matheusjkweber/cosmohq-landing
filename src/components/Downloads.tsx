@@ -1,101 +1,167 @@
 "use client";
 
-import { Apple, Smartphone, Mail, ArrowRight } from "lucide-react";
-import { motion, fadeUp, ease } from "./motion";
+import {
+  Apple,
+  ArrowRight,
+  CalendarClock,
+  Globe,
+  Mail,
+  Smartphone,
+} from "lucide-react";
+import SectionHeading from "./SectionHeading";
+import { motion, fadeUp, stagger, ease } from "./motion";
+import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+
+const platforms = [
+  {
+    name: "iOS",
+    label: "App Store",
+    status: "Coming Soon",
+    description:
+      "O app mobile ja faz parte da historia da marca, mas o link oficial ainda nao foi aberto.",
+    icon: Apple,
+  },
+  {
+    name: "Android",
+    label: "Google Play",
+    status: "Coming Soon",
+    description:
+      "A versao Android segue na mesma cadencia de pre-launch e ainda nao possui pagina publica.",
+    icon: Smartphone,
+  },
+  {
+    name: "Workspace Web",
+    label: "Private beta",
+    status: "Request Access",
+    description:
+      "Enquanto as lojas nao abrem, o acesso antecipado ao workspace web sustenta a fase de validacao.",
+    icon: Globe,
+  },
+];
 
 export default function Downloads() {
   return (
-    <section id="downloads" className="relative py-28 lg:py-36 overflow-hidden">
-      <div className="absolute top-0 inset-x-0 section-divider" />
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[500px] w-[900px] rounded-full bg-brand-primary/[0.04] blur-[160px]" />
-      </div>
+    <section
+      id="downloads"
+      className="section-shell px-4 py-24 sm:px-6 lg:px-8 lg:py-32"
+    >
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:items-end">
+          <SectionHeading
+            eyebrow="Access"
+            title="Sem links de loja ainda."
+            highlight="Com mensagem certa, isso vira vantagem."
+            description="A secao de downloads deixa claro que iOS e Android continuam como Coming Soon e direciona o interesse para waitlist e acesso antecipado ao workspace web."
+            align="left"
+          />
 
-      <div className="mx-auto max-w-4xl px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.55, ease }}
+            className="lg:justify-self-end"
+          >
+            <div className="glass-panel-strong inline-flex items-center gap-3 rounded-full px-4 py-3 text-sm text-white/70">
+              <CalendarClock className="h-4 w-4 text-brand-secondary" />
+              Produto ainda nao lancado. Captura de demanda primeiro.
+            </div>
+          </motion.div>
+        </div>
+
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          variants={fadeUp}
-          transition={{ duration: 0.7, ease }}
+          variants={stagger}
+          className="mt-14 grid gap-5 lg:grid-cols-3"
         >
-          <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-brand-primary mb-4">
-            <span className="h-px w-8 bg-brand-primary/40" />
-            Download
-            <span className="h-px w-8 bg-brand-primary/40" />
-          </p>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Disponivel em breve para{" "}
-            <span className="text-gradient">todas as plataformas</span>
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-dark-muted text-lg leading-relaxed">
-            Estamos preparando o CosmoHQ para iOS, Android e Web. Cadastre-se
-            para ser notificado no lancamento.
-          </p>
+          {platforms.map((platform, index) => (
+            <motion.div
+              key={platform.name}
+              variants={fadeUp}
+              transition={{ duration: 0.55, ease, delay: index * 0.05 }}
+            >
+              <Card className="h-full rounded-[28px]">
+                <CardContent className="flex h-full flex-col p-7">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="rounded-2xl border border-white/10 bg-white/6 p-3 text-white">
+                      <platform.icon className="h-5 w-5" />
+                    </div>
+                    <Badge
+                      variant={
+                        platform.status === "Request Access" ? "default" : "secondary"
+                      }
+                    >
+                      {platform.status}
+                    </Badge>
+                  </div>
+                  <div className="mt-8">
+                    <div className="text-2xl font-semibold tracking-[-0.04em] text-white">
+                      {platform.name}
+                    </div>
+                    <div className="mt-2 text-sm uppercase tracking-[0.18em] text-white/44">
+                      {platform.label}
+                    </div>
+                  </div>
+                  <p className="mt-6 text-sm leading-6 text-white/60">
+                    {platform.description}
+                  </p>
+                  <div className="mt-auto pt-8">
+                    {platform.status === "Request Access" ? (
+                      <a
+                        href="mailto:hello@cosmohq.app?subject=CosmoHQ%20private%20beta"
+                        className={buttonVariants({
+                          size: "default",
+                          className: "flex w-full",
+                        })}
+                      >
+                        Solicitar acesso
+                        <ArrowRight className="h-4 w-4" />
+                      </a>
+                    ) : (
+                      <div className="rounded-2xl border border-white/8 bg-white/4 px-4 py-3 text-center text-sm text-white/42">
+                        Link de loja ainda indisponivel
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </motion.div>
 
-        {/* Store buttons */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          transition={{ duration: 0.6, ease, delay: 0.15 }}
-          className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease, delay: 0.12 }}
+          className="mt-10"
         >
-          <div className="inline-flex items-center gap-3.5 rounded-2xl glass px-8 py-4 text-left opacity-50 cursor-not-allowed select-none gradient-border">
-            <Apple className="h-8 w-8 text-white" />
-            <div>
-              <p className="text-[11px] text-dark-muted uppercase tracking-wider font-medium">
-                Em breve na
-              </p>
-              <p className="text-base font-semibold text-white -mt-0.5">
-                App Store
-              </p>
-            </div>
-          </div>
-
-          <div className="inline-flex items-center gap-3.5 rounded-2xl glass px-8 py-4 text-left opacity-50 cursor-not-allowed select-none gradient-border">
-            <Smartphone className="h-8 w-8 text-white" />
-            <div>
-              <p className="text-[11px] text-dark-muted uppercase tracking-wider font-medium">
-                Em breve no
-              </p>
-              <p className="text-base font-semibold text-white -mt-0.5">
-                Google Play
-              </p>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Email signup */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          transition={{ duration: 0.6, ease, delay: 0.25 }}
-          className="mt-16 mx-auto max-w-lg"
-        >
-          <div className="relative rounded-2xl glass p-1.5 transition-all duration-300 focus-within:ring-1 focus-within:ring-brand-primary/30 focus-within:shadow-lg focus-within:shadow-brand-primary/[0.06] gradient-border">
-            <div className="flex items-center">
-              <div className="flex items-center pl-4 pr-1">
-                <Mail className="h-4 w-4 text-dark-muted" />
+          <Card className="spotlight-border rounded-[32px]">
+            <CardContent className="flex flex-col gap-6 p-7 md:flex-row md:items-center md:justify-between md:p-8">
+              <div>
+                <Badge variant="secondary">Waitlist</Badge>
+                <h3 className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-white">
+                  Quer ser avisado quando a orbita abrir?
+                </h3>
+                <p className="mt-3 max-w-2xl text-base leading-7 text-white/66">
+                  A CTA aqui respeita o estado atual do produto: nenhuma promessa
+                  falsa de download, apenas captura de interesse real e acesso
+                  antecipado.
+                </p>
               </div>
-              <input
-                type="email"
-                placeholder="Seu melhor email"
-                className="flex-1 bg-transparent px-3 py-3.5 text-sm text-white placeholder:text-dark-muted outline-none min-w-0"
-              />
-              <button className="group flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-primary to-blue-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-brand-primary/20 hover:-translate-y-px active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/50 shrink-0">
-                Notifique-me
-                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </button>
-            </div>
-          </div>
-          <p className="mt-3.5 text-xs text-dark-muted">
-            Sem spam — apenas uma notificacao quando o app estiver pronto.
-          </p>
+              <a
+                href="mailto:hello@cosmohq.app?subject=CosmoHQ%20waitlist"
+                className={buttonVariants({ size: "lg" })}
+              >
+                <Mail className="h-4 w-4" />
+                Entrar na waitlist
+              </a>
+            </CardContent>
+          </Card>
         </motion.div>
       </div>
     </section>

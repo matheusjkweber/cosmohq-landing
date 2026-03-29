@@ -1,6 +1,7 @@
 "use client";
 
 export default function GlobalError({
+  error,
   reset,
 }: {
   error: Error & { digest?: string };
@@ -8,32 +9,21 @@ export default function GlobalError({
 }) {
   return (
     <html lang="pt-BR">
-      <body
-        style={{
-          backgroundColor: "#06060b",
-          color: "#e8e8f0",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "100vh",
-          fontFamily: "system-ui, sans-serif",
-        }}
-      >
-        <div style={{ textAlign: "center" }}>
-          <h1 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1rem" }}>
-            Algo deu errado
+      <body className="flex min-h-screen items-center justify-center bg-[#060b14] px-6 text-white">
+        <div className="max-w-lg text-center">
+          <div className="text-xs uppercase tracking-[0.26em] text-white/42">
+            Fatal error
+          </div>
+          <h1 className="mt-4 text-5xl font-semibold tracking-[-0.06em] text-white">
+            Algo saiu completamente da orbita.
           </h1>
+          <p className="mt-4 text-base leading-7 text-white/60">
+            {error.message || "Ocorreu um erro inesperado ao renderizar esta pagina."}
+          </p>
           <button
+            type="button"
             onClick={reset}
-            style={{
-              padding: "0.75rem 1.5rem",
-              backgroundColor: "#3498db",
-              color: "white",
-              border: "none",
-              borderRadius: "0.75rem",
-              cursor: "pointer",
-              fontWeight: 600,
-            }}
+            className="mt-8 inline-flex rounded-2xl bg-[linear-gradient(135deg,#3498db,#1c6df8)] px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5"
           >
             Tentar novamente
           </button>

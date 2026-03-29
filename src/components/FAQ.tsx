@@ -1,151 +1,140 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, MessageCircleQuestion } from "lucide-react";
-import { motion, fadeUp, stagger, ease, AnimatePresence } from "./motion";
+import { ChevronDown, MessageCircleMore } from "lucide-react";
+import SectionHeading from "./SectionHeading";
+import { AnimatePresence, motion, fadeUp, stagger, ease } from "./motion";
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 const faqs = [
   {
-    question: "O CosmoHQ e gratuito?",
+    question: "O CosmoHQ ja esta lancado?",
     answer:
-      "Sim! O plano Free inclui painel de controle, 1 campanha ativa, analytics com 7 dias de dados e 1 rede social conectada. Voce pode fazer upgrade a qualquer momento.",
+      "Nao. Esta landing comunica um pre-launch. Os links de iOS e Android continuam como Coming Soon e o acesso ao workspace web segue por solicitacao.",
   },
   {
-    question: "Quais redes sociais sao suportadas?",
+    question: "O que esta incluso no plano Free?",
     answer:
-      "O CosmoHQ integra com Instagram, Facebook, Twitter/X, LinkedIn e TikTok. Estamos constantemente adicionando novas plataformas.",
+      "Painel de Controle, Gerenciamento de Campanhas, Analise de Dados em Tempo Real, Integracao com Redes Sociais, Otimizacao de Conteudo, Notificacoes e Alertas, Seguranca e Autenticacao.",
   },
   {
-    question: "Posso cancelar a assinatura a qualquer momento?",
+    question: "Como funciona a comparacao de precos?",
     answer:
-      "Sim, sem compromisso. Voce pode cancelar, fazer downgrade ou upgrade do seu plano a qualquer momento direto no painel.",
+      "Mensal, anual e vitalicio aparecem juntos na mesma secao para facilitar a leitura. O anual fica destacado como melhor valor com badge real de economia.",
   },
   {
-    question: "Meus dados estao seguros?",
+    question: "Existe mesmo opcao vitalicia?",
     answer:
-      "Absolutamente. Usamos criptografia de ponta a ponta, autenticacao multi-fator e seguimos as melhores praticas de seguranca. Seus dados nunca sao compartilhados com terceiros.",
+      "Sim. Ela aparece ao lado do mensal e do anual no mesmo card, o que ajuda a comparar investimento recorrente contra compra unica.",
   },
   {
-    question: "Quando o app mobile sera lancado?",
+    question: "As imagens usadas na landing sao oficiais?",
     answer:
-      "Estamos trabalhando nos apps para iOS e Android. Cadastre seu email na secao de downloads para ser notificado assim que estiverem disponiveis.",
+      "Sim. A pagina usa os screenshots promocionais fornecidos para o produto e as imagens editoriais selecionadas para reforcar contexto de time e prova visual.",
   },
   {
-    question: "Existe suporte em portugues?",
+    question: "Como entrar na waitlist ou beta privada?",
     answer:
-      "Sim! Todo o CosmoHQ esta disponivel em portugues, incluindo suporte por email e documentacao. Suporte em ingles tambem esta disponivel.",
+      "Use os CTAs da secao Access para mandar email e pedir entrada antecipada no workspace web ou receber notificacao quando o produto abrir.",
   },
 ];
 
-function FAQItem({ faq, index }: { faq: (typeof faqs)[number]; index: number }) {
-  const [open, setOpen] = useState(false);
+function FAQItem({
+  item,
+  index,
+}: {
+  item: (typeof faqs)[number];
+  index: number;
+}) {
+  const [open, setOpen] = useState(index === 0);
 
   return (
-    <button
-      onClick={() => setOpen(!open)}
+    <Card
       className={cn(
-        "w-full text-left glass rounded-2xl p-6 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/50",
-        open
-          ? "ring-1 ring-brand-primary/10 bg-white/[0.02]"
-          : "glass-hover"
+        "overflow-hidden rounded-[26px] transition duration-300",
+        open ? "spotlight-border border-brand-primary/20" : ""
       )}
     >
-      <div className="flex items-center justify-between gap-4">
+      <button
+        type="button"
+        onClick={() => setOpen((value) => !value)}
+        className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left md:px-7"
+      >
         <div className="flex items-center gap-4">
-          <span className="text-xs font-bold text-dark-muted tabular-nums w-5">
+          <Badge variant="secondary" className="min-w-12 justify-center">
             {String(index + 1).padStart(2, "0")}
-          </span>
-          <h3 className="text-base font-semibold text-white">{faq.question}</h3>
+          </Badge>
+          <div className="text-base font-medium leading-7 text-white sm:text-lg">
+            {item.question}
+          </div>
         </div>
         <ChevronDown
           className={cn(
-            "h-5 w-5 shrink-0 text-dark-muted transition-all duration-300",
+            "h-5 w-5 shrink-0 text-white/52 transition duration-300",
             open && "rotate-180 text-brand-primary"
           )}
         />
-      </div>
+      </button>
       <AnimatePresence initial={false}>
-        {open && (
+        {open ? (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.24, ease }}
             className="overflow-hidden"
           >
-            <p className="mt-4 pl-9 text-sm text-dark-muted leading-relaxed">
-              {faq.answer}
+            <p className="px-6 pb-6 text-sm leading-7 text-white/62 md:px-7 md:text-base">
+              {item.answer}
             </p>
           </motion.div>
-        )}
+        ) : null}
       </AnimatePresence>
-    </button>
+    </Card>
   );
 }
 
 export default function FAQ() {
   return (
-    <section id="faq" className="relative py-28 lg:py-36">
-      <div className="absolute top-0 inset-x-0 section-divider" />
+    <section id="faq" className="section-shell px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+      <div className="mx-auto max-w-4xl">
+        <SectionHeading
+          eyebrow="FAQ"
+          title="Transparencia para uma pagina"
+          highlight="que vende antes de abrir."
+          description="O FAQ resolve as objecoes centrais do pre-launch: estado do produto, o que entra no freemium, como os precos estao organizados e qual CTA deve ser seguida agora."
+        />
 
-      <div className="mx-auto max-w-3xl px-6">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          variants={fadeUp}
-          transition={{ duration: 0.7, ease }}
-          className="text-center mb-12"
-        >
-          <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-brand-primary mb-4">
-            <span className="h-px w-8 bg-brand-primary/40" />
-            FAQ
-            <span className="h-px w-8 bg-brand-primary/40" />
-          </p>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Perguntas <span className="text-gradient">frequentes</span>
-          </h2>
-          <p className="mx-auto mt-5 max-w-xl text-dark-muted text-lg leading-relaxed">
-            Tire suas duvidas sobre o CosmoHQ.
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
           variants={stagger}
-          className="space-y-3"
+          className="mt-14 space-y-4"
         >
-          {faqs.map((faq, i) => (
+          {faqs.map((item, index) => (
             <motion.div
-              key={i}
+              key={item.question}
               variants={fadeUp}
-              transition={{ duration: 0.4, ease, delay: i * 0.04 }}
+              transition={{ duration: 0.45, ease, delay: index * 0.03 }}
             >
-              <FAQItem faq={faq} index={i} />
+              <FAQItem item={item} index={index} />
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Extra CTA */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          transition={{ duration: 0.5, ease, delay: 0.3 }}
-          className="mt-12 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.55, ease, delay: 0.08 }}
+          className="mt-10 flex justify-center"
         >
-          <div className="inline-flex items-center gap-3 glass rounded-2xl px-6 py-4">
-            <MessageCircleQuestion className="h-5 w-5 text-brand-primary" />
-            <p className="text-sm text-dark-muted">
-              Ainda tem duvidas?{" "}
-              <a href="mailto:contato@cosmohq.app" className="font-semibold text-brand-primary hover:text-white transition-colors">
-                Entre em contato
-              </a>
-            </p>
+          <div className="glass-panel inline-flex items-center gap-3 rounded-full px-5 py-3 text-sm text-white/70">
+            <MessageCircleMore className="h-4 w-4 text-brand-primary" />
+            hello@cosmohq.app
           </div>
         </motion.div>
       </div>

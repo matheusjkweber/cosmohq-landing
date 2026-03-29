@@ -1,39 +1,44 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cosmohq.app"),
-  title: "CosmoHQ — Marketing Intelligence Platform",
+  title: "CosmoHQ | Pre-launch command center for modern marketing teams",
   description:
-    "Gerencie campanhas, analise dados em tempo real e otimize sua presenca digital com o CosmoHQ. Plataforma completa de marketing intelligence.",
+    "CosmoHQ centraliza campanhas, analytics em tempo real e otimizacao de conteudo em um workspace premium. iOS e Android ainda em breve.",
   keywords: [
-    "marketing",
-    "campanhas",
-    "analytics",
-    "redes sociais",
+    "marketing intelligence",
+    "painel de campanhas",
+    "analytics em tempo real",
+    "social media management",
+    "pre-launch SaaS",
     "CosmoHQ",
   ],
+  alternates: {
+    canonical: "https://cosmohq.app",
+  },
   openGraph: {
-    title: "CosmoHQ — Marketing Intelligence Platform",
+    title: "CosmoHQ | Pre-launch command center for modern marketing teams",
     description:
-      "Gerencie campanhas, analise dados em tempo real e otimize sua presenca digital.",
+      "Centralize campanhas, redes sociais e analytics em tempo real em um unico workspace. Pre-lancamento com planos mensal, anual e vitalicio na mesma secao.",
     url: "https://cosmohq.app",
     siteName: "CosmoHQ",
-    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "CosmoHQ landing page preview",
+      },
+    ],
     locale: "pt_BR",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "CosmoHQ — Marketing Intelligence Platform",
+    title: "CosmoHQ | Pre-launch command center for modern marketing teams",
     description:
-      "Gerencie campanhas, analise dados em tempo real e otimize sua presenca digital.",
+      "Campanhas, analytics e conteudo em um unico hub. iOS e Android seguem como Coming Soon.",
     images: ["/og-image.png"],
   },
   icons: {
@@ -48,8 +53,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`scroll-smooth ${inter.variable}`}>
-      <body className="min-h-screen antialiased font-sans">{children}</body>
+    <html lang="pt-BR" className="scroll-smooth">
+      <body className="min-h-screen bg-cosmo-bg font-sans antialiased">
+        {children}
+      </body>
     </html>
   );
 }

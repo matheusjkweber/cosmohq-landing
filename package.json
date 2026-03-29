@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "unset TURBOPACK; next build",
+    "build": "env -u TURBOPACK NODE_ENV=production next build",
     "start": "next start",
     "lint": "next lint"
   },

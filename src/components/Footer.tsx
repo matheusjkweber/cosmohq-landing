@@ -1,113 +1,92 @@
 "use client";
 
-import { Rocket } from "lucide-react";
+import { ArrowUpRight, Rocket } from "lucide-react";
 import { motion, fadeUp, ease } from "./motion";
+import { Badge } from "@/components/ui/badge";
 
-const footerLinks = [
+const footerGroups = [
   {
     title: "Produto",
     links: [
-      { label: "Features", href: "#features" },
-      { label: "Screenshots", href: "#screenshots" },
-      { label: "Pricing", href: "#pricing" },
-      { label: "Download", href: "#downloads" },
+      { href: "#features", label: "Features" },
+      { href: "#screenshots", label: "Galeria" },
+      { href: "#pricing", label: "Planos" },
+      { href: "#downloads", label: "Acesso" },
     ],
   },
   {
-    title: "Empresa",
+    title: "Launch",
     links: [
-      { label: "Sobre", href: "#" },
-      { label: "Blog", href: "#" },
-      { label: "Carreiras", href: "#" },
-      { label: "Contato", href: "#" },
+      { href: "#downloads", label: "Waitlist" },
+      { href: "#faq", label: "FAQ" },
+      { href: "mailto:hello@cosmohq.app", label: "Contato" },
     ],
   },
-  {
-    title: "Legal",
-    links: [
-      { label: "Privacidade", href: "#" },
-      { label: "Termos de Uso", href: "#" },
-      { label: "Cookies", href: "#" },
-    ],
-  },
-];
-
-const socials = [
-  { name: "Twitter", href: "#" },
-  { name: "Instagram", href: "#" },
-  { name: "LinkedIn", href: "#" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-dark-border">
-      <div className="absolute inset-0 bg-gradient-to-b from-dark-bg to-dark-surface/60" />
-
+    <footer className="section-shell px-4 pb-10 pt-8 sm:px-6 lg:px-8">
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-80px" }}
         variants={fadeUp}
         transition={{ duration: 0.6, ease }}
-        className="relative mx-auto max-w-7xl px-6 py-16"
+        className="mx-auto max-w-7xl"
       >
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-          <div className="col-span-2 md:col-span-1">
-            <a href="#" className="flex items-center gap-2.5 mb-5 group">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-primary to-blue-600 shadow-lg shadow-brand-primary/15 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
-                <Rocket className="h-[18px] w-[18px] text-white" />
+        <div className="glass-panel-strong rounded-[34px] px-6 py-8 md:px-8 md:py-10">
+          <div className="grid gap-10 md:grid-cols-[minmax(0,1.2fr)_repeat(2,minmax(0,0.5fr))]">
+            <div className="max-w-xl">
+              <div className="flex items-center gap-3">
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#3498db,#1c6df8,#f1c40f)] text-white shadow-brand">
+                  <Rocket className="h-5 w-5" />
+                </div>
+                <div>
+                  <div className="text-lg font-semibold tracking-[-0.04em] text-white">
+                    CosmoHQ
+                  </div>
+                  <div className="text-xs uppercase tracking-[0.2em] text-white/40">
+                    Pre-launch command center
+                  </div>
+                </div>
               </div>
-              <span className="text-lg font-bold tracking-tight text-white">
-                Cosmo<span className="text-brand-primary">HQ</span>
-              </span>
-            </a>
-            <p className="text-sm text-dark-muted leading-relaxed max-w-xs">
-              Plataforma de marketing intelligence para impulsionar sua
-              presenca digital.
-            </p>
-            <div className="mt-5 flex items-center gap-3">
-              {socials.map((s) => (
-                <a
-                  key={s.name}
-                  href={s.href}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg glass text-dark-muted hover:text-white hover:bg-white/[0.06] transition-all duration-200"
-                  aria-label={s.name}
-                >
-                  <span className="text-xs font-bold">{s.name[0]}</span>
-                </a>
-              ))}
+              <p className="mt-5 text-base leading-7 text-white/62">
+                Landing page reconstruida para um pre-launch premium: dark mode
+                forte, screenshots oficiais, pricing completo e CTAs coerentes
+                com o produto ainda em fase anterior ao lancamento publico.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <Badge variant="secondary">iOS: Coming Soon</Badge>
+                <Badge variant="secondary">Android: Coming Soon</Badge>
+              </div>
             </div>
-          </div>
 
-          {footerLinks.map((group) => (
-            <div key={group.title}>
-              <h4 className="text-sm font-semibold text-white mb-4">
-                {group.title}
-              </h4>
-              <ul className="space-y-3">
-                {group.links.map((link) => (
-                  <li key={link.label}>
+            {footerGroups.map((group) => (
+              <div key={group.title}>
+                <div className="text-sm font-semibold uppercase tracking-[0.2em] text-white/40">
+                  {group.title}
+                </div>
+                <div className="mt-4 space-y-3">
+                  {group.links.map((link) => (
                     <a
+                      key={link.label}
                       href={link.href}
-                      className="text-sm text-dark-muted hover:text-white transition-colors duration-200"
+                      className="flex items-center gap-2 text-sm text-white/62 transition hover:text-white"
                     >
                       {link.label}
+                      <ArrowUpRight className="h-3.5 w-3.5" />
                     </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-dark-border pt-8 sm:flex-row">
-          <p className="text-sm text-dark-muted">
-            &copy; {new Date().getFullYear()} CosmoHQ. Todos os direitos
-            reservados.
-          </p>
-          <p className="text-xs text-dark-muted/60">
-            Feito com cuidado para marcas que querem crescer.
-          </p>
+          <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-white/42 md:flex-row md:items-center md:justify-between">
+            <div>(c) 2026 CosmoHQ. All rights reserved.</div>
+            <div>Marketing landing page for the upcoming public launch.</div>
+          </div>
         </div>
       </motion.div>
     </footer>

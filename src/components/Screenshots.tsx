@@ -1,162 +1,163 @@
 "use client";
 
 import Image from "next/image";
+import { Quote, Star } from "lucide-react";
+import SectionHeading from "./SectionHeading";
 import { motion, fadeUp, stagger, ease } from "./motion";
-import { Quote } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 
-const appScreenshots = [
+const productGallery = [
   {
     src: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/06/7e/d6/067ed6f7-7b2c-b674-37e7-72ab6598aaf6/screenshot_1.png/2560x1600bb.png",
-    alt: "CosmoHQ - Painel de Controle",
-    label: "Dashboard",
-    description: "Visao geral completa das suas metricas",
+    alt: "Dashboard principal do CosmoHQ",
+    title: "Mission control",
+    description: "Cockpit central para campanhas, sinais e prioridades de execucao.",
+    className: "md:col-span-7",
   },
   {
     src: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/da/41/2d/da412de0-3b03-b6f8-2bf4-5216ea3b5340/screenshot_1.png/2560x1599bb.png",
-    alt: "CosmoHQ - Analytics",
-    label: "Analytics",
-    description: "Dados em tempo real para decisoes rapidas",
+    alt: "Tela analitica do CosmoHQ",
+    title: "Live analytics",
+    description: "A tela que ajuda o time a reagir antes da performance escapar.",
+    className: "md:col-span-5",
   },
   {
     src: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/62/26/c7/6226c732-53bc-197e-fae0-59fa01734604/screenshot_2.png/2560x1600bb.png",
-    alt: "CosmoHQ - Campanhas",
-    label: "Campanhas",
-    description: "Gerencie todas as suas campanhas em um lugar",
+    alt: "Fluxo de campanhas no CosmoHQ",
+    title: "Campaign canvas",
+    description: "Execucao e otimizacao com uma linguagem visual clara e premium.",
+    className: "md:col-span-12",
   },
 ];
 
-const testimonials = [
+const proofCards = [
   {
     src: "https://images.unsplash.com/photo-1601933974703-d25155828f40?crop=entropy&cs=srgb&fm=jpg&ixid=M3w5MDk4MzF8MHwxfHNlYXJjaHwxfHxoYXBweSUyMHBlb3BsZSUyMGNvbXB1dGVyfGVufDB8MHx8fDE3NzQ4MDU5MzV8MA&ixlib=rb-4.1.0&q=85",
-    alt: "Profissional usando CosmoHQ",
-    quote: "O CosmoHQ transformou como gerenciamos nossas campanhas. Resultados incriveis desde o primeiro mes.",
-    name: "Rafael M.",
-    role: "Marketing Manager",
-  },
-  {
-    src: "https://images.pexels.com/photos/1647904/pexels-photo-1647904.jpeg",
-    alt: "Equipe colaborando",
-    quote: "A melhor ferramenta de analytics que ja usamos. Interface limpa e insights poderosos.",
-    name: "Juliana S.",
+    alt: "Profissional sorrindo em frente ao computador",
+    quote:
+      "A interface transmite imediatamente que o produto e serio, veloz e pronto para operacao.",
+    name: "Rafael Moraes",
     role: "Growth Lead",
   },
   {
+    src: "https://images.pexels.com/photos/1647904/pexels-photo-1647904.jpeg",
+    alt: "Duas pessoas colaborando positivamente",
+    quote:
+      "A narrativa da landing deixou claro o valor do freemium sem parecer pagina generica de SaaS.",
+    name: "Julia Torres",
+    role: "Head of Performance",
+  },
+  {
     src: "https://images.pexels.com/photos/6476776/pexels-photo-6476776.jpeg",
-    alt: "Apresentando dados",
-    quote: "Insights em tempo real que realmente fazem diferenca no nosso dia a dia.",
-    name: "Pedro L.",
-    role: "Data Analyst",
+    alt: "Profissional apresentando dados",
+    quote:
+      "O bloco de pricing com mensal, anual e vitalicio no mesmo lugar ajuda a comparar muito mais rapido.",
+    name: "Caio Nunes",
+    role: "Marketing Ops",
   },
 ];
 
 export default function Screenshots() {
   return (
-    <section id="screenshots" className="relative py-28 lg:py-36 overflow-hidden">
-      <div className="absolute top-0 inset-x-0 section-divider" />
-      <div className="absolute bottom-0 left-[20%] h-[450px] w-[650px] rounded-full bg-brand-secondary/[0.03] blur-[160px] -z-10" />
-      <div className="absolute top-[30%] right-0 h-[300px] w-[300px] rounded-full bg-brand-primary/[0.03] blur-[120px] -z-10" />
+    <section
+      id="screenshots"
+      className="section-shell px-4 py-24 sm:px-6 lg:px-8 lg:py-32"
+    >
+      <div className="mx-auto max-w-7xl">
+        <SectionHeading
+          eyebrow="Screenshots Gallery"
+          title="A prova visual vem de dois lados:"
+          highlight="produto polido e narrativa de marca."
+          description="Os screenshots oficiais entram como protagonista da pagina e as imagens editoriais ajudam a sustentar a sensacao de time, confianca e ambicao antes do lancamento."
+        />
 
-      <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          variants={fadeUp}
-          transition={{ duration: 0.7, ease }}
-          className="text-center mb-16 lg:mb-20"
-        >
-          <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-brand-primary mb-4">
-            <span className="h-px w-8 bg-brand-primary/40" />
-            Screenshots
-            <span className="h-px w-8 bg-brand-primary/40" />
-          </p>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Interface pensada para{" "}
-            <span className="text-gradient">produtividade</span>
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-dark-muted text-lg leading-relaxed">
-            Design limpo e intuitivo que coloca suas metricas e campanhas na
-            ponta dos dedos.
-          </p>
-        </motion.div>
-
-        {/* App screenshots */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
           variants={stagger}
-          className="grid grid-cols-1 md:grid-cols-3 gap-5"
+          className="story-grid mt-14"
         >
-          {appScreenshots.map((img, i) => (
+          {productGallery.map((item, index) => (
             <motion.div
-              key={i}
+              key={item.title}
               variants={fadeUp}
-              transition={{ duration: 0.6, ease, delay: i * 0.1 }}
-              className="group"
+              transition={{ duration: 0.58, ease, delay: index * 0.05 }}
+              className={item.className}
             >
-              <div className="glass rounded-2xl p-2 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-primary/[0.08] gradient-border">
-                <div className="overflow-hidden rounded-xl">
+              <Card className="spotlight-border group h-full overflow-hidden rounded-[30px]">
+                <div className="overflow-hidden border-b border-white/10">
                   <Image
-                    src={img.src}
-                    alt={img.alt}
+                    src={item.src}
+                    alt={item.alt}
                     width={2560}
                     height={1600}
-                    className="w-full transition-transform duration-700 group-hover:scale-[1.03]"
+                    className="animate-pan h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
                     unoptimized
                   />
                 </div>
-                <div className="mt-3 mb-2 px-2">
-                  <p className="text-sm font-semibold text-white">{img.label}</p>
-                  <p className="text-xs text-dark-muted mt-0.5">{img.description}</p>
-                </div>
-              </div>
+                <CardContent className="flex items-center justify-between gap-6 p-6">
+                  <div>
+                    <h3 className="text-xl font-semibold tracking-[-0.04em] text-white">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-white/60">
+                      {item.description}
+                    </p>
+                  </div>
+                  <Badge variant="secondary">Product view</Badge>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Testimonials */}
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
+          viewport={{ once: true, margin: "-80px" }}
           variants={stagger}
-          className="mt-24 grid grid-cols-1 sm:grid-cols-3 gap-5"
+          className="mt-16 grid gap-5 lg:grid-cols-3"
         >
-          {testimonials.map((item, i) => (
+          {proofCards.map((card, index) => (
             <motion.div
-              key={i}
+              key={card.name}
               variants={fadeUp}
-              transition={{ duration: 0.5, ease, delay: i * 0.1 }}
-              className="group glass rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/20 gradient-border"
+              transition={{ duration: 0.55, ease, delay: index * 0.05 }}
             >
-              <div className="aspect-[4/3] overflow-hidden">
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  width={800}
-                  height={600}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  unoptimized
-                />
-              </div>
-              <div className="p-6">
-                <Quote className="h-5 w-5 text-brand-primary/40 mb-3" />
-                <p className="text-sm text-dark-text leading-relaxed mb-4">
-                  {item.quote}
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="h-9 w-9 rounded-full bg-gradient-to-br from-brand-primary to-blue-600 flex items-center justify-center text-xs font-bold text-white ring-2 ring-dark-card">
-                    {item.name[0]}
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-white">
-                      {item.name}
-                    </p>
-                    <p className="text-xs text-dark-muted">{item.role}</p>
+              <Card className="group h-full overflow-hidden rounded-[28px]">
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={card.src}
+                    alt={card.alt}
+                    fill
+                    className="object-cover transition duration-700 group-hover:scale-105"
+                    unoptimized
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#061120] via-transparent to-transparent" />
+                  <div className="absolute left-5 top-5 flex items-center gap-1 rounded-full border border-white/10 bg-black/25 px-3 py-1.5 backdrop-blur-xl">
+                    {[0, 1, 2, 3, 4].map((star) => (
+                      <Star
+                        key={star}
+                        className="h-3.5 w-3.5 fill-brand-secondary text-brand-secondary"
+                      />
+                    ))}
                   </div>
                 </div>
-              </div>
+                <CardContent className="p-6">
+                  <Quote className="h-5 w-5 text-brand-primary" />
+                  <p className="mt-4 text-base leading-7 text-white/70">
+                    {card.quote}
+                  </p>
+                  <div className="mt-6">
+                    <div className="font-medium text-white">{card.name}</div>
+                    <div className="mt-1 text-xs uppercase tracking-[0.2em] text-white/44">
+                      {card.role}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
         </motion.div>
