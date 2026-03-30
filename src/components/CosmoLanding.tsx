@@ -182,43 +182,6 @@ const differentials = [
 
 
 
-const faqs = [
-  {
-    question: "A CosmoHQ é uma agência ou uma software house?",
-    answer:
-      "A CosmoHQ trabalha como uma agência digital que une criação, desenvolvimento e growth. O cliente não precisa juntar vários fornecedores para sair do zero até a operação rodando.",
-  },
-  {
-    question: "Vocês cuidam só de app e site?",
-    answer:
-      "Não. Além de apps e sites, também gerenciamos Instagram, conteúdo, campanhas de ads e análise de dados para que a presença online realmente venda.",
-  },
-  {
-    question: "Como vocês evitam decisões no achismo?",
-    answer:
-      "Todo projeto é acompanhado com indicadores claros. Nós medimos o que importa, lemos os dados e fazemos ajustes contínuos na rota de execução.",
-  },
-  {
-    question: "O que a CosmoHQ constrói com AI?",
-    answer:
-      "Construímos MCPs, copilots internos, automações e produtos com IA para negócios que precisam ganhar velocidade sem perder contexto.",
-  },
-  {
-    question: "Posso contratar só uma parte da operação?",
-    answer:
-      "Sim. Podemos atuar em um projeto fechado, em uma operação mensal ou em uma parceria anual. O formato depende do objetivo e do momento do negócio.",
-  },
-  {
-    question: "Vocês trabalham com clientes que ainda não têm uma marca forte?",
-    answer:
-      "Sim. A ideia pode estar no começo. A nossa função é transformar intenção em presença digital, produto e movimento comercial.",
-  },
-  {
-    question: "Vocês fazem MCPs para produtos específicos?",
-    answer:
-      "Sim. O CosmoFinanças MCP é o exemplo da casa: um produto pensado para levar contexto financeiro para dentro da rotina de trabalho e abrir espaço para copilots mais úteis.",
-  },
-];
 
 function SectionTitle({
   eyebrow,
@@ -717,53 +680,7 @@ export default function CosmoLanding() {
 
 
 
-        <section id="faq" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <div className="mx-auto max-w-5xl">
-          <SectionTitle
-            eyebrow="FAQ"
-            title="Dúvidas comuns antes de começar."
-            description="Respostas diretas para quem está avaliando a CosmoHQ."
-          />
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.24 }}
-              variants={fadeUp}
-              transition={{ duration: 0.55, ease }}
-              className="mt-14"
-            >
-              <Accordion.Root type="single" collapsible defaultValue="item-0" className="space-y-4">
-                {faqs.map((item, index) => (
-                  <Accordion.Item
-                    key={item.question}
-                    value={`item-${index}`}
-                    className="group overflow-hidden rounded-[28px] border border-white/10 bg-white/5 backdrop-blur-xl"
-                  >
-                    <Accordion.Header>
-                      <Accordion.Trigger className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left md:px-7">
-                        <div className="flex items-center gap-4">
-                          <Badge variant="secondary" className="min-w-12 justify-center">
-                            {String(index + 1).padStart(2, "0")}
-                          </Badge>
-                          <div className="text-base font-medium leading-7 text-white sm:text-lg">
-                            {item.question}
-                          </div>
-                        </div>
-                        <ChevronDown className="size-5 shrink-0 text-white/48 transition duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:text-brand-primary" />
-                      </Accordion.Trigger>
-                    </Accordion.Header>
-                    <Accordion.Content className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-                      <p className="px-5 pb-5 text-sm leading-7 text-white/66 md:px-7 md:text-base">
-                        {item.answer}
-                      </p>
-                    </Accordion.Content>
-                  </Accordion.Item>
-                ))}
-              </Accordion.Root>
-            </motion.div>
-          </div>
-        </section>
 
         <section id="contato" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <div className="mx-auto max-w-7xl">
