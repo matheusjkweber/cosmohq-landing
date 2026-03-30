@@ -80,7 +80,7 @@ export default function Portfolio() {
           eyebrow="Portfólio"
           title="Produtos que construímos"
           highlight="e usamos no dia a dia."
-          description="CosmoKit e CosmoFinanças são produtos nossos — nasceram de problemas reais que identificamos e agora ajudam outros negócios a operar melhor."
+          description="CosmoKit e CosmoFinanças nasceram de problemas reais e hoje ajudam outros negócios a operar melhor."
         />
 
         <motion.div

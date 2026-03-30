@@ -35,7 +35,7 @@ const faqs = [
   {
     question: "O que diferencia a CosmoHQ de outras agências?",
     answer:
-      "Três coisas: usamos nossos próprios produtos (CosmoKit, CosmoFinanças) então sabemos o que é construir algo que funciona de verdade; tomamos decisões com dados, não achismo; e mantemos comunicação direta — sem camadas de burocracia.",
+      "Usamos nossos próprios produtos, tomamos decisões com dados e falamos direto. Isso encurta o caminho entre a ideia e a entrega.",
   },
 ];
 
@@ -50,7 +50,7 @@ export default function FAQ() {
           eyebrow="FAQ"
           title="Dúvidas frequentes"
           highlight="antes de começar."
-          description="Reunimos as perguntas que mais ouvimos de quem está pensando em trabalhar com a gente."
+          description="Perguntas que mais aparecem antes de um projeto começar."
         />
 
         <motion.div
@@ -108,7 +108,7 @@ export default function FAQ() {
         >
           <div className="glass-panel inline-flex items-center gap-3 rounded-full px-5 py-3 text-sm text-white/70">
             <MessageCircleMore className="h-4 w-4 text-brand-primary" />
-            Ainda tem dúvida? hello@cosmohq.app
+            Ainda tem dúvida? contato@cosmohq.org
           </div>
         </motion.div>
       </div>

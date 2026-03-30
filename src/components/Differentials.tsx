@@ -20,7 +20,7 @@ const differentials = [
     number: "02",
     title: "Usamos dados para tomar decisões melhores",
     description:
-      "Cada ajuste é baseado em números reais. Nada de achismo ou feeling sem fundamento.",
+      "Cada ajuste é baseado em números reais, não em feeling.",
     Icon: BarChart3,
     badgeVariant: "accent" as const,
   },
@@ -53,7 +53,7 @@ export default function Differentials() {
           eyebrow="Diferenciais"
           title="Por que a CosmoHQ"
           highlight="é diferente."
-          description="Não somos mais uma agência genérica. Combinamos execução rápida, inteligência de dados e transparência para entregar resultado real."
+          description="Combinamos execução rápida, dados e transparência para entregar o que foi combinado."
         />
 
         <motion.div

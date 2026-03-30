@@ -72,10 +72,10 @@ export default function Contact() {
                 </div>
 
                 <a
-                  href="mailto:hello@cosmohq.app?subject=Novo%20projeto"
+                  href="mailto:contato@cosmohq.org?subject=Novo%20projeto"
                   className="text-center text-sm text-white/58 transition hover:text-white"
                 >
-                  hello@cosmohq.app
+                  contato@cosmohq.org
                 </a>
               </CardContent>
             </Card>
@@ -95,7 +95,7 @@ export default function Contact() {
                 </p>
 
                 <form
-                  action={`mailto:hello@cosmohq.app?subject=Novo%20projeto`}
+                  action={`mailto:contato@cosmohq.org?subject=Novo%20projeto`}
                   method="POST"
                   encType="text/plain"
                   className="mt-8 space-y-5"

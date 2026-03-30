@@ -31,14 +31,16 @@ const features: Array<{
   icon: ComponentType<{ className?: string }>;
   className: string;
   visual: FeatureVisual;
+  points: string[];
 }> = [
   {
     title: "Desenvolvimento de Apps",
     description:
       "Criamos aplicativos nativos e multiplataforma que resolvem problemas reais e encantam usuários.",
     icon: Smartphone,
-    className: "md:col-span-7 md:row-span-2",
+    className: "md:col-span-7",
     visual: "app",
+    points: ["iOS, macOS e Android", "Arquitetura pronta para crescer", "Experiência premium do começo ao fim"],
   },
   {
     title: "Criação de Sites",
@@ -47,6 +49,7 @@ const features: Array<{
     icon: Globe,
     className: "md:col-span-5",
     visual: "site",
+    points: ["Landing pages de alta conversão", "SEO e performance", "Copy e design integrados"],
   },
   {
     title: "Gestão de Redes Sociais",
@@ -55,6 +58,7 @@ const features: Array<{
     icon: Send,
     className: "md:col-span-5",
     visual: "social",
+    points: ["Calendário editorial", "Posts e criativos", "Operação contínua"],
   },
   {
     title: "Análise de Dados",
@@ -63,6 +67,7 @@ const features: Array<{
     icon: ChartColumnIncreasing,
     className: "md:col-span-4",
     visual: "analytics",
+    points: ["Dashboards claros", "Leitura diária", "Ajustes guiados por números"],
   },
   {
     title: "Campanhas de Marketing",
@@ -71,6 +76,7 @@ const features: Array<{
     icon: Megaphone,
     className: "md:col-span-4",
     visual: "none",
+    points: ["Estratégia e mídia", "Testes constantes", "Foco em CAC e conversão"],
   },
   {
     title: "Otimização de Conteúdo",
@@ -79,6 +85,7 @@ const features: Array<{
     icon: WandSparkles,
     className: "md:col-span-4",
     visual: "content",
+    points: ["Conteúdo mais consistente", "Ajuste por canal", "Peças com intenção comercial"],
   },
   {
     title: "Sistemas & Automação",
@@ -87,151 +94,11 @@ const features: Array<{
     icon: Settings,
     className: "md:col-span-12",
     visual: "systems",
+    points: ["Integrações confiáveis", "Fluxos sob medida", "Menos retrabalho para o time"],
   },
 ];
 
 const BAR_HEIGHTS_PX = [52, 78, 62, 96, 70, 104];
-
-function FeatureVisualBlock({ visual }: { visual: FeatureVisual }) {
-  if (visual === "app") {
-    return (
-      <div className="relative mt-6 min-h-0 flex-1 overflow-hidden rounded-[22px] border border-white/12 bg-[#1a1f21] p-2.5 md:mt-8">
-        <Image
-          src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/06/7e/d6/067ed6f7-7b2c-b674-37e7-72ab6598aaf6/screenshot_1.png/2560x1600bb.png"
-          alt="Interface de aplicativo desenvolvido pela CosmoHQ"
-          width={2560}
-          height={1600}
-          className="h-auto w-full rounded-[16px] border border-white/8"
-          unoptimized
-        />
-      </div>
-    );
-  }
-
-  if (visual === "site") {
-    return (
-      <div className="relative mt-auto overflow-hidden rounded-[22px] border border-white/12 bg-[#1a1f21] p-2.5 md:mt-6">
-        <Image
-          src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/62/26/c7/6226c732-53bc-197e-fae0-59fa01734604/screenshot_2.png/2560x1600bb.png"
-          alt="Exemplo de site criado pela CosmoHQ"
-          width={2560}
-          height={1600}
-          className="h-auto w-full rounded-[16px] border border-white/8"
-          unoptimized
-        />
-      </div>
-    );
-  }
-
-  if (visual === "social") {
-    return (
-      <div className="mt-auto flex flex-wrap gap-2 pt-6 md:pt-8">
-        {["Instagram", "Facebook", "TikTok", "LinkedIn", "X"].map((channel) => (
-          <span
-            key={channel}
-            className="rounded-full border border-white/12 bg-white/6 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/58"
-          >
-            {channel}
-          </span>
-        ))}
-      </div>
-    );
-  }
-
-  if (visual === "analytics") {
-    return (
-      <div className="surface-blend mt-auto rounded-[22px] border border-white/10 p-4 pt-6 md:pt-8">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/45">
-          Métricas ao vivo
-        </p>
-        <div className="mt-4 flex h-[7.5rem] items-end gap-1.5 sm:gap-2">
-          {BAR_HEIGHTS_PX.map((h, index) => (
-            <div
-              key={`bar-${index}`}
-              className="flex min-h-0 flex-1 flex-col justify-end"
-            >
-              <motion.div
-                className="w-full rounded-full bg-gradient-to-t from-[#1e6fd9] via-[#3498db] to-[#86d7ff] shadow-[0_0_24px_-4px_rgba(52,152,219,0.45)]"
-                initial={false}
-                animate={{
-                  height: [
-                    `${Math.round(h * 0.58)}px`,
-                    `${h}px`,
-                    `${Math.round(h * 0.78)}px`,
-                    `${Math.round(h * 0.92)}px`,
-                    `${Math.round(h * 0.66)}px`,
-                  ],
-                }}
-                transition={{
-                  duration: 3.2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: index * 0.14,
-                }}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  if (visual === "none") {
-    return <div className="mt-auto flex-1 md:min-h-[2rem]" aria-hidden />;
-  }
-
-  if (visual === "content") {
-    return (
-      <div className="relative mt-auto overflow-hidden rounded-[22px] border border-white/12 pt-6 md:pt-8">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-[18px]">
-          <Image
-            src="https://images.pexels.com/photos/6476776/pexels-photo-6476776.jpeg"
-            alt="Otimização de conteúdo e apresentação de resultados"
-            fill
-            className="object-cover"
-            sizes="(min-width: 768px) 33vw, 100vw"
-            unoptimized
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#141819] via-[#141819]/25 to-transparent" />
-        </div>
-      </div>
-    );
-  }
-
-  if (visual === "systems") {
-    const caps = [
-      {
-        title: "Fluxos sob medida",
-        body: "Automações que conectam ferramentas e removem etapas repetitivas do dia a dia.",
-      },
-      {
-        title: "Integrações estáveis",
-        body: "APIs, webhooks e sincronização entre CRMs, ads e bases internas.",
-      },
-      {
-        title: "Painéis internos",
-        body: "Interfaces claras para o time acompanhar operações sem depender de planilhas soltas.",
-      },
-    ];
-    return (
-      <div className="glass-panel ambient-glow mt-6 grid gap-4 rounded-[24px] border border-white/12 p-5 sm:grid-cols-3 md:mt-8">
-        {caps.map((item) => (
-          <div
-            key={item.title}
-            className="editorial-panel rounded-[20px] border border-white/10 bg-white/[0.04] p-4"
-          >
-            <h4 className="text-sm font-semibold tracking-[-0.02em] text-white">
-              {item.title}
-            </h4>
-            <p className="mt-2 text-sm leading-6 text-white/62">{item.body}</p>
-          </div>
-        ))}
-      </div>
-    );
-  }
-
-  return null;
-}
 
 export default function Features() {
   return (
@@ -264,39 +131,61 @@ export default function Features() {
                 transition={{ duration: 0.55, ease, delay: index * 0.05 }}
                 className={feature.className}
               >
-                <Card
+              <Card
+                className={cn(
+                  "hover-lift spotlight-border group h-full overflow-hidden rounded-[30px]"
+                )}
+              >
+                <CardContent
                   className={cn(
-                    "hover-lift spotlight-border group h-full overflow-hidden rounded-[30px]",
-                    tall && "md:min-h-[520px]"
+                    "flex h-full flex-col p-6 md:p-7"
                   )}
                 >
-                  <CardContent
-                    className={cn(
-                      "flex h-full flex-col p-6 md:p-7",
-                      tall && "md:min-h-[inherit]"
-                    )}
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="rounded-2xl border border-white/10 bg-white/7 p-3 text-brand-primary transition duration-300 group-hover:scale-[1.04] group-hover:border-brand-primary/35">
-                        <Icon className="h-5 w-5" />
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="rounded-2xl border border-white/10 bg-white/7 p-3 text-brand-primary transition duration-300 group-hover:scale-[1.04] group-hover:border-brand-primary/35">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div className="rounded-full border border-white/10 bg-white/6 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-white/52">
+                      {feature.visual === "app"
+                        ? "Produto"
+                        : feature.visual === "site"
+                          ? "Conversão"
+                          : feature.visual === "social"
+                            ? "Social"
+                            : feature.visual === "analytics"
+                              ? "Dados"
+                              : feature.visual === "content"
+                                ? "Conteúdo"
+                                : feature.visual === "systems"
+                                  ? "Operação"
+                                  : "Serviço"}
+                    </div>
+                  </div>
+
+                  <div className="mt-5 md:mt-6">
+                    <h3 className="text-xl font-semibold tracking-[-0.04em] text-white sm:text-2xl">
+                      {feature.title}
+                    </h3>
+                    <p className="mt-3 max-w-prose text-base leading-7 text-white/66">
+                      {feature.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                    {feature.points.map((point) => (
+                      <div
+                        key={point}
+                        className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 text-sm leading-6 text-white/76"
+                      >
+                        {point}
                       </div>
-                    </div>
-
-                    <div className="mt-5 md:mt-6">
-                      <h3 className="text-xl font-semibold tracking-[-0.04em] text-white sm:text-2xl">
-                        {feature.title}
-                      </h3>
-                      <p className="mt-3 max-w-prose text-base leading-7 text-white/66">
-                        {feature.description}
-                      </p>
-                    </div>
-
-                    <FeatureVisualBlock visual={feature.visual} />
-                  </CardContent>
-                </Card>
-              </motion.div>
-            );
-          })}
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          );
+        })}
         </motion.div>
       </div>
     </section>

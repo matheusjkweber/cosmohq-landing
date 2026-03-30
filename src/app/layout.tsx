@@ -4,9 +4,9 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cosmohq.app"),
-  title: "CosmoHQ | Apps, sites, social e ads com resultado real",
+  title: "CosmoHQ | Apps, sites, social e ads",
   description:
-    "Agência digital que constrói apps, sites e sistemas, gerencia Instagram e campanhas de ads, e usa dados para melhorar cada decisão.",
+    "Agência digital para pequenas empresas. Construímos apps, sites e sistemas e cuidamos da presença online e campanhas.",
   keywords: [
     "CosmoHQ",
     "agência digital",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "CosmoHQ | Sua ideia no digital. Do jeito certo.",
     description:
-      "Apps, sites, redes sociais e campanhas com estratégia, execução e leitura de dados em uma operação só.",
+      "Construímos apps, sites e sistemas e cuidamos da presença online e campanhas.",
     url: "https://cosmohq.app",
     siteName: "CosmoHQ",
     images: [
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "CosmoHQ | Sua ideia no digital. Do jeito certo.",
     description:
-      "Agência premium para apps, sites, social e ads com inteligência de dados.",
+      "Agência para pequenos negócios que precisam de apps, sites, social e ads.",
     images: ["/og-image.png"],
   },
   icons: {

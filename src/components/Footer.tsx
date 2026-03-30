@@ -21,7 +21,7 @@ const footerGroups = [
       { href: "#diferenciais", label: "Diferenciais" },
       { href: "#faq", label: "FAQ" },
       { href: "#contato", label: "Contato" },
-      { href: "mailto:hello@cosmohq.app", label: "hello@cosmohq.app" },
+      { href: "mailto:contato@cosmohq.org", label: "contato@cosmohq.org" },
     ],
   },
 ];
@@ -54,10 +54,8 @@ export default function Footer() {
                 </div>
               </div>
               <p className="mt-5 text-base leading-7 text-white/62">
-                Transformamos ideias em produtos digitais e presença online —
-                com estratégia, execução e inteligência de dados para gerar
-                resultado real. Apps, sites, redes sociais e campanhas que
-                convertem.
+                Criamos apps, sites, social e campanhas para pequenas empresas
+                que querem vender melhor e operar com mais clareza.
               </p>
             </div>
 
@@ -84,7 +82,7 @@ export default function Footer() {
 
           <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-white/42 md:flex-row md:items-center md:justify-between">
             <div>&copy; {new Date().getFullYear()} CosmoHQ. Todos os direitos reservados.</div>
-            <div>Feito com estratégia, código e dados.</div>
+            <div>Feito com código, dados e bastante revisão.</div>
           </div>
         </div>
       </motion.div>

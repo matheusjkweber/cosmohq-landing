@@ -20,7 +20,7 @@ const stats = [
   },
   {
     title: "Dados",
-    subtitle: "inteligência para decisão",
+    subtitle: "leitura do que importa",
   },
 ] as const;
 
@@ -78,8 +78,7 @@ export default function Hero() {
             >
               <Balancer>
                 CosmoHQ constrói apps, sites e sistemas, cuida das redes sociais
-                e usa inteligência de dados para garantir que cada decisão gere o
-                maior impacto possível.
+                e usa dados para deixar cada decisão mais clara.
               </Balancer>
             </motion.p>
 

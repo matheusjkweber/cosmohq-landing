@@ -39,7 +39,7 @@ const steps = [
     number: "03",
     title: "Analisar e melhorar",
     description:
-      "Usamos dados e inteligência para entender o que funciona e ajustar continuamente. Sem achismo.",
+      "Usamos dados para ver o que funciona e ajustar sem perder tempo.",
     Icon: TrendingUp,
     kickerClass: "text-brand-success",
     cardClass: cn(
@@ -61,8 +61,8 @@ export default function HowItWorks() {
         <SectionHeading
           eyebrow="Como Funciona"
           title="Três etapas para tirar sua ideia do papel"
-          highlight="com resultado real."
-          description="Nosso diferencial aparece no processo: usamos dados e inteligência para entender o que está funcionando e ajustar continuamente."
+          highlight="com um caminho claro."
+          description="O processo é simples: entender, construir e ajustar com base no que os dados mostram."
         />
 
         <motion.div
