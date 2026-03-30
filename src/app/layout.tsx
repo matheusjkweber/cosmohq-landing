@@ -3,7 +3,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://cosmohq.app"),
+  metadataBase: new URL("https://cosmohq.org"),
   title: "CosmoHQ | Sua ideia no digital. Do jeito certo.",
   description:
     "Agência digital que transforma ideias em produtos e presença online com estratégia, execução e inteligência de dados.",
@@ -18,13 +18,13 @@ export const metadata: Metadata = {
   ],
   applicationName: "CosmoHQ",
   alternates: {
-    canonical: "https://cosmohq.app",
+    canonical: "https://cosmohq.org",
   },
   openGraph: {
     title: "CosmoHQ | Sua ideia no digital. Do jeito certo.",
     description:
       "Transformamos ideias em produtos e presença online com estratégia, execução e inteligência de dados.",
-    url: "https://cosmohq.app",
+    url: "https://cosmohq.org",
     siteName: "CosmoHQ",
     images: [
       {

@@ -19,6 +19,10 @@ import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
+const CONTACT_EMAIL = "contato@cosmohq.org";
+const WHATSAPP_URL =
+  "https://wa.me/5551980602335?text=Ol%C3%A1%20CosmoHQ!%20Quero%20conversar%20sobre%20um%20projeto.";
+
 const navItems = [
   { label: "Como funciona", href: "#como-funciona" },
   { label: "Portfólio", href: "#portfolio" },
@@ -155,7 +159,7 @@ function submitBriefing(event: FormEvent<HTMLFormElement>) {
     ].join("\n"),
   );
 
-  window.location.href = `mailto:contato@cosmohq.org?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
 }
 
 function HeroImage({
@@ -689,7 +693,7 @@ export default function CosmoLanding() {
                     </div>
 
                     <a
-                      href="https://wa.me/5511999999999?text=Ol%C3%A1%20CosmoHQ!%20Quero%20conversar%20sobre%20um%20projeto."
+                    href={WHATSAPP_URL}
                       target="_blank"
                       rel="noreferrer"
                       className={buttonVariants({
@@ -791,6 +795,10 @@ export default function CosmoLanding() {
                         Enviar briefing
                         <ArrowRight className="size-4" />
                       </button>
+
+                      <p className="text-center text-xs text-white/42">
+                        Envia direto para {CONTACT_EMAIL}
+                      </p>
                     </form>
                   </CardContent>
                 </Card>
@@ -853,7 +861,7 @@ export default function CosmoLanding() {
                       <ArrowUpRight className="size-3.5" />
                     </a>
                     <a
-                      href="https://wa.me/5511999999999?text=Ol%C3%A1%20CosmoHQ!%20Quero%20conversar%20sobre%20um%20projeto."
+                      href={WHATSAPP_URL}
                       target="_blank"
                       rel="noreferrer"
                       className="flex items-center gap-2 text-sm text-white/64 transition hover:text-white"

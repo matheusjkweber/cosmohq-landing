@@ -1,15 +1,36 @@
 "use client";
 
+import { FormEvent } from "react";
 import { ArrowRight, MessageCircle, Send } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { motion, fadeUp, stagger, ease } from "./motion";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 
 const WHATSAPP_URL =
-  "https://wa.me/5511999999999?text=Ol%C3%A1%20CosmoHQ!%20Quero%20conversar%20sobre%20um%20projeto.";
+  "https://wa.me/5551980602335?text=Ol%C3%A1%20CosmoHQ!%20Quero%20conversar%20sobre%20um%20projeto.";
+const CONTACT_EMAIL = "contato@cosmohq.org";
+
+function submitProjectBriefing(event: FormEvent<HTMLFormElement>) {
+  event.preventDefault();
+
+  const formData = new FormData(event.currentTarget);
+  const name = String(formData.get("nome") ?? "").trim();
+  const projectType = String(formData.get("tipo_projeto") ?? "").trim();
+  const objective = String(formData.get("objetivo") ?? "").trim();
+
+  const subject = encodeURIComponent(`Novo projeto CosmoHQ - ${name || "Contato"}`);
+  const body = encodeURIComponent(
+    [
+      `Nome: ${name || "-"}`,
+      `Tipo de projeto: ${projectType || "-"}`,
+      `Objetivo: ${objective || "-"}`,
+    ].join("\n"),
+  );
+
+  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+}
 
 export default function Contact() {
   return (
@@ -94,12 +115,7 @@ export default function Contact() {
                   Três campos, sem complicação.
                 </p>
 
-                <form
-                  action={`mailto:contato@cosmohq.org?subject=Novo%20projeto`}
-                  method="POST"
-                  encType="text/plain"
-                  className="mt-8 space-y-5"
-                >
+                <form onSubmit={submitProjectBriefing} className="mt-8 space-y-5">
                   <div>
                     <label
                       htmlFor="contact-name"
@@ -161,13 +177,7 @@ export default function Contact() {
                     />
                   </div>
 
-                  <button
-                    type="submit"
-                    className={buttonVariants({
-                      size: "lg",
-                      className: "flex w-full",
-                    })}
-                  >
+                  <button type="submit" className={buttonVariants({ size: "lg", className: "flex w-full" })}>
                     Enviar mensagem
                     <Send className="h-4 w-4" />
                   </button>

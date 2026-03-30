@@ -7,7 +7,7 @@ export default function Home() {
     name: "CosmoHQ",
     description:
       "Agência digital que transforma ideias em produtos e presença online com estratégia, execução e inteligência de dados.",
-    url: "https://cosmohq.app",
+    url: "https://cosmohq.org",
     serviceType: [
       "Desenvolvimento de Apps",
       "Criação de Sites",
