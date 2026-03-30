@@ -31,9 +31,18 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: write
     steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          fetch-depth: 0
+      - uses: actions/download-pages-artifact@v3
+        with:
+          path: out
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: out
