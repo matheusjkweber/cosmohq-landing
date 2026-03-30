@@ -31,7 +31,7 @@ const navItems = [
   { label: "Como funciona", href: "#como-funciona" },
   { label: "Serviços", href: "#servicos" },
   { label: "Cases", href: "#cases" },
-  { label: "Planos", href: "#planos" },
+  { label: "Diferenciais", href: "#diferenciais" },
   { label: "IA & MCPs", href: "#ia-mcps" },
   { label: "FAQ", href: "#faq" },
 ];
@@ -216,6 +216,13 @@ const gallery = [
       "https://images.unsplash.com/photo-1601933974703-d25155828f40?crop=entropy&cs=srgb&fm=jpg&ixid=M3w5MDk4MzF8MHwxfHNlYXJjaHwxfHxoYXBweSUyMHBlb3BsZSUyMGNvbXB1dGVyfGVufDB8MHx8fDE3NzQ4MDU5MzV8MA&ixlib=rb-4.1.0&q=85",
     span: "md:col-span-12",
   },
+];
+
+const differentials = [
+  "Entregamos rápido sem abrir mão de qualidade",
+  "Usamos dados para tomar decisões melhores",
+  "Comunicação direta — sem reuniões intermináveis",
+  "Somos clientes dos nossos próprios produtos",
 ];
 
 const pricing = [
@@ -504,38 +511,7 @@ export default function CosmoLanding() {
                 </a>
               </motion.div>
 
-              <motion.div variants={fadeUp} className="mt-10 flex flex-wrap gap-3">
-                {heroPills.map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm text-white/76 backdrop-blur-xl"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </motion.div>
 
-              <motion.div
-                variants={fadeUp}
-                className="mt-10 grid gap-4 sm:grid-cols-3"
-              >
-                {[
-                  "Pequenas empresas",
-                  "Social com objetivo comercial",
-                  "Campanhas guiadas por dados",
-                ].map((item) => (
-                  <Card key={item} className="hover-lift rounded-[26px] border-white/10">
-                    <CardContent className="p-5">
-                      <div className="text-base font-semibold tracking-[-0.03em] text-white">
-                        {item}
-                      </div>
-                      <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/42">
-                        Operação integrada
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </motion.div>
             </motion.div>
 
             <motion.div
@@ -708,35 +684,7 @@ export default function CosmoLanding() {
               ))}
             </motion.div>
 
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.65, ease, delay: 0.1 }}
-              className="mt-8 rounded-[30px] border border-white/10 bg-white/5 p-5 md:p-6"
-            >
-              <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                <div>
-                  <div className="text-xs uppercase tracking-[0.22em] text-white/42">
-                    O diferencial
-                  </div>
-                  <div className="mt-2 text-lg font-semibold tracking-[-0.03em] text-white">
-                    Sem achismo. Sem reuniões intermináveis. Sem equipe dispersa.
-                  </div>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {["Velocidade", "Dados", "Comunicação direta", "Ownership"].map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-full border border-white/10 bg-black/10 px-3 py-2 text-xs uppercase tracking-[0.18em] text-white/66"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
+
           </div>
         </section>
 
@@ -871,6 +819,37 @@ export default function CosmoLanding() {
           </div>
         </section>
 
+        <section id="diferenciais" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+          <div className="mx-auto max-w-7xl">
+            <SectionTitle
+              eyebrow="Diferenciais"
+              title="Por que a CosmoHQ é a parceira certa para o seu negócio?"
+              description="Nossos pilares de atuação que garantem resultados reais e uma parceria transparente."
+            />
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.22 }}
+              variants={stagger}
+              className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+            >
+              {differentials.map((item, index) => (
+                <motion.div key={item} variants={fadeUp} transition={{ duration: 0.55, ease, delay: index * 0.05 }}>
+                  <Card className="spotlight-border group hover-lift h-full rounded-[30px]">
+                    <CardContent className="flex h-full flex-col items-center justify-center p-6 text-center">
+                      <Check className="size-8 text-brand-success" />
+                      <h3 className="mt-4 text-base font-semibold tracking-[-0.03em] text-white">
+                        {item}
+                      </h3>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
         <section id="galeria" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <div className="mx-auto max-w-7xl">
             <SectionTitle
@@ -915,81 +894,7 @@ export default function CosmoLanding() {
           </div>
         </section>
 
-        <section id="planos" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <div className="mx-auto max-w-7xl">
-            <SectionTitle
-              eyebrow="Pricing"
-              title="Três formas de trabalhar, uma operação só."
-              description="Mensal, anual e lifetime aparecem juntos para facilitar a leitura. O anual é o melhor valor para quem quer continuidade com profundidade."
-            />
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.24 }}
-              variants={stagger}
-              className="mt-14 grid gap-4 lg:grid-cols-3"
-            >
-              {pricing.map((tier, index) => (
-                <motion.div key={tier.name} variants={fadeUp} transition={{ duration: 0.55, ease, delay: index * 0.04 }}>
-                  <Card
-                    className={cn(
-                      "hover-lift h-full rounded-[32px]",
-                      tier.featured
-                        ? "ring-gradient border-brand-primary/30 bg-[linear-gradient(180deg,rgba(52,152,219,0.18),rgba(255,255,255,0.04))] shadow-[0_36px_100px_-56px_rgba(52,152,219,0.9)]"
-                        : "border-white/10",
-                    )}
-                  >
-                    <CardContent className="flex h-full flex-col gap-6">
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <Badge variant={tier.featured ? "default" : "secondary"} className="mb-4">
-                            {tier.badge}
-                          </Badge>
-                          <h3 className="text-3xl font-semibold tracking-[-0.05em] text-white">
-                            {tier.name}
-                          </h3>
-                          <p className="mt-2 text-sm uppercase tracking-[0.2em] text-white/42">
-                            {tier.tagline}
-                          </p>
-                        </div>
-                        {tier.featured ? (
-                          <div className="rounded-full border border-brand-secondary/30 bg-brand-secondary/12 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-secondary">
-                            Best value
-                          </div>
-                        ) : null}
-                      </div>
-
-                      <p className="text-base leading-7 text-white/66">{tier.description}</p>
-
-                      <div className="space-y-3">
-                        {tier.points.map((point) => (
-                          <div key={point} className="flex items-start gap-3 text-sm leading-6 text-white/72">
-                            <Check className="mt-1 size-4 text-brand-success" />
-                            <span>{point}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="mt-auto pt-3">
-                        <a
-                          href="#contato"
-                          className={buttonVariants({
-                            variant: tier.featured ? "default" : "secondary",
-                            size: "lg",
-                            className: "w-full",
-                          })}
-                        >
-                          Pedir proposta
-                        </a>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
 
         <section id="ia-mcps" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <div className="mx-auto max-w-7xl">
