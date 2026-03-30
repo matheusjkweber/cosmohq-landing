@@ -29,19 +29,9 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { label: "Como funciona", href: "#como-funciona" },
-  { label: "Serviços", href: "#servicos" },
-  { label: "Cases", href: "#cases" },
+  { label: "Portfólio", href: "#cases" },
   { label: "Diferenciais", href: "#diferenciais" },
-  { label: "IA & MCPs", href: "#ia-mcps" },
-  { label: "FAQ", href: "#faq" },
-];
-
-const heroPills = [
-  "Apps e sites",
-  "Instagram e conteúdo",
-  "Ads e campanhas",
-  "Dados para decidir",
-  "MCPs e automações",
+  { label: "Fale com a gente", href: "#contato" },
 ];
 
 const steps = [
@@ -179,44 +169,7 @@ const cases = [
   },
 ];
 
-const gallery = [
-  {
-    title: "CosmoFinanças em desktop",
-    image:
-      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/da/41/2d/da412de0-3b03-b6f8-2bf4-5216ea3b5340/screenshot_1.png/2560x1599bb.png",
-    span: "md:col-span-7",
-  },
-  {
-    title: "CosmoKit como base de aceleração",
-    image:
-      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/62/26/c7/6226c732-53bc-197e-fae0-59fa01734604/screenshot_2.png/2560x1600bb.png",
-    span: "md:col-span-5",
-  },
-  {
-    title: "Time alinhando execução",
-    image:
-      "https://images.pexels.com/photos/1647904/pexels-photo-1647904.jpeg",
-    span: "md:col-span-4",
-  },
-  {
-    title: "Apresentação de dados com foco em decisão",
-    image:
-      "https://images.pexels.com/photos/6476776/pexels-photo-6476776.jpeg",
-    span: "md:col-span-4",
-  },
-  {
-    title: "Ritmo visual de produto",
-    image:
-      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/06/7e/d6/067ed6f7-7b2c-b674-37e7-72ab6598aaf6/screenshot_1.png/2560x1600bb.png",
-    span: "md:col-span-4",
-  },
-  {
-    title: "Execução com contexto",
-    image:
-      "https://images.unsplash.com/photo-1601933974703-d25155828f40?crop=entropy&cs=srgb&fm=jpg&ixid=M3w5MDk4MzF8MHwxfHNlYXJjaHwxfHxoYXBweSUyMHBlb3BsZSUyMGNvbXB1dGVyfGVufDB8MHx8fDE3NzQ4MDU5MzV8MA&ixlib=rb-4.1.0&q=85",
-    span: "md:col-span-12",
-  },
-];
+
 
 const differentials = [
   "Entregamos rápido sem abrir mão de qualidade",
@@ -225,89 +178,9 @@ const differentials = [
   "Somos clientes dos nossos próprios produtos",
 ];
 
-const pricing = [
-  {
-    name: "Mensal",
-    tagline: "Operação contínua",
-    description:
-      "Perfeito para marcas que precisam de presença ativa, campanhas em andamento e evolução mensal da operação.",
-    badge: "Flexível",
-    featured: false,
-    points: [
-      "Produção e otimização recorrentes",
-      "Acompanhamento de dados e campanhas",
-      "Prioridades alinhadas com o negócio",
-    ],
-  },
-  {
-    name: "Anual",
-    tagline: "Melhor valor",
-    description:
-      "O formato mais inteligente para crescer com profundidade: estratégia, execução e aprendizado durante o ano inteiro.",
-    badge: "Save 18%",
-    featured: true,
-    points: [
-      "Tudo do plano mensal com cadência ampliada",
-      "Roadmap de produto e marketing",
-      "Acesso prioritário para novas entregas",
-    ],
-  },
-  {
-    name: "Lifetime",
-    tagline: "Ativo próprio",
-    description:
-      "Indicado para quem quer sair com um asset sólido: site, app ou sistema pronto para ser usado pela operação.",
-    badge: "Projeto fechado",
-    featured: false,
-    points: [
-      "Escopo fechado e documentação",
-      "Treinamento e handoff",
-      "Base para operação independente",
-    ],
-  },
-];
 
-const aiCapabilities = [
-  {
-    title: "MCPs sob medida",
-    description:
-      "Conectamos modelos, APIs e dados internos para transformar o chat em uma interface de trabalho útil.",
-    icon: Bot,
-  },
-  {
-    title: "Copilots internos",
-    description:
-      "Assistentes para times operacionais, comerciais e de conteúdo trabalharem com mais contexto e velocidade.",
-    icon: Workflow,
-  },
-  {
-    title: "Automações com IA",
-    description:
-      "Fluxos que resumem, classificam, respondem e acionam tarefas sem depender de etapas repetitivas.",
-    icon: Sparkles,
-  },
-  {
-    title: "Produtos com IA",
-    description:
-      "Dashboards, buscas semânticas e experiências onde a IA entra para resolver um ponto específico do produto.",
-    icon: BarChart3,
-  },
-];
 
-const mcpPromo = {
-  name: "CosmoFinanças MCP",
-  label: "Produto da casa",
-  title: "Um MCP para trazer contexto financeiro para a conversa.",
-  description:
-    "Projetado a partir do CosmoFinanças, este MCP ajuda a consultar visão geral, indicadores e sinais de negócio sem sair do fluxo de trabalho.",
-  image:
-    "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/da/41/2d/da412de0-3b03-b6f8-2bf4-5216ea3b5340/screenshot_1.png/2560x1599bb.png",
-  bullets: [
-    "Consulta rápida com linguagem natural",
-    "Base para copilots e dashboards",
-    "Pensado para decisões mais rápidas",
-  ],
-};
+
 
 const faqs = [
   {
@@ -433,16 +306,7 @@ export default function CosmoLanding() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <a
-              href="#ia-mcps"
-              className={buttonVariants({
-                variant: "secondary",
-                size: "sm",
-                className: "hidden md:inline-flex",
-              })}
-            >
-              Ver IA & MCPs
-            </a>
+
             <a href="#contato" className={buttonVariants({ size: "sm" })}>
               Fale com a gente
               <ArrowRight className="size-4" />
@@ -501,7 +365,7 @@ export default function CosmoLanding() {
                   <ArrowRight className="size-4" />
                 </a>
                 <a
-                  href="#servicos"
+                  href="#como-funciona"
                   className={buttonVariants({
                     variant: "secondary",
                     size: "lg",
@@ -850,179 +714,8 @@ export default function CosmoLanding() {
           </div>
         </section>
 
-        <section id="galeria" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <div className="mx-auto max-w-7xl">
-            <SectionTitle
-              eyebrow="Imagens"
-              title="Peças e interfaces usadas no trabalho da CosmoHQ."
-              description="CosmoKit e CosmoFinanças aparecem aqui como referências de produto e operação."
-            />
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={staggerSlow}
-              className="mt-14 grid gap-4 md:grid-cols-12"
-            >
-              {gallery.map((item, index) => (
-                <motion.div
-                  key={item.title}
-                  variants={fadeUp}
-                  transition={{ duration: 0.55, ease, delay: index * 0.04 }}
-                  className={cn(item.span)}
-                >
-                  <Card className="spotlight-border group overflow-hidden rounded-[30px]">
-                    <div className="relative aspect-[4/3] overflow-hidden">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        unoptimized
-                        className="object-cover transition duration-500 group-hover:scale-[1.03]"
-                        sizes="(min-width: 768px) 50vw, 100vw"
-                      />
-                    </div>
-                    <CardContent className="flex items-center justify-between gap-4">
-                      <p className="text-sm font-medium text-white/82">{item.title}</p>
-                      <ArrowUpRight className="size-4 text-white/40 transition group-hover:text-white" />
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
 
 
-
-        <section id="ia-mcps" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <div className="mx-auto max-w-7xl">
-            <SectionTitle
-              eyebrow="IA & MCPs"
-              title="IA aplicada sem teatro."
-              description="Construímos MCPs, copilots, automações e produtos com IA quando isso ajuda o negócio."
-            />
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={stagger}
-              className="mt-14 grid gap-4 lg:grid-cols-[1.06fr_0.94fr]"
-            >
-              <motion.div variants={fadeUp}>
-                <Card className="editorial-panel h-full rounded-[32px]">
-                  <CardContent className="flex h-full flex-col gap-6">
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <Badge variant="accent" className="mb-4">
-                          IA aplicada ao produto
-                        </Badge>
-                        <h3 className="text-3xl font-semibold tracking-[-0.05em] text-white">
-                          O que a CosmoHQ faz com IA.
-                        </h3>
-                        <p className="mt-3 max-w-2xl text-base leading-7 text-white/66">
-                          Usamos IA onde ela reduz trabalho e melhora resposta:
-                          no produto, no atendimento, na operação e na leitura de dados.
-                        </p>
-                      </div>
-                      <Bot className="size-6 text-brand-secondary" />
-                    </div>
-
-                    <div className="grid gap-3 sm:grid-cols-2">
-                      {aiCapabilities.map((item) => (
-                        <div
-                          key={item.title}
-                          className="rounded-[26px] border border-white/10 bg-white/[0.04] p-5"
-                        >
-                          <div className="flex items-center gap-3">
-                            <div className="rounded-2xl border border-white/10 bg-white/6 p-3 text-brand-primary">
-                              <item.icon className="size-5" />
-                            </div>
-                            <h4 className="text-base font-semibold tracking-[-0.03em] text-white">
-                              {item.title}
-                            </h4>
-                          </div>
-                          <p className="mt-3 text-sm leading-6 text-white/66">
-                            {item.description}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="rounded-[28px] border border-white/10 bg-black/12 p-5 text-sm leading-7 text-white/68">
-                      Também construímos produtos com IA para operações internas,
-                      suporte, vendas, conteúdo e análise. Se a IA reduz atrito ou
-                      acelera decisão, ela entra no fluxo.
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              <motion.div variants={fadeUp}>
-                <Card className="hover-lift h-full overflow-hidden rounded-[32px] border-white/10">
-                  <CardContent className="flex h-full flex-col gap-6 p-0">
-                    <div className="relative overflow-hidden border-b border-white/10">
-                      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(52,152,219,0.24),rgba(13,15,16,0.12))]" />
-                      <Image
-                        src={mcpPromo.image}
-                        alt="CosmoFinanças MCP em uso"
-                        width={2560}
-                        height={1599}
-                        className="h-full w-full object-cover"
-                        unoptimized
-                      />
-                    </div>
-
-                    <div className="flex flex-1 flex-col gap-5 p-6 md:p-7">
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <Badge variant="secondary" className="mb-4">
-                            {mcpPromo.label}
-                          </Badge>
-                          <h3 className="text-3xl font-semibold tracking-[-0.05em] text-white">
-                            {mcpPromo.name}
-                          </h3>
-                        </div>
-                        <Badge variant="accent">Novo</Badge>
-                      </div>
-
-                      <div>
-                        <p className="text-xl font-semibold tracking-[-0.03em] text-white">
-                          {mcpPromo.title}
-                        </p>
-                        <p className="mt-3 text-base leading-7 text-white/66">
-                          {mcpPromo.description}
-                        </p>
-                      </div>
-
-                      <div className="space-y-3">
-                        {mcpPromo.bullets.map((bullet) => (
-                          <div key={bullet} className="flex items-start gap-3 text-sm leading-6 text-white/72">
-                            <BadgeCheck className="mt-1 size-4 text-brand-success" />
-                            <span>{bullet}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      <a
-                        href="#contato"
-                        className={buttonVariants({
-                          size: "lg",
-                          className: "mt-auto w-full",
-                        })}
-                      >
-                        Quero ver o MCP
-                        <ArrowRight className="size-4" />
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </motion.div>
-          </div>
-        </section>
 
         <section id="faq" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <div className="mx-auto max-w-5xl">
