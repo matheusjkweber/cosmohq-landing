@@ -6,25 +6,23 @@ export default function Home() {
     "@type": "ProfessionalService",
     name: "CosmoHQ",
     description:
-      "Agência digital para pequenas empresas. Construímos apps, sites e sistemas e cuidamos da presença online e campanhas.",
+      "Agência digital que transforma ideias em produtos e presença online com estratégia, execução e inteligência de dados.",
     url: "https://cosmohq.app",
     serviceType: [
       "Desenvolvimento de Apps",
       "Criação de Sites",
+      "Desenvolvimento de Sistemas",
       "Gestão de Redes Sociais",
-      "Campanhas de Ads",
       "Análise de Dados",
-      "Marketing de Performance",
     ],
     knowsAbout: [
       "Landing pages",
-      "Gestão de Instagram",
-      "Campanhas de performance",
-      "Dashboards",
-      "Produtos digitais",
+      "Redes sociais",
+      "Apps",
+      "Sites",
+      "Sistemas",
     ],
     areaServed: "BR",
-    priceRange: "$$",
   };
 
   return (

@@ -1,24 +1,16 @@
 "use client";
 
-import * as Accordion from "@radix-ui/react-accordion";
 import Image from "next/image";
 import { FormEvent } from "react";
 import Balancer from "react-wrap-balancer";
 import {
   ArrowRight,
   ArrowUpRight,
-  BadgeCheck,
   BarChart3,
-  Bot,
   Check,
-  ChevronDown,
   LayoutDashboard,
-  Megaphone,
-  Network,
-  ShieldCheck,
+  MessageCircle,
   Sparkles,
-  SplitSquareVertical,
-  Target,
   Workflow,
 } from "lucide-react";
 import { motion, ease, fadeUp, stagger, staggerSlow } from "@/components/motion";
@@ -29,7 +21,7 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { label: "Como funciona", href: "#como-funciona" },
-  { label: "Portfólio", href: "#cases" },
+  { label: "Portfólio", href: "#portfolio" },
   { label: "Diferenciais", href: "#diferenciais" },
   { label: "Fale com a gente", href: "#contato" },
 ];
@@ -39,137 +31,66 @@ const steps = [
     id: "01",
     title: "Entender o problema",
     description:
-      "Entramos no contexto do negócio, identificamos gargalos e traduzimos a meta comercial em uma rota clara de execução.",
+      "Começamos ouvindo o contexto do negócio, o objetivo e o que precisa mudar para a ideia virar algo útil no digital.",
     detail:
-      "Menos briefing infinito. Mais foco em público, oferta, contexto e prazo realista.",
-    icon: Target,
+      "Menos achismo. Mais clareza sobre público, oferta e prioridade.",
+    icon: LayoutDashboard,
   },
   {
     id: "02",
     title: "Construir a solução",
     description:
-      "Criamos apps, sites, sistemas e a presença social com linguagem de marca, velocidade e um nível alto de acabamento.",
+      "Desenhamos e executamos apps, sites e sistemas, além da presença nas redes sociais, com acabamento profissional e foco em conversão.",
     detail:
-      "A execução acontece com o mesmo time cuidando de produto, conteúdo e crescimento.",
+      "Estratégia e execução caminham juntas, sem separar o que gera valor do que entrega valor.",
     icon: Workflow,
   },
   {
     id: "03",
-    title: "Medir e melhorar",
+    title: "Analisar e melhorar",
     description:
-      "Acompanhamos o que está acontecendo, aprendemos com os dados e ajustamos campanhas, páginas e conteúdo sem achismo.",
+      "Acompanhamos o que está funcionando, lemos os dados e ajustamos continuamente para aumentar o impacto de cada decisão.",
     detail:
-      "O que performa sobe; o que atrasa a conversão sai de cena.",
+      "O diferencial da CosmoHQ é usar inteligência para evoluir a solução depois que ela entra no ar.",
     icon: BarChart3,
   },
 ];
 
-const services = [
-  {
-    title: "Painel de controle para enxergar o negócio",
-    description:
-      "Uma visão clara de campanhas, conversões e operação para pequenas empresas tomarem decisões sem depender de planilhas soltas.",
-    icon: LayoutDashboard,
-    points: [
-      "Métricas prioritárias em um lugar só",
-      "Leitura rápida para reuniões curtas",
-      "Leitura pronta para time enxuto",
-    ],
-  },
-  {
-    title: "Gerenciamento de campanhas em múltiplas plataformas",
-    description:
-      "Planejamento, criação, acompanhamento e otimização de campanhas para negócios que precisam vender sem desperdiçar verba.",
-    icon: Megaphone,
-    points: [
-      "Ads com leitura diária",
-      "Ajustes em criativo e verba",
-      "Controle de CAC e conversão",
-    ],
-  },
-  {
-    title: "Análise de dados em tempo real",
-    description:
-      "Monitoramento contínuo do desempenho para responder rápido ao que o mercado está dizendo, sem esperar o fim do mês.",
-    icon: BarChart3,
-    points: [
-      "Decisões orientadas por dados",
-      "Alertas para desvios e oportunidades",
-      "Relatórios claros e sem ruído",
-    ],
-  },
-  {
-    title: "Integração com redes sociais",
-    description:
-      "A presença social vira operação de verdade: publicação, organização de calendário e integração com o resto da jornada de vendas.",
-    icon: Network,
-    points: [
-      "Fluxo mais rápido para postar e ajustar",
-      "Conteúdo conectado com campanha",
-      "Instagram com intenção comercial",
-    ],
-  },
-  {
-    title: "Otimização de conteúdo",
-    description:
-      "Ajudamos a criar e lapidar conteúdo para diferentes formatos e plataformas, sem perder a consistência da marca.",
-    icon: SplitSquareVertical,
-    points: [
-      "Copy e direção visual alinhadas",
-      "Menos improviso, mais consistência",
-      "Peças pensadas para conversão",
-    ],
-  },
-  {
-    title: "Segurança, alertas e automação",
-    description:
-      "Para pequenos negócios que precisam de confiabilidade, configuramos alertas, permissões e rotinas que ajudam a operação a continuar fluindo.",
-    icon: ShieldCheck,
-    points: [
-      "Segurança e autenticação",
-      "Notificações de eventos importantes",
-      "Automação para reduzir atrito",
-    ],
-  },
-];
-
-const cases = [
+const portfolio = [
   {
     name: "CosmoFinanças",
-    label: "Case interno",
+    label: "Produto próprio",
     problem:
-      "Como deixar decisões financeiras e organização de dados visuais sem transformar tudo em planilha complexa?",
+      "Como organizar visão financeira e operacional sem depender de planilhas confusas?",
     result:
-      "Criamos uma experiência clara, visual e objetiva que prova como interface e dados podem trabalhar juntos.",
+      "Uma experiência visual para enxergar o cenário com rapidez e tomar decisões com mais confiança.",
     image:
-      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/06/7e/d6/067ed6f7-7b2c-b674-37e7-72ab6598aaf6/screenshot_1.png/2560x1600bb.png",
-    bullets: ["Dashboard e leitura rápida", "Produto usado como referência", "Acabamento premium"],
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/da/41/2d/da412de0-3b03-b6f8-2bf4-5216ea3b5340/screenshot_1.png/2560x1599bb.png",
+    bullets: ["Clareza para o dia a dia", "Decisão mais rápida", "Uso real como referência"],
   },
   {
     name: "CosmoKit",
-    label: "Case de escala",
+    label: "Produto próprio",
     problem:
-      "Como acelerar a entrega de apps e sites sem cair em layout genérico ou retrabalho constante?",
+      "Como acelerar entregas sem perder consistência visual nem virar refém de retrabalho?",
     result:
-      "Estruturamos uma base de componentes e padrões visuais para ganhar velocidade com consistência.",
+      "Uma base prática para construir páginas e sistemas com padrão, velocidade e qualidade.",
     image:
-      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/62/26/c7/6226c732-53bc-197e-fae0-59fa01734604/screenshot_2.png/2560x1600bb.png",
-    bullets: ["Sistema reaproveitável", "Menos ruído operacional", "Entrega com padrão"],
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/06/7e/d6/067ed6f7-7b2c-b674-37e7-72ab6598aaf6/screenshot_1.png/2560x1600bb.png",
+    bullets: ["Mais velocidade", "Menos retrabalho", "Padrão consistente"],
   },
   {
-    name: "Social + Ads",
-    label: "Case de aquisição",
+    name: "Social + Campanhas",
+    label: "Operação própria",
     problem:
-      "Como transformar Instagram e mídia paga em um fluxo consistente de vendas para clientes?",
+      "Como conectar redes sociais e campanhas para gerar movimento de negócio de forma contínua?",
     result:
-      "Conectamos conteúdo, campanha e leitura de dados para gerar uma operação que vende com mais previsibilidade.",
+      "Uma operação integrada de conteúdo e mídia para transformar presença online em resultado real.",
     image:
       "https://images.pexels.com/photos/1647904/pexels-photo-1647904.jpeg",
-    bullets: ["Conteúdo e mídia no mesmo plano", "Ajustes rápidos por performance", "Comunicação direta"],
+    bullets: ["Conteúdo com intenção", "Ajustes guiados por dados", "Foco em resultado"],
   },
 ];
-
-
 
 const differentials = [
   "Entregamos rápido sem abrir mão de qualidade",
@@ -178,10 +99,11 @@ const differentials = [
   "Somos clientes dos nossos próprios produtos",
 ];
 
-
-
-
-
+const heroHighlights = [
+  "Apps, sites e sistemas pensados para o seu negócio",
+  "Redes sociais com direção e consistência",
+  "Decisões orientadas por dados, sem achismo",
+];
 
 function SectionTitle({
   eyebrow,
@@ -224,14 +146,42 @@ function submitBriefing(event: FormEvent<HTMLFormElement>) {
   const projectType = String(formData.get("projectType") ?? "").trim();
   const objective = String(formData.get("objective") ?? "").trim();
 
-  const subject = encodeURIComponent(`Novo briefing CosmoHQ - ${name || "Contato"}`);
+  const subject = encodeURIComponent(`Novo contato CosmoHQ - ${name || "Contato"}`);
   const body = encodeURIComponent(
-    [`Nome: ${name || "-"}`, `Tipo de projeto: ${projectType || "-"}`, `Objetivo: ${objective || "-"}`].join(
-      "\n",
-    ),
+    [
+      `Nome: ${name || "-"}`,
+      `Tipo de projeto: ${projectType || "-"}`,
+      `Objetivo: ${objective || "-"}`,
+    ].join("\n"),
   );
 
   window.location.href = `mailto:contato@cosmohq.org?subject=${subject}&body=${body}`;
+}
+
+function HeroImage({
+  src,
+  alt,
+  className,
+  priority = false,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  priority?: boolean;
+}) {
+  return (
+    <div className={cn("relative overflow-hidden border border-white/10 bg-black/20", className)}>
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        priority={priority}
+        unoptimized
+        className="object-cover"
+        sizes="(min-width: 1024px) 50vw, 100vw"
+      />
+    </div>
+  );
 }
 
 export default function CosmoLanding() {
@@ -268,29 +218,27 @@ export default function CosmoLanding() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-3">
-
-            <a href="#contato" className={buttonVariants({ size: "sm" })}>
-              Fale com a gente
-              <ArrowRight className="size-4" />
-            </a>
-          </div>
+          <a
+            href="#contato"
+            className={buttonVariants({
+              size: "sm",
+              className: "hidden sm:inline-flex",
+            })}
+          >
+            Fale com a gente
+            <ArrowRight className="size-4" />
+          </a>
         </div>
       </header>
 
       <main>
         <section className="section-shell noise-overlay relative px-4 pb-18 pt-14 sm:px-6 lg:px-8 lg:pb-28 lg:pt-20">
           <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] lg:items-center">
-            <motion.div
-              className="relative z-10"
-              initial="hidden"
-              animate="visible"
-              variants={stagger}
-            >
+            <motion.div className="relative z-10" initial="hidden" animate="visible" variants={stagger}>
               <motion.div variants={fadeUp}>
                 <Badge variant="secondary" className="mb-6 bg-white/6">
                   <Sparkles className="size-3.5" />
-                  Estratégia, execução e dados no mesmo time
+                  Estratégia, execução e inteligência de dados
                 </Badge>
               </motion.div>
 
@@ -306,17 +254,25 @@ export default function CosmoLanding() {
                 className="mt-6 max-w-2xl text-pretty text-base leading-8 text-white/72 sm:text-lg"
               >
                 <Balancer>
-                  A CosmoHQ é uma agência digital para pequenas empresas.
-                  Construímos apps, sites e sistemas, cuidamos do Instagram e
-                  operamos campanhas em múltiplas plataformas. Tudo com dados
-                  para orientar cada decisão.
+                  A CosmoHQ transforma ideias em produtos e presença online.
+                  Construímos apps, sites e sistemas, cuidamos das redes
+                  sociais e usamos dados para garantir que cada decisão gere o
+                  maior impacto possível.
                 </Balancer>
               </motion.p>
 
-              <motion.div
-                variants={fadeUp}
-                className="mt-9 flex flex-col gap-3 sm:flex-row"
-              >
+              <motion.div variants={fadeUp} className="mt-8 grid gap-3 sm:max-w-xl sm:grid-cols-3">
+                {heroHighlights.map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm leading-6 text-white/72"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </motion.div>
+
+              <motion.div variants={fadeUp} className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a
                   href="#contato"
                   className={buttonVariants({
@@ -337,8 +293,6 @@ export default function CosmoLanding() {
                   Ver o que fazemos
                 </a>
               </motion.div>
-
-
             </motion.div>
 
             <motion.div
@@ -352,51 +306,39 @@ export default function CosmoLanding() {
 
               <div className="editorial-panel ring-gradient relative overflow-hidden rounded-[40px] p-4 sm:p-5">
                 <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-                  <div className="overflow-hidden rounded-[30px] border border-white/10 bg-black/20">
-                    <Image
-                      src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/da/41/2d/da412de0-3b03-b6f8-2bf4-5216ea3b5340/screenshot_1.png/2560x1599bb.png"
-                      alt="CosmoFinanças em desktop"
-                      width={1600}
-                      height={1000}
-                      priority
-                      unoptimized
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
+                  <HeroImage
+                    src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/da/41/2d/da412de0-3b03-b6f8-2bf4-5216ea3b5340/screenshot_1.png/2560x1599bb.png"
+                    alt="Imagem promocional da CosmoHQ em destaque"
+                    priority
+                    className="aspect-[4/4.6] rounded-[30px]"
+                  />
 
                   <div className="grid gap-4">
-                    <div className="surface-blend overflow-hidden rounded-[30px] border border-white/10 p-3">
-                      <div className="relative aspect-[4/3] overflow-hidden rounded-[22px]">
-                        <Image
-                          src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/62/26/c7/6226c732-53bc-197e-fae0-59fa01734604/screenshot_2.png/2560x1600bb.png"
-                          alt="CosmoKit como case de escala"
-                          fill
-                          unoptimized
-                          className="object-cover"
-                          sizes="(min-width: 1024px) 420px, 100vw"
-                        />
-                      </div>
-                    </div>
+                    <HeroImage
+                      src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/62/26/c7/6226c732-53bc-197e-fae0-59fa01734604/screenshot_2.png/2560x1600bb.png"
+                      alt="Imagem promocional da CosmoHQ com composição editorial"
+                      className="aspect-[4/3] rounded-[30px]"
+                    />
 
                     <Card className="rounded-[30px] border-white/10 bg-[#101518]/90">
-                      <CardContent className="space-y-5 p-6">
+                      <CardContent className="space-y-4 p-6">
                         <div className="flex items-start justify-between gap-4">
                           <div>
                             <p className="text-[11px] uppercase tracking-[0.22em] text-white/44">
-                              Como trabalhamos
+                              Nosso diferencial
                             </p>
                             <h3 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-white">
                               Dados antes de opinião.
                             </h3>
                           </div>
-                          <BadgeCheck className="mt-1 size-5 text-brand-success" />
+                          <Check className="mt-1 size-5 text-brand-success" />
                         </div>
 
                         <div className="space-y-3">
                           {[
-                            "A mesma equipe cuida de estratégia e execução",
-                            "Ajustes rápidos com base no que está funcionando",
-                            "Transparência para o cliente acompanhar o caminho",
+                            "Ajustamos a solução com base no que está funcionando.",
+                            "Falamos direto, com foco no que move o negócio.",
+                            "Nós mesmos usamos os produtos que construímos.",
                           ].map((item) => (
                             <div
                               key={item}
@@ -412,54 +354,73 @@ export default function CosmoLanding() {
                   </div>
                 </div>
 
-                <div className="mt-4 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-                  <div className="glass-panel rounded-[30px] p-5">
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
+                <div className="mt-4 grid gap-4 lg:grid-cols-[0.96fr_1.04fr]">
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <Card className="glass-panel rounded-[30px]">
+                      <CardContent className="p-5">
                         <div className="text-xs uppercase tracking-[0.22em] text-white/42">
-                          IA aplicada
+                          Foco
                         </div>
                         <div className="mt-2 text-lg font-semibold tracking-[-0.03em] text-white">
-                          MCPs, copilots e automações que resolvem trabalho real.
+                          Resultado real.
                         </div>
-                      </div>
-                      <Bot className="size-5 text-brand-primary" />
-                    </div>
-                    <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                      {[
-                        "MCPs com dados e contexto",
-                        "Assistentes para operação interna",
-                        "Automação de conteúdo e suporte",
-                        "Produtos com IA para times enxutos",
-                      ].map((item) => (
-                        <div
-                          key={item}
-                          className="rounded-[22px] border border-white/10 bg-black/10 px-4 py-3 text-sm leading-6 text-white/72"
-                        >
-                          {item}
+                        <p className="mt-3 text-sm leading-6 text-white/66">
+                          Projetos pensados para negócios que precisam sair do
+                          rascunho e ganhar tração.
+                        </p>
+                      </CardContent>
+                    </Card>
+
+                    <Card className="glass-panel rounded-[30px]">
+                      <CardContent className="p-5">
+                        <div className="text-xs uppercase tracking-[0.22em] text-white/42">
+                          Ritmo
                         </div>
-                      ))}
-                    </div>
+                        <div className="mt-2 text-lg font-semibold tracking-[-0.03em] text-white">
+                          Sem reunião infinita.
+                        </div>
+                        <p className="mt-3 text-sm leading-6 text-white/66">
+                          Comunicação direta para acelerar decisão e execução.
+                        </p>
+                      </CardContent>
+                    </Card>
                   </div>
 
-                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-                    <div className="glass-panel rounded-[30px] p-5">
-                      <div className="text-xs uppercase tracking-[0.22em] text-white/42">
-                        Foco
+                  <Card className="glass-panel rounded-[30px]">
+                    <CardContent className="grid gap-4 p-5 sm:grid-cols-[1fr_1.1fr]">
+                      <div className="relative overflow-hidden rounded-[24px] border border-white/10">
+                        <Image
+                          src="https://images.pexels.com/photos/6476776/pexels-photo-6476776.jpeg"
+                          alt="Pessoa apresentando dados em uma tela"
+                          width={900}
+                          height={1200}
+                          unoptimized
+                          className="h-full w-full object-cover"
+                        />
                       </div>
-                      <div className="mt-2 text-lg font-semibold tracking-[-0.03em] text-white">
-                        Converter atenção em venda.
+                      <div className="flex flex-col justify-between gap-4">
+                        <div>
+                          <div className="text-xs uppercase tracking-[0.22em] text-white/42">
+                            O que entregamos
+                          </div>
+                          <h3 className="mt-2 text-xl font-semibold tracking-[-0.04em] text-white">
+                            Apps, sites, sistemas e presença online.
+                          </h3>
+                          <p className="mt-3 text-sm leading-7 text-white/66">
+                            Uma agência para quem precisa de estratégia,
+                            execução e leitura de dados no mesmo lugar.
+                          </p>
+                        </div>
+                        <a
+                          href="#portfolio"
+                          className="inline-flex items-center gap-2 text-sm font-semibold text-brand-primary transition hover:text-white"
+                        >
+                          Ver cases
+                          <ArrowUpRight className="size-4" />
+                        </a>
                       </div>
-                    </div>
-                    <div className="glass-panel rounded-[30px] p-5">
-                      <div className="text-xs uppercase tracking-[0.22em] text-white/42">
-                        Atuação
-                      </div>
-                      <div className="mt-2 text-lg font-semibold tracking-[-0.03em] text-white">
-                        Produto, presença e performance.
-                      </div>
-                    </div>
-                  </div>
+                    </CardContent>
+                  </Card>
                 </div>
               </div>
             </motion.div>
@@ -470,8 +431,8 @@ export default function CosmoLanding() {
           <div className="mx-auto max-w-7xl">
             <SectionTitle
               eyebrow="Como funciona"
-              title="Um processo simples, com dados em cada etapa."
-              description="A operação da CosmoHQ começa entendendo o problema, passa pela construção da solução e termina com análise contínua para melhorar o que importa."
+              title="Entender, construir, analisar e melhorar."
+              description="É assim que a CosmoHQ trabalha: primeiro compreende o problema, depois executa a solução e, por fim, acompanha os resultados para melhorar continuamente."
             />
 
             <motion.div
@@ -482,7 +443,11 @@ export default function CosmoLanding() {
               className="mt-14 grid gap-4 lg:grid-cols-3"
             >
               {steps.map((step, index) => (
-                <motion.div key={step.id} variants={fadeUp} transition={{ duration: 0.55, ease, delay: index * 0.05 }}>
+                <motion.div
+                  key={step.id}
+                  variants={fadeUp}
+                  transition={{ duration: 0.55, ease, delay: index * 0.05 }}
+                >
                   <Card className="spotlight-border group hover-lift h-full rounded-[30px]">
                     <CardContent className="flex h-full flex-col gap-6">
                       <div className="flex items-start justify-between gap-4">
@@ -510,17 +475,15 @@ export default function CosmoLanding() {
                 </motion.div>
               ))}
             </motion.div>
-
-
           </div>
         </section>
 
-        <section id="servicos" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+        <section id="portfolio" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <div className="mx-auto max-w-7xl">
             <SectionTitle
-              eyebrow="Serviços"
-              title="Uma operação de crescimento feita para pequenas empresas."
-              description="A CosmoHQ atua como parceira de execução para negócios que precisam vender melhor com apps, sites, social e ads integrados, sem estruturas grandes demais."
+              eyebrow="Portfólio"
+              title="Casos reais com os próprios produtos da CosmoHQ."
+              description="Os exemplos abaixo mostram o problema que cada solução resolve e o contexto em que ela faz diferença, sem foco na tecnologia por trás."
             />
 
             <motion.div
@@ -528,79 +491,14 @@ export default function CosmoLanding() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.22 }}
               variants={staggerSlow}
-              className="mt-14 grid gap-4 lg:grid-cols-2"
-            >
-              {services.map((item, index) => (
-                <motion.div
-                  key={item.title}
-                  variants={fadeUp}
-                  className="h-full"
-                >
-                  <Card className="spotlight-border hover-lift h-full rounded-[30px]">
-                    <CardContent className="flex h-full flex-col gap-5">
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="inline-flex w-fit rounded-full border border-white/10 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-white/54">
-                          {item.icon === LayoutDashboard
-                            ? "Produto"
-                            : item.icon === Megaphone
-                              ? "Growth"
-                              : item.icon === BarChart3
-                                ? "Dados"
-                                : item.icon === Network
-                                  ? "Social"
-                                  : item.icon === SplitSquareVertical
-                                    ? "Conteúdo"
-                                    : "Operação"}
-                        </div>
-                        <div className="rounded-2xl border border-white/10 bg-white/6 p-3 text-brand-primary">
-                          <item.icon className="size-5" />
-                        </div>
-                      </div>
-
-                      <div>
-                        <h3 className="text-2xl font-semibold tracking-[-0.04em] text-white">
-                          {item.title}
-                        </h3>
-                        <p className="mt-3 text-base leading-7 text-white/66">
-                          {item.description}
-                        </p>
-                      </div>
-
-                      <div className="grid gap-3 sm:grid-cols-3">
-                        {item.points.map((point) => (
-                          <div
-                            key={point}
-                            className="rounded-2xl border border-white/10 bg-black/10 px-4 py-3 text-sm leading-6 text-white/72"
-                          >
-                            {point}
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
-        <section id="cases" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <div className="mx-auto max-w-7xl">
-            <SectionTitle
-              eyebrow="Portfólio"
-              title="Casos reais da CosmoHQ, apresentados pelo problema que resolvem."
-              description="Os cases abaixo mostram contexto, utilidade e o tipo de resultado que a agência entrega."
-            />
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.22 }}
-              variants={stagger}
               className="mt-14 grid gap-4 lg:grid-cols-3"
             >
-              {cases.map((item, index) => (
-                <motion.div key={item.name} variants={fadeUp} transition={{ duration: 0.55, ease, delay: index * 0.05 }}>
+              {portfolio.map((item, index) => (
+                <motion.div
+                  key={item.name}
+                  variants={fadeUp}
+                  transition={{ duration: 0.55, ease, delay: index * 0.05 }}
+                >
                   <Card className="spotlight-border hover-lift h-full overflow-hidden rounded-[30px]">
                     <div className="relative aspect-[4/3] overflow-hidden border-b border-white/10">
                       <Image
@@ -643,6 +541,83 @@ export default function CosmoLanding() {
                 </motion.div>
               ))}
             </motion.div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeUp}
+              className="mt-4 grid gap-4 lg:grid-cols-[1.08fr_0.92fr]"
+            >
+              <Card className="glass-panel rounded-[30px]">
+                <CardContent className="grid gap-4 sm:grid-cols-3">
+                  <div className="relative overflow-hidden rounded-[24px] border border-white/10">
+                    <Image
+                      src="https://images.unsplash.com/photo-1601933974703-d25155828f40?crop=entropy&cs=srgb&fm=jpg&ixid=M3w5MDk4MzF8MHwxfHNlYXJjaHwxfHxoYXBweSUyMHBlb3BsZSUyMGNvbXB1dGVyfGVufDB8MHx8fDE3NzQ4MDU5MzV8MA&ixlib=rb-4.1.0&q=85"
+                      alt="Pessoa trabalhando em um computador"
+                      width={800}
+                      height={1200}
+                      unoptimized
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="relative overflow-hidden rounded-[24px] border border-white/10">
+                    <Image
+                      src="https://images.pexels.com/photos/1647904/pexels-photo-1647904.jpeg"
+                      alt="Dupla trabalhando em uma discussão positiva"
+                      width={800}
+                      height={1200}
+                      unoptimized
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="relative overflow-hidden rounded-[24px] border border-white/10">
+                    <Image
+                      src="https://images.pexels.com/photos/6476776/pexels-photo-6476776.jpeg"
+                      alt="Profissional apresentando dados"
+                      width={800}
+                      height={1200}
+                      unoptimized
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="glass-panel rounded-[30px]">
+                <CardContent className="flex h-full flex-col justify-between gap-6">
+                  <div>
+                    <div className="text-xs uppercase tracking-[0.22em] text-white/42">
+                      Nosso jeito de mostrar valor
+                    </div>
+                    <h3 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-white">
+                      Resultado e contexto, não tecnologia por tecnologia.
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-white/66">
+                      O portfólio da CosmoHQ existe para mostrar o problema que
+                      cada solução resolve, como ela entra na rotina do negócio
+                      e por que faz diferença no resultado final.
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    {[
+                      "Casos feitos com produtos próprios",
+                      "Narrativa centrada no uso real",
+                      "Sem promessa vazia ou enfeite técnico",
+                    ].map((item) => (
+                      <div
+                        key={item}
+                        className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm leading-6 text-white/72"
+                      >
+                        <Check className="mt-1 size-4 text-brand-success" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
         </section>
 
@@ -650,8 +625,8 @@ export default function CosmoLanding() {
           <div className="mx-auto max-w-7xl">
             <SectionTitle
               eyebrow="Diferenciais"
-              title="Por que a CosmoHQ é a parceira certa para o seu negócio?"
-              description="Nossos pilares de atuação que garantem resultados reais e uma parceria transparente."
+              title="Quatro motivos para a CosmoHQ ser uma parceira útil de verdade."
+              description="A proposta é simples: entregar rápido, decidir melhor, falar direto e trabalhar com a experiência de quem usa os próprios produtos."
             />
 
             <motion.div
@@ -662,7 +637,11 @@ export default function CosmoLanding() {
               className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
             >
               {differentials.map((item, index) => (
-                <motion.div key={item} variants={fadeUp} transition={{ duration: 0.55, ease, delay: index * 0.05 }}>
+                <motion.div
+                  key={item}
+                  variants={fadeUp}
+                  transition={{ duration: 0.55, ease, delay: index * 0.05 }}
+                >
                   <Card className="spotlight-border group hover-lift h-full rounded-[30px]">
                     <CardContent className="flex h-full flex-col items-center justify-center p-6 text-center">
                       <Check className="size-8 text-brand-success" />
@@ -677,17 +656,12 @@ export default function CosmoLanding() {
           </div>
         </section>
 
-
-
-
-
-
         <section id="contato" className="section-shell px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <div className="mx-auto max-w-7xl">
             <SectionTitle
               eyebrow="CTA final"
-              title="Tem uma ideia ou um negócio para mover para o digital?"
-              description="Converse com a CosmoHQ pelo WhatsApp ou envie um briefing curto com nome, tipo de projeto e objetivo."
+              title="Tem um projeto em mente? Vamos conversar."
+              description="Chame a CosmoHQ no WhatsApp ou envie um briefing curto com nome, tipo de projeto e objetivo."
             />
 
             <motion.div
@@ -702,15 +676,15 @@ export default function CosmoLanding() {
                   <CardContent className="flex h-full flex-col gap-6">
                     <div>
                       <Badge variant="success" className="mb-4">
-                        Resposta rápida
+                        Conversa direta
                       </Badge>
                       <h3 className="text-3xl font-semibold tracking-[-0.05em] text-white">
-                        Fale direto com a equipe.
+                        Conte a ideia, o resto a gente organiza.
                       </h3>
                       <p className="mt-3 text-base leading-7 text-white/66">
-                        Se você já sabe o que precisa, o caminho mais rápido é
-                        abrir uma conversa. Se ainda está estruturando a ideia,
-                        o formulário abaixo ajuda a organizar a demanda.
+                        Se você já tem o problema claro, a conversa vai ser
+                        objetiva. Se a ideia ainda estiver no começo, o
+                        formulário ajuda a estruturar o pedido sem fricção.
                       </p>
                     </div>
 
@@ -724,13 +698,14 @@ export default function CosmoLanding() {
                           "w-full bg-[linear-gradient(135deg,#25d366,#128c7e)] shadow-[0_18px_45px_-18px_rgba(37,211,102,0.55)] hover:brightness-110",
                       })}
                     >
+                      <MessageCircle className="size-4" />
                       Abrir WhatsApp
-                      <ArrowRight className="size-4" />
                     </a>
 
                     <div className="rounded-[28px] border border-white/10 bg-black/12 p-5 text-sm leading-7 text-white/66">
-                      A CosmoHQ atua como agência de apps, sites, social e ads.
-                      A gente entra para executar, não para enfeitar.
+                      A CosmoHQ trabalha como agência digital para transformar
+                      ideias em produtos e presença online com estratégia,
+                      execução e dados.
                     </div>
                   </CardContent>
                 </Card>
@@ -740,14 +715,19 @@ export default function CosmoLanding() {
                 <Card className="hover-lift h-full rounded-[32px]">
                   <CardContent className="p-6 sm:p-7">
                     <h3 className="text-2xl font-semibold tracking-[-0.04em] text-white">
-                      Conte sobre o seu projeto
+                      Envie um briefing curto
                     </h3>
-                    <p className="mt-2 text-sm text-white/56">Três campos, sem complicação.</p>
+                    <p className="mt-2 text-sm text-white/56">
+                      Três campos, sem burocracia.
+                    </p>
 
                     <form onSubmit={submitBriefing} className="mt-8 space-y-5">
                       <div>
-                        <label htmlFor="contact-name" className="mb-2 block text-sm font-medium text-white/78">
-                          Seu nome
+                        <label
+                          htmlFor="contact-name"
+                          className="mb-2 block text-sm font-medium text-white/78"
+                        >
+                          Nome
                         </label>
                         <input
                           id="contact-name"
@@ -776,17 +756,19 @@ export default function CosmoLanding() {
                           <option value="" disabled>
                             Selecione uma opção
                           </option>
-                          <option value="app">Desenvolvimento de App</option>
-                          <option value="site">Criação de Site</option>
-                          <option value="social">Gestão de Instagram</option>
-                          <option value="ads">Campanhas de Ads</option>
-                          <option value="analytics">Análise de Dados</option>
-                          <option value="completo">Pacote completo</option>
+                          <option value="App">App</option>
+                          <option value="Site">Site</option>
+                          <option value="Sistema">Sistema</option>
+                          <option value="Redes sociais">Redes sociais</option>
+                          <option value="Projeto completo">Projeto completo</option>
                         </select>
                       </div>
 
                       <div>
-                        <label htmlFor="contact-objective" className="mb-2 block text-sm font-medium text-white/78">
+                        <label
+                          htmlFor="contact-objective"
+                          className="mb-2 block text-sm font-medium text-white/78"
+                        >
                           Objetivo
                         </label>
                         <textarea
@@ -837,8 +819,7 @@ export default function CosmoLanding() {
                   </div>
                   <p className="mt-5 max-w-lg text-base leading-7 text-white/64">
                     Transformamos ideias em produtos e presença online com
-                    estratégia, execução e dados. Apps, sites, social e ads no
-                    mesmo time.
+                    estratégia, execução e inteligência de dados.
                   </p>
                 </div>
 
@@ -886,7 +867,7 @@ export default function CosmoLanding() {
 
               <div className="flex flex-col gap-3 border-t border-white/10 px-6 py-6 text-sm text-white/42 md:flex-row md:items-center md:justify-between md:px-7">
                 <div>&copy; {new Date().getFullYear()} CosmoHQ. Todos os direitos reservados.</div>
-                <div>Feito para vender melhor com apps, sites, social e ads.</div>
+                <div>Agência digital para transformar ideias em resultado real.</div>
               </div>
             </Card>
           </div>
