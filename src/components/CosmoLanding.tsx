@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import Balancer from "react-wrap-balancer";
 import {
   ArrowRight,
@@ -18,6 +18,7 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { submitContactLead } from "@/lib/contact";
 
 const CONTACT_EMAIL = "contato@cosmohq.org";
 const WHATSAPP_URL =
@@ -28,6 +29,7 @@ const navItems = [
   { label: "Portfólio", href: "#portfolio" },
   { label: "Diferenciais", href: "#diferenciais" },
   { label: "Fale com a gente", href: "#contato" },
+  { label: "Teste fechado", href: "/teste-fechado" },
 ];
 
 const steps = [
@@ -142,26 +144,6 @@ function SectionTitle({
   );
 }
 
-function submitBriefing(event: FormEvent<HTMLFormElement>) {
-  event.preventDefault();
-
-  const formData = new FormData(event.currentTarget);
-  const name = String(formData.get("name") ?? "").trim();
-  const projectType = String(formData.get("projectType") ?? "").trim();
-  const objective = String(formData.get("objective") ?? "").trim();
-
-  const subject = encodeURIComponent(`Novo contato CosmoHQ - ${name || "Contato"}`);
-  const body = encodeURIComponent(
-    [
-      `Nome: ${name || "-"}`,
-      `Tipo de projeto: ${projectType || "-"}`,
-      `Objetivo: ${objective || "-"}`,
-    ].join("\n"),
-  );
-
-  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-}
-
 function HeroImage({
   src,
   alt,
@@ -189,6 +171,39 @@ function HeroImage({
 }
 
 export default function CosmoLanding() {
+  const [contactStatus, setContactStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [contactMessage, setContactMessage] = useState<string | null>(null);
+
+  async function submitBriefing(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const name = String(formData.get("name") ?? "").trim();
+    const projectType = String(formData.get("projectType") ?? "").trim();
+    const objective = String(formData.get("objective") ?? "").trim();
+
+    setContactStatus("sending");
+    setContactMessage(null);
+
+    try {
+      const result = await submitContactLead({
+        name,
+        projectType,
+        objective,
+        source: "landing:hero",
+        pageUrl: window.location.href,
+      });
+
+      form.reset();
+      setContactStatus("success");
+      setContactMessage(result.message ?? "Recebemos seu briefing. Vamos responder em breve.");
+    } catch (error) {
+      setContactStatus("error");
+      setContactMessage(error instanceof Error ? error.message : "Não foi possível enviar o briefing.");
+    }
+  }
+
   return (
     <div id="top" className="relative overflow-x-clip">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(52,152,219,0.2),transparent_32%),radial-gradient(circle_at_80%_12%,rgba(241,196,15,0.14),transparent_18%),radial-gradient(circle_at_15%_18%,rgba(231,76,60,0.12),transparent_20%)]" />
@@ -787,14 +802,21 @@ export default function CosmoLanding() {
 
                       <button
                         type="submit"
+                        disabled={contactStatus === "sending"}
                         className={buttonVariants({
                           size: "lg",
-                          className: "w-full",
+                          className: "w-full disabled:pointer-events-none disabled:opacity-70",
                         })}
                       >
-                        Enviar briefing
+                        {contactStatus === "sending" ? "Enviando..." : "Enviar briefing"}
                         <ArrowRight className="size-4" />
                       </button>
+
+                      {contactMessage && (
+                        <p className={`text-center text-xs ${contactStatus === "error" ? "text-rose-300" : "text-emerald-300"}`}>
+                          {contactMessage}
+                        </p>
+                      )}
 
                       <p className="text-center text-xs text-white/42">
                         Envia direto para {CONTACT_EMAIL}

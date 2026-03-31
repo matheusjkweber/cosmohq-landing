@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowUpRight, Orbit } from "lucide-react";
 import { motion, fadeUp, ease } from "./motion";
 
@@ -21,6 +22,7 @@ const footerGroups = [
       { href: "#diferenciais", label: "Diferenciais" },
       { href: "#faq", label: "FAQ" },
       { href: "#contato", label: "Contato" },
+      { href: "/teste-fechado", label: "Teste fechado" },
       { href: "mailto:contato@cosmohq.org", label: "contato@cosmohq.org" },
     ],
   },
@@ -66,14 +68,25 @@ export default function Footer() {
                 </div>
                 <div className="mt-4 space-y-3">
                   {group.links.map((link) => (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      className="flex items-center gap-2 text-sm text-white/62 transition hover:text-white"
-                    >
-                      {link.label}
-                      <ArrowUpRight className="h-3.5 w-3.5" />
-                    </a>
+                    link.href.startsWith("/") ? (
+                      <Link
+                        key={link.label}
+                        href={link.href}
+                        className="flex items-center gap-2 text-sm text-white/62 transition hover:text-white"
+                      >
+                        {link.label}
+                        <ArrowUpRight className="h-3.5 w-3.5" />
+                      </Link>
+                    ) : (
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        className="flex items-center gap-2 text-sm text-white/62 transition hover:text-white"
+                      >
+                        {link.label}
+                        <ArrowUpRight className="h-3.5 w-3.5" />
+                      </a>
+                    )
                   ))}
                 </div>
               </div>
