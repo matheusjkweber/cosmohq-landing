@@ -22,6 +22,7 @@ const footerGroups = [
       { href: "#diferenciais", label: "Diferenciais" },
       { href: "#faq", label: "FAQ" },
       { href: "#contato", label: "Contato" },
+      { href: "/privacidade", label: "Política de Privacidade" },
       { href: "/teste-fechado", label: "Teste fechado" },
       { href: "mailto:contato@cosmohq.org", label: "contato@cosmohq.org" },
     ],

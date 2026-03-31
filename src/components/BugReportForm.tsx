@@ -23,7 +23,7 @@ export default function BugReportForm() {
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-white/64">
               Use este formulário para me enviar o problema com uma imagem.
-              As mensagens vão direto para a equipe da CosmoHQ.
+              As mensagens vão direto para contato@cosmohq.org.
             </p>
           </div>
           <div className="hidden rounded-2xl border border-white/10 bg-white/6 p-3 text-brand-accent lg:block">
@@ -146,7 +146,7 @@ export default function BugReportForm() {
 
           <div className="flex items-center gap-3 rounded-[24px] border border-white/10 bg-black/14 px-4 py-3 text-sm text-white/62">
             <Camera className="h-4 w-4 text-brand-primary" />
-            O formulário envia a mensagem e a imagem direto para o email configurado.
+            O formulário envia a mensagem e a imagem direto para contato@cosmohq.org.
           </div>
         </form>
       </CardContent>

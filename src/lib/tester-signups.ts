@@ -17,47 +17,50 @@ export async function submitTesterSignup(payload: TesterSignupPayload) {
   const shouldUseBackend = backendUrl !== "/api/public/tester-signups";
 
   if (shouldUseBackend) {
-    const response = await fetch(backendUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(normalizedPayload),
-    });
+    try {
+      const response = await fetch(backendUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(normalizedPayload),
+      });
 
-    const data = await response.json().catch(() => ({}));
-    if (!response.ok) {
-      throw new Error(data?.error ?? "Não foi possível enviar seu cadastro.");
+      if (response.ok) {
+        const data = await response.json().catch(() => ({}));
+        return data as {
+          ok: boolean;
+          leadId?: string;
+          message?: string;
+        };
+      }
+
+      return submitViaFormsubmit(normalizedPayload);
+    } catch {
+      return submitViaFormsubmit(normalizedPayload);
     }
-
-    return data as {
-      ok: boolean;
-      leadId?: string;
-      message?: string;
-    };
   }
 
-  const response = await fetch("https://formsubmit.co/ajax/matheus.jk.weber@gmail.com", {
+  return submitViaFormsubmit(normalizedPayload);
+}
+
+async function submitViaFormsubmit(payload: TesterSignupPayload) {
+  await fetch("https://formsubmit.co/ajax/matheus.jk.weber@gmail.com", {
     method: "POST",
+    mode: "no-cors",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-      Accept: "application/json",
     },
     body: new URLSearchParams({
-      name: normalizedPayload.name,
-      email: normalizedPayload.email,
-      source: normalizedPayload.source ?? "landing:teste-fechado",
-      pageUrl: normalizedPayload.pageUrl ?? "",
+      name: payload.name,
+      email: payload.email,
+      source: payload.source ?? "landing:teste-fechado",
+      pageUrl: payload.pageUrl ?? "",
       _subject: "Novo cadastro para o teste fechado do CosmoFinanças",
       _template: "table",
       _captcha: "false",
     }).toString(),
   });
-
-  const data = await response.json().catch(() => ({}));
-  if (!response.ok) {
-    throw new Error(data?.message ?? "Não foi possível enviar seu cadastro.");
-  }
 
   return {
     ok: true,

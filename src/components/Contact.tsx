@@ -1,38 +1,52 @@
 "use client";
 
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { ArrowRight, MessageCircle, Send } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { motion, fadeUp, stagger, ease } from "./motion";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { submitContactLead } from "@/lib/contact";
 
 const WHATSAPP_URL =
   "https://wa.me/5551980602335?text=Ol%C3%A1%20CosmoHQ!%20Quero%20conversar%20sobre%20um%20projeto.";
 const CONTACT_EMAIL = "contato@cosmohq.org";
 
-function submitProjectBriefing(event: FormEvent<HTMLFormElement>) {
-  event.preventDefault();
-
-  const formData = new FormData(event.currentTarget);
-  const name = String(formData.get("nome") ?? "").trim();
-  const projectType = String(formData.get("tipo_projeto") ?? "").trim();
-  const objective = String(formData.get("objetivo") ?? "").trim();
-
-  const subject = encodeURIComponent(`Novo projeto CosmoHQ - ${name || "Contato"}`);
-  const body = encodeURIComponent(
-    [
-      `Nome: ${name || "-"}`,
-      `Tipo de projeto: ${projectType || "-"}`,
-      `Objetivo: ${objective || "-"}`,
-    ].join("\n"),
-  );
-
-  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-}
-
 export default function Contact() {
+  const [contactStatus, setContactStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [contactMessage, setContactMessage] = useState<string | null>(null);
+
+  async function submitProjectBriefing(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const name = String(formData.get("nome") ?? "").trim();
+    const projectType = String(formData.get("tipo_projeto") ?? "").trim();
+    const objective = String(formData.get("objetivo") ?? "").trim();
+
+    setContactStatus("sending");
+    setContactMessage(null);
+
+    try {
+      const result = await submitContactLead({
+        name,
+        projectType,
+        objective,
+        source: "landing:contact",
+        pageUrl: window.location.href,
+      });
+
+      form.reset();
+      setContactStatus("success");
+      setContactMessage(result.message ?? "Recebemos seu contato. Vamos responder em breve.");
+    } catch (error) {
+      setContactStatus("error");
+      setContactMessage(error instanceof Error ? error.message : "Não foi possível enviar a mensagem.");
+    }
+  }
+
   return (
     <section
       id="contato"
@@ -177,10 +191,23 @@ export default function Contact() {
                     />
                   </div>
 
-                  <button type="submit" className={buttonVariants({ size: "lg", className: "flex w-full" })}>
-                    Enviar mensagem
+                  <button
+                    type="submit"
+                    disabled={contactStatus === "sending"}
+                    className={buttonVariants({
+                      size: "lg",
+                      className: "flex w-full disabled:pointer-events-none disabled:opacity-70",
+                    })}
+                  >
+                    {contactStatus === "sending" ? "Enviando..." : "Enviar mensagem"}
                     <Send className="h-4 w-4" />
                   </button>
+
+                  {contactMessage && (
+                    <p className={`text-center text-xs ${contactStatus === "error" ? "text-rose-300" : "text-emerald-300"}`}>
+                      {contactMessage}
+                    </p>
+                  )}
                 </form>
               </CardContent>
             </Card>
