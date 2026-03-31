@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowLeft, CheckCircle2, Sparkles, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import BugReportForm from "@/components/BugReportForm";
 import TesterSignupForm from "@/components/TesterSignupForm";
 
 export const metadata: Metadata = {
@@ -86,6 +87,21 @@ export default function TesterSignupPage() {
                     ))}
                   </div>
                 </div>
+
+                <div className="mt-8 rounded-[28px] border border-white/10 bg-white/5 p-5">
+                  <div className="text-xs uppercase tracking-[0.24em] text-white/40">
+                    Suporte direto
+                  </div>
+                  <a
+                    href="mailto:contato@cosmohq.org"
+                    className="mt-3 inline-flex items-center gap-2 text-base font-semibold text-white transition hover:text-brand-primary"
+                  >
+                    contato@cosmohq.org
+                  </a>
+                  <p className="mt-2 text-sm leading-7 text-white/60">
+                    Se preferir, use esse email para falar diretamente com a gente.
+                  </p>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -105,6 +121,8 @@ export default function TesterSignupPage() {
                 </ul>
               </CardContent>
             </Card>
+
+            <BugReportForm />
           </div>
         </div>
       </div>
