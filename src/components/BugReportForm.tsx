@@ -23,7 +23,7 @@ export default function BugReportForm() {
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-white/64">
               Use este formulário para me enviar o problema com uma imagem.
-              As mensagens vão direto para <span className="text-white">{REPORT_EMAIL}</span>.
+              As mensagens vão direto para a equipe da CosmoHQ.
             </p>
           </div>
           <div className="hidden rounded-2xl border border-white/10 bg-white/6 p-3 text-brand-accent lg:block">
