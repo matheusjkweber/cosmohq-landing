@@ -867,6 +867,18 @@ export default function CosmoLanding() {
                         {item.label}
                       </a>
                     ))}
+                    <a
+                      href="/privacidade"
+                      className="block text-sm text-white/64 transition hover:text-white"
+                    >
+                      Política de Privacidade
+                    </a>
+                    <a
+                      href="/termos"
+                      className="block text-sm text-white/64 transition hover:text-white"
+                    >
+                      Termos de Uso
+                    </a>
                   </div>
                 </div>
 
