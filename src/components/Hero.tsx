@@ -26,9 +26,9 @@ const stats = [
 
 const secondaryShowcase = [
   {
-    label: "CosmoKit",
-    src: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/06/7e/d6/067ed6f7-7b2c-b674-37e7-72ab6598aaf6/screenshot_1.png/2560x1600bb.png",
-    alt: "CosmoKit — Toolkit criativo desenvolvido pela CosmoHQ",
+    label: "Cosmo Travel MCP",
+    src: "/products/mcp-dossier-1.png",
+    alt: "Cosmo Travel MCP — o dossiê de viagem que a ferramenta gera",
   },
   {
     label: "Nosso time",
@@ -157,10 +157,10 @@ export default function Hero() {
               <div className="mt-3 grid gap-3 xl:grid-cols-[minmax(0,0.72fr)_minmax(0,0.28fr)]">
                 <div className="overflow-hidden rounded-[28px] border border-white/10 bg-[#1d2224]">
                   <Image
-                    src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/da/41/2d/da412de0-3b03-b6f8-2bf4-5216ea3b5340/screenshot_1.png/2560x1599bb.png"
-                    alt="CosmoFinanças — Dashboard financeiro desenvolvido pela CosmoHQ"
-                    width={2560}
-                    height={1599}
+                    src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/cc/6d/9b/cc6d9b44-5035-0cba-74de-fac58981db3a/screenshot_1.png/800x500bb.jpg"
+                    alt="CosmoKit — controle de simuladores iOS, desenvolvido pela CosmoHQ"
+                    width={800}
+                    height={500}
                     priority
                     className="h-full w-full object-cover"
                     unoptimized

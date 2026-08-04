@@ -72,34 +72,34 @@ const portfolio = [
     result:
       "Um app nativo para macOS que centraliza o QA no Simulador: push, deep links, captura de tela, simulação de rota e inspeção de rede.",
     image:
-      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/86/86/4f/86864fb4-0e55-30c1-eb93-0886db80876f/screenshot_1.png/2560x1600bb.png",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/cc/6d/9b/cc6d9b44-5035-0cba-74de-fac58981db3a/screenshot_1.png/800x500bb.jpg",
     storeUrl: "https://apps.apple.com/br/app/cosmokit-tools/id6756494471?mt=12",
     contain: false,
     bullets: ["Vários simuladores", "Captura e gravação", "Proxy e localização"],
   },
   {
     name: "CosmoFinanças",
-    label: "App para macOS",
+    label: "App para iPhone e iPad",
     problem:
       "Como organizar a visão financeira sem depender de planilhas confusas?",
     result:
       "Uma experiência visual para enxergar o cenário com rapidez e tomar decisões com mais confiança.",
     image:
-      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/da/41/2d/da412de0-3b03-b6f8-2bf4-5216ea3b5340/screenshot_1.png/2560x1599bb.png",
-    storeUrl: "https://apps.apple.com/br/app/cosmo-finan%C3%A7as/id6758966021?mt=12",
-    contain: false,
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/50/19/c5/5019c5e6-a5e5-0948-6134-f20c12d8af79/screenshot_2.png/576x768bb.png",
+    storeUrl: "https://apps.apple.com/br/app/cosmo-finan%C3%A7as/id6758966021",
+    contain: true,
     bullets: ["Clareza para o dia a dia", "Decisão mais rápida", "Uso real como referência"],
   },
   {
     name: "LifeManager",
-    label: "App para macOS",
+    label: "App para iPhone e Android",
     problem:
       "Organizar e priorizar as tarefas e atividades do dia a dia sem perder o foco no que importa.",
     result:
       "Um gerenciador de tarefas, hábitos e metas com estrutura hierárquica e progresso gamificado para manter a rotina sob controle.",
-    image: "/lifemanager.png",
+    image: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/04/6e/03/046e0331-11ce-c285-6d0a-1d088c9a195a/screenshot_1.png/576x768bb.png",
     storeUrl: "https://apps.apple.com/br/app/lifemanager/id6761347791",
-    contain: false,
+    contain: true,
     bullets: ["Criação rápida de tarefas", "Hábitos e metas", "Progresso gamificado"],
   },
   {
@@ -110,10 +110,22 @@ const portfolio = [
     result:
       "Um app que leva o terminal do Mac para o bolso: acompanhe e comande sessões do Claude Code e do Codex em tempo real.",
     image:
-      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/18/50/56/18505600-1624-ec83-b24f-503753d567bb/screenshot_1.png/1200x1600bb.png",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/9a/5a/16/9a5a1632-6882-e6be-461c-7fd138e23909/screenshot_1.png/576x768bb.png",
     storeUrl: "https://apps.apple.com/br/app/cosmoremote/id6761442464",
     contain: true,
     bullets: ["Pareamento por QR", "Streaming em tempo real", "Sessões em paralelo"],
+  },
+  {
+    name: "Cosmo Travel MCP",
+    label: "Ferramenta open source",
+    problem:
+      "Comparar os roteiros possíveis de uma viagem exige dezenas de cotações — e uma planilha em que os números do topo já envelheceram antes dos de baixo.",
+    result:
+      "Onze ferramentas MCP que cotam voos, hospedagem, eventos e trajetos numa rodada só, devolvendo cada preço com a fonte, a data e a faixa de referência da rota.",
+    image: "/products/mcp-dossier-1.png",
+    storeUrl: "https://github.com/maththedev42/cosmo-travel-mcp",
+    contain: false,
+    bullets: ["Todo número com procedência", "Roteiros comparados lado a lado", "Vigília semanal de preço"],
   },
 ];
 
@@ -345,16 +357,16 @@ export default function CosmoLanding() {
               <div className="editorial-panel ring-gradient relative overflow-hidden rounded-[40px] p-4 sm:p-5">
                 <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
                   <HeroImage
-                    src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/da/41/2d/da412de0-3b03-b6f8-2bf4-5216ea3b5340/screenshot_1.png/2560x1599bb.png"
-                    alt="Imagem promocional da CosmoHQ em destaque"
+                    src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/f5/44/e8/f544e8a5-7be4-1f6c-f1ad-d9f50972ceda/screenshot_1.png/576x768bb.png"
+                    alt="CosmoFinanças — visão geral do mês"
                     priority
                     className="aspect-[4/4.6] rounded-[30px]"
                   />
 
                   <div className="grid gap-4">
                     <HeroImage
-                      src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/47/15/fb/4715fb3c-465a-dddb-7604-123da748c8cf/screenshot_2.png/2560x1600bb.png"
-                      alt="Imagem promocional da CosmoHQ com composição editorial"
+                      src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/7c/f7/85/7cf78523-e85b-e061-5fa6-27988f8e86bc/screenshot_2.png/800x500bb.jpg"
+                      alt="CosmoKit — simulação de rotas e localização"
                       className="aspect-[4/3] rounded-[30px]"
                     />
 
@@ -585,7 +597,9 @@ export default function CosmoLanding() {
                         rel="noreferrer"
                         className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-brand-primary transition hover:text-white"
                       >
-                        Ver na App Store
+                        {item.storeUrl.includes("apps.apple.com")
+                          ? "Ver na App Store"
+                          : "Ver no GitHub"}
                         <ArrowUpRight className="size-4" />
                       </a>
                     </CardContent>
