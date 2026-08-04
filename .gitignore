@@ -7,6 +7,7 @@ Pods/
 build/
 dist/
 .next/
+out/
 *.xcarchive
 
 # Environment & secrets

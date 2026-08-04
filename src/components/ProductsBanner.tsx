@@ -20,6 +20,16 @@ type Product = {
 
 const products: Product[] = [
   {
+    name: "Cosmo Travel MCP",
+    tagline: "Cotação de viagem inteira, com a fonte de cada número.",
+    description:
+      "Onze ferramentas MCP para voos, hospedagem, eventos e trajetos. Todo preço volta com a fonte, a data e a faixa de referência — nada é chamado de barato sem dizer barato comparado a quê.",
+    url: "https://github.com/maththedev42/cosmo-travel-mcp",
+    iconSrc: "/products/cosmotravelmcp.png",
+    badge: "Open source",
+    accent: "#14b8a6",
+  },
+  {
     name: "CosmoKit",
     tagline: "Toolkit nativo para acelerar testes em simuladores iOS.",
     description:

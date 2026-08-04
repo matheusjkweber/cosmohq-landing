@@ -6,14 +6,14 @@ import ProductsBanner from "@/components/ProductsBanner";
 export const metadata: Metadata = {
   title: "Produtos | CosmoHQ",
   description:
-    "Conheça os produtos da CosmoHQ — CosmoKit, CosmoFinanças, CosmoRemote e LifeManager. Cada um com sua landing dedicada.",
+    "Conheça os produtos da CosmoHQ — CosmoKit, CosmoFinanças, CosmoRemote, LifeManager e o Cosmo Travel MCP. Cada um com sua landing dedicada.",
   alternates: {
     canonical: "https://cosmohq.org/produtos",
   },
   openGraph: {
     title: "Produtos da CosmoHQ",
     description:
-      "CosmoKit, CosmoFinanças, CosmoRemote e LifeManager — visite as landings dedicadas de cada app.",
+      "CosmoKit, CosmoFinanças, CosmoRemote, LifeManager e o Cosmo Travel MCP — visite as landings dedicadas de cada um.",
     url: "https://cosmohq.org/produtos",
     siteName: "CosmoHQ",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Produtos CosmoHQ" }],

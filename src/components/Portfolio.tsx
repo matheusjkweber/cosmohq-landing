@@ -11,21 +11,25 @@ import { cn } from "@/lib/utils";
 const cases = [
   {
     name: "CosmoKit",
-    tagline: "Toolkit criativo para equipes digitais",
+    tagline: "Toolkit nativo para acelerar testes em simuladores iOS",
     problem:
-      "Profissionais criativos perdiam horas gerenciando assets espalhados em pastas, drives e ferramentas diferentes.",
+      "Testar um app em simulador é abrir o Xcode, achar a janela certa, capturar cada tela à mão e repetir tudo para cada idioma e cada device.",
     solution:
-      "Construímos um app nativo para macOS que centraliza assets, paletas, componentes e referências visuais em um workspace inteligente.",
-    result: "Workflow 3x mais rápido e zero asset perdido.",
-    badge: "App nativo",
+      "Um app nativo de macOS que reúne controle do simulador, captura de tela e de vídeo, gravação e inspeção de rede numa janela só.",
+    result: "Na App Store como CosmoKit Tools, hoje na versão 4.5.0.",
+    badge: "macOS",
     screenshots: [
       {
-        src: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/06/7e/d6/067ed6f7-7b2c-b674-37e7-72ab6598aaf6/screenshot_1.png/2560x1600bb.png",
-        alt: "CosmoKit — Dashboard principal",
+        src: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/cc/6d/9b/cc6d9b44-5035-0cba-74de-fac58981db3a/screenshot_1.png/800x500bb.jpg",
+        alt: "CosmoKit — painel de controle do simulador",
+        w: 800,
+        h: 500,
       },
       {
-        src: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/62/26/c7/6226c732-53bc-197e-fae0-59fa01734604/screenshot_2.png/2560x1600bb.png",
-        alt: "CosmoKit — Workspace de assets",
+        src: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/7c/f7/85/7cf78523-e85b-e061-5fa6-27988f8e86bc/screenshot_2.png/800x500bb.jpg",
+        alt: "CosmoKit — captura e gravação",
+        w: 800,
+        h: 500,
       },
     ],
     className: "md:col-span-7",
@@ -35,19 +39,99 @@ const cases = [
     name: "CosmoFinanças",
     tagline: "Gestão financeira clara para quem precisa decidir rápido",
     problem:
-      "Pequenas empresas tomavam decisões financeiras no escuro — sem visibilidade de fluxo de caixa ou margem real.",
+      "Extrato do banco e fatura do cartão contam a mesma despesa duas vezes, e a conta do mês nunca fecha sozinha.",
     solution:
-      "Desenvolvemos uma plataforma com dashboard em tempo real, categorização automática e relatórios que qualquer pessoa entende.",
-    result: "Visibilidade financeira total em menos de 5 minutos por dia.",
-    badge: "Plataforma web",
+      "Importação de extrato com categorização automática, reconciliação de fatura e relatórios que qualquer pessoa entende.",
+    result: "iOS e Android, hoje na versão 2.0.1.",
+    badge: "iOS · Android",
     screenshots: [
       {
-        src: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/da/41/2d/da412de0-3b03-b6f8-2bf4-5216ea3b5340/screenshot_1.png/2560x1599bb.png",
-        alt: "CosmoFinanças — Dashboard financeiro",
+        src: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/f5/44/e8/f544e8a5-7be4-1f6c-f1ad-d9f50972ceda/screenshot_1.png/576x768bb.png",
+        alt: "CosmoFinanças — visão geral do mês",
+        w: 576,
+        h: 768,
+      },
+      {
+        src: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/50/19/c5/5019c5e6-a5e5-0948-6134-f20c12d8af79/screenshot_2.png/576x768bb.png",
+        alt: "CosmoFinanças — lançamentos e categorias",
+        w: 576,
+        h: 768,
       },
     ],
     className: "md:col-span-5",
     accent: "brand-secondary",
+  },
+  {
+    name: "CosmoRemote",
+    tagline: "Seu Mac na palma da mão, de onde você estiver",
+    problem:
+      "Sair de casa não devia significar perder acesso à máquina onde o trabalho realmente acontece.",
+    solution:
+      "Acesso remoto ao Mac pelo iPhone ou iPad, com controle real da tela, dos arquivos e dos processos — sem depender de terceiros no meio.",
+    result: "iOS e macOS, hoje na versão 2.0.",
+    badge: "iOS · macOS",
+    screenshots: [
+      {
+        src: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/9a/5a/16/9a5a1632-6882-e6be-461c-7fd138e23909/screenshot_1.png/576x768bb.png",
+        alt: "CosmoRemote — tela do Mac no iPhone",
+        w: 576,
+        h: 768,
+      },
+      {
+        src: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/d8/a1/ff/d8a1ff89-0b7c-0121-6002-e218193bc378/screenshot_2.png/576x768bb.png",
+        alt: "CosmoRemote — controle de sessão",
+        w: 576,
+        h: 768,
+      },
+    ],
+    className: "md:col-span-5",
+    accent: "brand-primary",
+  },
+  {
+    name: "LifeManager",
+    tagline: "A vida inteira em um painel só",
+    problem:
+      "Hábitos num app, contas em outro, projetos numa lista solta — e nenhuma visão do conjunto.",
+    solution:
+      "Um painel único para hábitos, finanças, projetos e bem-estar, com sincronização entre iPhone e Android.",
+    result: "iOS e Android, hoje na versão 1.0.3.",
+    badge: "iOS · Android",
+    screenshots: [
+      {
+        src: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/04/6e/03/046e0331-11ce-c285-6d0a-1d088c9a195a/screenshot_1.png/576x768bb.png",
+        alt: "LifeManager — painel do dia",
+        w: 576,
+        h: 768,
+      },
+      {
+        src: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/1f/94/47/1f94470f-f37c-3931-377d-b131cd0017b8/screenshot_2.png/576x768bb.png",
+        alt: "LifeManager — hábitos e progresso",
+        w: 576,
+        h: 768,
+      },
+    ],
+    className: "md:col-span-7",
+    accent: "brand-secondary",
+  },
+  {
+    name: "Cosmo Travel MCP",
+    tagline: "Cotação de viagem inteira, com a fonte de cada número",
+    problem:
+      "Comparar quatro roteiros possíveis de uma viagem exige umas quarenta cotações — e uma planilha em que os números do topo já estão mais velhos que os de baixo.",
+    solution:
+      "Onze ferramentas MCP para voos, hospedagem, eventos e trajetos, que cotam tudo numa rodada só e devolvem cada preço com a fonte, a data e a faixa de referência da rota.",
+    result: "Open source, no PyPI sob licença MIT.",
+    badge: "Open source",
+    screenshots: [
+      {
+        src: "/products/mcp-dossier-1.png",
+        alt: "Cosmo Travel MCP — o dossiê gerado a partir de uma pesquisa",
+        w: 1600,
+        h: 1031,
+      },
+    ],
+    className: "md:col-span-12",
+    accent: "brand-accent",
   },
 ] as const;
 
@@ -80,7 +164,7 @@ export default function Portfolio() {
           eyebrow="Portfólio"
           title="Produtos que construímos"
           highlight="e usamos no dia a dia."
-          description="CosmoKit e CosmoFinanças nasceram de problemas reais e hoje ajudam outros negócios a operar melhor."
+          description="Quatro apps publicados nas lojas e uma ferramenta open source. As telas abaixo são as que estão nas fichas hoje."
         />
 
         <motion.div
@@ -113,8 +197,8 @@ export default function Portfolio() {
                         <Image
                           src={shot.src}
                           alt={shot.alt}
-                          width={2560}
-                          height={1600}
+                          width={shot.w}
+                          height={shot.h}
                           className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.02]"
                           unoptimized
                         />
