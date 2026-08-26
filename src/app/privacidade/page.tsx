@@ -62,7 +62,18 @@ const sections = [
     ],
   },
   {
-    title: "8. Atualizações",
+    title: "8. Nossos aplicativos",
+    content: [
+      "Além do site, publicamos aplicativos para iOS e Android, como o CosmoPrompter. Esta seção descreve o tratamento de dados dentro desses aplicativos e prevalece sobre as seções anteriores quando houver divergência.",
+      "A câmera e o microfone são usados somente enquanto você grava, para produzir o seu vídeo. O reconhecimento de fala é executado no próprio aparelho e serve para acompanhar a leitura do roteiro e gerar legendas.",
+      "Seus roteiros, gravações, legendas e ajustes de edição ficam armazenados apenas no seu aparelho. Não enviamos esse conteúdo para nossos servidores, não temos acesso a ele e não o utilizamos para treinar modelos.",
+      "Os aplicativos não exigem cadastro nem login, não exibem anúncios e não fazem rastreamento entre aplicativos ou sites.",
+      "As compras são processadas pela App Store ou pelo Google Play. Utilizamos a RevenueCat para validar assinaturas: ela recebe um identificador pseudônimo gerado pelo aplicativo e o status da assinatura. Dados de pagamento, como cartão e endereço de cobrança, são tratados exclusivamente pela loja e nunca chegam até nós.",
+      "Para remover os dados dos aplicativos, basta desinstalá-los: o conteúdo local é apagado junto. Como não mantemos conta nem cópia em servidor, não há dados de aplicativo a solicitar exclusão conosco.",
+    ],
+  },
+  {
+    title: "9. Atualizações",
     content: [
       "Podemos atualizar esta política periodicamente para refletir mudanças no site, na operação ou na legislação.",
       "A versão mais recente estará sempre disponível nesta página.",

@@ -69,7 +69,17 @@ const sections = [
     ],
   },
   {
-    title: "9. Alterações",
+    title: "9. Aplicativos e assinaturas",
+    content: [
+      "Nossos aplicativos podem oferecer recursos pagos por meio de assinatura ou de compra única, contratados dentro do próprio aplicativo.",
+      "As assinaturas são renovadas automaticamente ao fim de cada período, salvo cancelamento feito com pelo menos 24 horas de antecedência. A cobrança da renovação ocorre nas 24 horas anteriores ao fim do período vigente.",
+      "O gerenciamento e o cancelamento da assinatura são feitos nos ajustes da sua conta na App Store ou no Google Play, e não por nós. Compras vitalícias são pagamentos únicos e não se renovam.",
+      "Períodos de teste gratuito, quando oferecidos, convertem-se em assinatura paga caso não sejam cancelados antes do fim do teste. Qualquer parte não utilizada de um teste é perdida ao contratar a assinatura.",
+      "Pedidos de reembolso seguem as políticas da App Store e do Google Play.",
+    ],
+  },
+  {
+    title: "10. Alterações",
     content: [
       "Estes Termos de Uso podem ser modificados periodicamente para refletir mudanças no site, nos serviços ou em requisitos legais.",
       "A versão mais recente estará sempre disponível nesta página.",
