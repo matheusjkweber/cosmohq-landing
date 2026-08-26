@@ -1,10 +1,17 @@
-export { default } from "../termos/page";
+import type { Metadata } from "next";
+import LegalPage from "@/components/LegalPage";
+import { termsEn } from "@/lib/legal";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Terms of Service | CosmoHQ",
   description:
-    "Read the terms of service for the CosmoHQ website, including website use, contact forms, intellectual property, and applicable limitations.",
+    "The terms of service for the CosmoHQ website and apps, covering website use, contact forms, intellectual property, subscriptions and applicable limitations.",
   alternates: {
     canonical: "https://cosmohq.org/terms",
+    languages: { "pt-BR": "https://cosmohq.org/termos", en: "https://cosmohq.org/terms" },
   },
 };
+
+export default function Page() {
+  return <LegalPage doc={termsEn} />;
+}

@@ -1,10 +1,17 @@
-export { default } from "../privacidade/page";
+import type { Metadata } from "next";
+import LegalPage from "@/components/LegalPage";
+import { privacyEn } from "@/lib/legal";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Privacy Policy | CosmoHQ",
   description:
-    "Learn how CosmoHQ collects, uses, stores, and protects personal data on its website and contact forms.",
+    "How CosmoHQ collects, uses, stores and protects personal data on its website, its contact forms and its apps.",
   alternates: {
     canonical: "https://cosmohq.org/privacy",
+    languages: { "pt-BR": "https://cosmohq.org/privacidade", en: "https://cosmohq.org/privacy" },
   },
 };
+
+export default function Page() {
+  return <LegalPage doc={privacyEn} />;
+}
